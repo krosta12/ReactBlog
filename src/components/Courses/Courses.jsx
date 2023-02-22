@@ -2,12 +2,13 @@ import Button from '../../common/Button/Button';
 import SearchBar from './components/SearchBar/SearchBar';
 import CourceCard from './components/CourseCard/CourseCard';
 import '../../App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReadyInfo from '../../cost';
 import Input from '../../common/Input/input';
 import { mockedAuthorsList } from '../../cost';
 import CreateCource from '../CreateCourse/CreateCourse';
 import PipeDuration from '../../helpers/PipeDuration';
+import { Button2 } from '../../common/Button/Button2';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
@@ -23,7 +24,9 @@ function Cources(props) {
 
 	const [searchButton, setSearchButton] = useState('');
 	// setPosts(ReadyInfo) re-render err
-
+	useEffect(() => {
+		search ? 0 : setSearchButton('');
+	});
 	if (!isEdit) {
 		return (
 			<div className='Pos'>
@@ -38,10 +41,14 @@ function Cources(props) {
 							/>
 						</div>
 						<div>
-							<Button
+							{/* <Button
 								setIsEdit={setIsEdit}
 								event='create'
 								innerText='Add new Cource'
+							/> */}
+							<Button2
+								text={'Add new Cource'}
+								onClick={() => setIsEdit(true)}
 							/>
 						</div>
 					</div>

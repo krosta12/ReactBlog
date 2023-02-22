@@ -1,6 +1,8 @@
 import Input from '../../common/Input/input';
 import Button from '../../common/Button/Button';
 import { useEffect } from 'react';
+import DateGenerator from '../../helpers/dateGenerator';
+import { Button2 } from '../../common/Button/Button2';
 
 function CreateCource({
 	title,
@@ -19,14 +21,14 @@ function CreateCource({
 	setPosts,
 	setIsEdit,
 }) {
-	useEffect(() => {
-		if (duration < 0 || duration == NaN) {
-			setDuration('');
-		} else if (parseInt(duration)) {
-			setDuration(parseInt(duration));
-		}
-	});
-	// я так и не смог
+	// useEffect(() => {
+	// 	if (duration < 0 || duration == NaN) {
+	// 		setDuration('');
+	// 	} else if (parseInt(duration)) {
+	// 		setDuration(parseInt(duration));
+	// 	}
+	// });
+	// я так и не смог буква Е и знак - проходят
 	return (
 		<div className='EditBody'>
 			<div className='EditInnerUp'>
@@ -40,7 +42,7 @@ function CreateCource({
 					/>
 				</div>
 				<div>
-					<Button
+					{/* <Buttozn
 						inputs={[title, description, duration, applAuthors]}
 						setInputs={[
 							setTitle,
@@ -58,6 +60,35 @@ function CreateCource({
 						setPosts={setPosts}
 						setIsEdit={setIsEdit}
 						innerText='Create Cource'
+					/> */}
+
+					<Button2
+						text={'Create Cource'}
+						onClick={() => {
+							if (title && description && applAuthors.length > 0 && duration) {
+								let newAuthorsList = [];
+
+								applAuthors.map((el) => newAuthorsList.push(el.name));
+								setPosts((el) => [
+									...el,
+									{
+										id: Math.random(),
+										title: title,
+										description: description,
+										creationDate: DateGenerator(),
+										duration: duration,
+										authors: newAuthorsList,
+									},
+								]);
+								setTitle('');
+								setDescription('');
+								setDuration(0);
+								setApplAuthor([]);
+								setIsEdit(false);
+							} else {
+								alert(0);
+							}
+						}}
 					/>
 				</div>
 			</div>
@@ -85,7 +116,17 @@ function CreateCource({
 							placeholder='Enter author name...'
 						/>
 					</div>
-					<Button
+					<Button2
+						text={'Create author'}
+						onClick={() => {
+							setAuthorList((el) => [
+								...el,
+								{
+									id: Math.random(),
+									name: inputAuthorName,
+								},
+							]);
+						}}
 						event='createAuthor'
 						name={inputAuthorName}
 						i={authorList}
@@ -143,7 +184,12 @@ function CreateCource({
 						state={duration}
 						setState={setDuration}
 					/>
-					<p className='DurationPEl'>{duration} : Hours</p>
+					<p className='DurationPEl'>
+						{duration > 0 && duration
+							? (duration / 60).toFixed(2)
+							: 'write correct duration'}{' '}
+						: Hours
+					</p>
 				</div>
 			</div>
 		</div>

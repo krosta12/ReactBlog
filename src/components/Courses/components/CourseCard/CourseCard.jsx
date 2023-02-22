@@ -1,4 +1,4 @@
-import Button from '../../../../common/Button/Button';
+import { Button2 } from '../../../../common/Button/Button2';
 import '../../../../App.css';
 
 function CourceCard(props) {
@@ -15,7 +15,7 @@ function CourceCard(props) {
 					<p>Created: {props.creationDate}</p>
 				</div>
 				<div className='ShowButton'>
-					<Button innerText='Show Cource' />
+					<Button2 text='Show Cource' onClick={() => ''} />
 				</div>
 			</div>
 		</div>

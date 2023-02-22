@@ -89,6 +89,7 @@ function CreateCource({
 								setTitle('');
 								setDescription('');
 								setDuration(0);
+								setAuthorList(mockedAuthorsList);
 								setApplAuthor([]);
 								setIsEdit(false);
 							} else {
@@ -176,11 +177,6 @@ function CreateCource({
 												elem.filter((elemB) => elemB != el)
 											); //с ELEMB тоже самое
 										}}
-										setState={setAuthorList}
-										el={el}
-										setStateApl={setApplAuthor}
-										event='del'
-										innerText='Delete author'
 									/>
 								</div>
 							))}

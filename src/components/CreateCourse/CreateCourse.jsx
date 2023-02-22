@@ -65,7 +65,12 @@ function CreateCource({
 					<Button2
 						text={'Create Cource'}
 						onClick={() => {
-							if (title && description && applAuthors.length > 0 && duration) {
+							if (
+								title.split('').length > 3 &&
+								description.split('').length > 3 &&
+								applAuthors.length > 0 &&
+								duration
+							) {
 								let newAuthorsList = [];
 
 								applAuthors.map((el) => newAuthorsList.push(el.name));
@@ -119,13 +124,17 @@ function CreateCource({
 					<Button2
 						text={'Create author'}
 						onClick={() => {
-							setAuthorList((el) => [
-								...el,
-								{
-									id: Math.random(),
-									name: inputAuthorName,
-								},
-							]);
+							if (inputAuthorName.split('').length > 3) {
+								setAuthorList((el) => [
+									...el,
+									{
+										id: Math.random(),
+										name: inputAuthorName,
+									},
+								]);
+							} else {
+								alert('Write correct name');
+							}
 						}}
 						event='createAuthor'
 						name={inputAuthorName}

@@ -41,7 +41,7 @@ function Button(props) {
 
 				break;
 			case 'add':
-				props.setStateApl((el) => [...el, props.el]);
+				props.seStateApl((el) => [...el, props.el]);
 				props.setState((el) => el.filter((el) => el != props.el));
 				break;
 			case 'del':

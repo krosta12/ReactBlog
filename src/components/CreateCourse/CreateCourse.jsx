@@ -29,6 +29,7 @@ function CreateCource({
 	// 	}
 	// });
 	// я так и не смог буква Е и знак - проходят
+
 	return (
 		<div className='EditBody'>
 			<div className='EditInnerUp'>
@@ -124,24 +125,20 @@ function CreateCource({
 					<Button2
 						text={'Create author'}
 						onClick={() => {
+							let i = Math.random().toString();
 							if (inputAuthorName.split('').length > 3) {
 								setAuthorList((el) => [
 									...el,
 									{
-										id: Math.random(),
+										id: i,
 										name: inputAuthorName,
 									},
 								]);
+								mockedAuthorsList.push({ id: i, name: inputAuthorName });
 							} else {
 								alert('Write correct name');
 							}
 						}}
-						event='createAuthor'
-						name={inputAuthorName}
-						i={authorList}
-						setState={setAuthorList}
-						mocketList={mockedAuthorsList}
-						innerText='Create author'
 					/>
 				</div>
 
@@ -152,12 +149,14 @@ function CreateCource({
 							<div>
 								<div className='Name'>
 									<span>{el.name}</span>
-									<Button
-										setState={setAuthorList}
-										el={el}
-										setStateApl={setApplAuthor}
-										event='add'
-										innerText='Add author'
+									<Button2
+										text={'Add author'}
+										onClick={() => {
+											setApplAuthor((ela) => [...ela, el]); //ela потому что конфдиктовал с el
+											setAuthorList((elem) =>
+												elem.filter((elemB) => elemB != el)
+											); //с ELEMB тоже самое
+										}}
 									/>
 								</div>
 							</div>
@@ -169,7 +168,14 @@ function CreateCource({
 							{applAuthors.map((el) => (
 								<div>
 									<span>{el.name}</span>
-									<Button
+									<Button2
+										text={'Delete author'}
+										onClick={() => {
+											setAuthorList((ela) => [...ela, el]); //ela потому что конфдиктовал с el
+											setApplAuthor((elem) =>
+												elem.filter((elemB) => elemB != el)
+											); //с ELEMB тоже самое
+										}}
 										setState={setAuthorList}
 										el={el}
 										setStateApl={setApplAuthor}

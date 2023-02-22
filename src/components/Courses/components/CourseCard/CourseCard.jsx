@@ -10,7 +10,12 @@ function CourceCard(props) {
 			</div>
 			<div className='Info'>
 				<div className='InfoInner'>
-					<div className='authors'>Authors: {props.authors}</div>
+					<div className='authors'>
+						Authors:{' '}
+						{props.authors.map((el) => {
+							return <span>{el} </span>;
+						})}
+					</div>
 					<p>Duration: {props.duration}</p>
 					<p>Created: {props.creationDate}</p>
 				</div>

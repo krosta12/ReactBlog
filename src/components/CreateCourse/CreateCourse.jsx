@@ -77,7 +77,7 @@ function CreateCource({
 								setPosts((el) => [
 									...el,
 									{
-										id: Math.random(),
+										id: Math.random().toString(),
 										title: title,
 										description: description,
 										creationDate: DateGenerator(),

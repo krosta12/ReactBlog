@@ -71,7 +71,6 @@ function help(promose, name) {
 	ReadyInfo.map((el, i) =>
 		el.authors.map((el, index) => {
 			if (el == promose) {
-				console.log(i, index, name);
 				ReadyInfo[i].authors[index] = name;
 			}
 		})
@@ -82,5 +81,4 @@ mockedAuthorsList.map((el) => help(el.id, el.name));
 
 //функцию делал 40 минут
 // всё сломалось ещё 20
-console.log(ReadyInfo);
 export default ReadyInfo;

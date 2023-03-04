@@ -1,4 +1,5 @@
 import DateGenerator from '../../helpers/dateGenerator';
+import { v4 } from 'uuid';
 
 function Button(props) {
 	function answer(props, all) {
@@ -20,7 +21,7 @@ function Button(props) {
 					props.setPosts((el) => [
 						...el,
 						{
-							id: Math.random(),
+							id: v4(),
 							title: props.title,
 							description: props.description,
 							creationDate: DateGenerator(),
@@ -52,7 +53,7 @@ function Button(props) {
 				props.setState((el) => [
 					...el,
 					{
-						id: Math.random(),
+						id: v4(),
 						name: props.name,
 					},
 				]);

@@ -208,3 +208,26 @@ input {
 .SearchBox>div {
   display: flex;
 }
+
+.RegisterBox{
+  width: 100%;
+  height: 45vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.RegisterBox>form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.RegisterBox>form>button{
+  margin-top: 3vw;
+}
+
+.inputToRegister>label{
+  margin-top: 2vw;
+}

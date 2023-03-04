@@ -1,14 +1,13 @@
-import Button from '../../common/Button/Button';
 import SearchBar from './components/SearchBar/SearchBar';
 import CourceCard from './components/CourseCard/CourseCard';
 import '../../App.css';
 import { useEffect, useState } from 'react';
-import ReadyInfo from '../../cost';
-import Input from '../../common/Input/input';
-import { mockedAuthorsList } from '../../cost';
+import ReadyInfo from '../../const';
+import { mockedAuthorsList } from '../../const';
 import CreateCource from '../CreateCourse/CreateCourse';
 import PipeDuration from '../../helpers/PipeDuration';
-import { Button2 } from '../../common/Button/Button2';
+import Button2 from '../../common/Button/Button2';
+import { Texts } from '../../const';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
@@ -41,13 +40,8 @@ function Cources(props) {
 							/>
 						</div>
 						<div>
-							{/* <Button
-								setIsEdit={setIsEdit}
-								event='create'
-								innerText='Add new Cource'
-							/> */}
 							<Button2
-								text={'Add new Cource'}
+								text={Texts.addNewCource}
 								onClick={() => setIsEdit(true)}
 							/>
 						</div>
@@ -64,14 +58,17 @@ function Cources(props) {
 								}
 							})
 							.map((el) => (
-								<CourceCard
-									id={el.id}
-									theme={el.title}
-									text={el.description}
-									creationDate={el.creationDate}
-									duration={PipeDuration(el)}
-									authors={el.authors}
-								/>
+								<>
+									<CourceCard
+										id={el.id}
+										theme={el.title}
+										text={el.description}
+										creationDate={el.creationDate}
+										duration={PipeDuration(el)}
+										authors={el.authors}
+										setPost={props.setPost}
+									/>
+								</>
 							))}
 					</div>
 				</div>

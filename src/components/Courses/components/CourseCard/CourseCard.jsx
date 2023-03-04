@@ -1,7 +1,11 @@
-import { Button2 } from '../../../../common/Button/Button2';
+import Button2 from '../../../../common/Button/Button2';
 import '../../../../App.css';
+import { Texts } from '../../../../const';
+import { useHistory, useNavigate } from 'react-router-dom'; //usehistory заменили в 6 версии
 
 function CourceCard(props) {
+	const navigate = useNavigate();
+
 	return (
 		<div div className='Card'>
 			<div className='Texts'>
@@ -16,11 +20,28 @@ function CourceCard(props) {
 							return <span>{el} </span>;
 						})}
 					</div>
-					<p>Duration: {props.duration}</p>
+					<p>Duration: {props.duration} Hours</p>
 					<p>Created: {props.creationDate}</p>
 				</div>
 				<div className='ShowButton'>
-					<Button2 text='Show Cource' onClick={() => ''} />
+					<Button2 //тут что то сломалось хотя не ничё не делал - пришлось играть с link и id
+						text={Texts.showCource}
+						onClick={(el) => {
+							props.setPost({
+								id: props.id,
+								title: props.theme,
+								description: props.text,
+								creationDate: props.creationDate,
+								duration: props.duration,
+								authors: props.authors,
+							});
+							// navigate.push('/s'); ne rabotaet
+
+							navigate(`/courses/:id=${props.id}`);
+
+							//Макс, спасибо я вытянул это из MAP и всё пофиксил
+						}}
+					/>
 				</div>
 			</div>
 		</div>

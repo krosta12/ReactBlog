@@ -1,6 +1,21 @@
 import { useState } from 'react';
 import React from 'react';
 
+export const Texts = {
+	addNewCource: 'Add new Cource',
+	showCource: 'Show Cource',
+	search: 'Search',
+	title: 'Title',
+	createCource: 'Create Cource',
+	description: 'Description',
+	authorName: 'Author name',
+	createAuthor: 'Create author',
+	addAuthor: 'Add author',
+	deleteAuthor: 'Delete author',
+	duration: 'Duration',
+	logOut: 'Log out',
+};
+
 const mockedCoursesList = [
 	{
 		id: 'de5aaa59-90f5-4dbc-b8a9-aaf205c551ba',
@@ -60,14 +75,6 @@ export const mockedAuthorsList = [
 let ReadyInfo = mockedCoursesList;
 
 function help(promose, name) {
-	// for (let i of ReadyInfo) {
-	//     for (let z of i.authors) {
-	//         if (z == ppp) {
-	//             console.log('d')
-	//         }
-	//     }
-	// }
-
 	ReadyInfo.map((el, i) =>
 		el.authors.map((el, index) => {
 			if (el == promose) {

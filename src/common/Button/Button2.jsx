@@ -1,3 +1,9 @@
-export const Button2 = ({ text, onClick }) => (
-	<button onClick={onClick}>{text}</button>
-);
+function Button2({ id, link, text, onClick, type }) {
+	return (
+		<button id={id} onClick={onClick} type={type}>
+			{text}
+		</button>
+	);
+}
+
+export default Button2;

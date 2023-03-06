@@ -4,60 +4,44 @@ import '../../App.css';
 import axios from 'axios';
 import Button2 from '../../common/Button/Button2';
 import getTockens from '../../helpers/getTockens';
+import apiWorker from '../../API/apiWorker';
 
 export default function Login() {
 	// const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
-	const [gmail, setGmail] = useState('');
+	const [email, setEmail] = useState('');
 
 	// const [nameBool, setNameBool] = useState(false);
 	// const [passwordBool, setPasswordBool] = useState(false);
-	// const [gmailBool, setGmailBool] = useState(false);
-
-	const standartAxios = axios;
+	// const [gmailBool, setEmailBool] = useState(false);
 
 	const navigate = useNavigate();
+	async function validate() {
+		if (password && email) {
+			const result = await apiWorker('http://localhost:4000/login', 'POST', {
+				email: email,
+				password: password,
+			});
+			// result.data.result
+			// 	? localStorage.setItem('token', result.data.result)
+			// 	: alert('invalid data'); не работает
+
+			if (result.data.result) {
+				localStorage.setItem('token', result.data.result);
+				navigate('/');
+			} else {
+				alert('invalid data');
+			}
+		}
+	}
 
 	return (
 		<div className='RegisterBox'>
-			{/* что делать с action */}
 			<form
 				onSubmit={(env) => {
 					env.preventDefault();
-					//сюда надо нормальную проверку от back-a
-					// password.split('').length > 5
-					// 	? setPasswordBool(true)
-					// 	: alert('write Psasword');
-					// gmail ? setGmailBool(true) : alert('write email');
 
-					if (password && gmail) {
-						// console.log('123');
-						standartAxios.post('http://localhost:4000/login', {
-							email: gmail,
-							password: password,
-						});
-
-						axios.interceptors.response.use(
-							(res) => {
-								// console.log(res.data);
-								localStorage.setItem('token', res.data.result);
-								navigate('/');
-							},
-							(err) => {
-								err;
-							}
-						);
-
-						// .then((response) => {
-						// 	console.log(response);
-						// 	if (response.status < 400) {
-						// 		//посмотреть какие статус коды не норм
-						// 		alert('OK');
-						// 	} else {
-						// 		alert('error');
-						// 	}
-						// });
-					}
+					validate();
 				}}
 			>
 				<h1>Login</h1>
@@ -66,8 +50,8 @@ export default function Login() {
 					<label>Gmail</label>
 					<input
 						type='email'
-						value={gmail}
-						onChange={(el) => setGmail(el.target.value)}
+						value={email}
+						onChange={(el) => setEmail(el.target.value)}
 					/>
 				</div>
 				<div className='inputToRegister'>

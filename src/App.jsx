@@ -22,7 +22,7 @@ function App() {
 					element={<Header isLogin={setJwtToken} token={jwtToken} />}
 				>
 					<Route
-						index
+						path='/corces'
 						element={
 							<div className='App'>
 								<Cources setPost={setPost} />
@@ -30,7 +30,7 @@ function App() {
 						}
 					/>
 					<Route path='registration' element={<Regitration />} />
-					<Route path='login' element={<Login />} />
+					<Route index element={<Login />} />
 
 					<Route path={`courses/:id`} element={<CourseInfo post={post} />} />
 				</Route>

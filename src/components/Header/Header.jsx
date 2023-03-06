@@ -6,6 +6,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import getTockens from '../../helpers/getTockens';
+import apiWorker from '../../API/apiWorker';
 
 function Header(props) {
 	// getTockens();
@@ -14,26 +15,10 @@ function Header(props) {
 	const navigate = useNavigate();
 	const [name, setName] = useState('');
 
-	const userMe = axios.create();
-
-	const authlnterceptor = (config) => {
-		config.headers = config.headers;
-		config.headers.Authorization = localStorage.getItem('token');
-		return config;
-	};
-	userMe.interceptors.request.use(authlnterceptor);
-
-	// userMe.headers.Authorization = `${props.token}`;
-	// // userMe.headers.get['accept'] = '*/*';
-	// // console.log(userMe.defaults.headers);
-	// console.log(props.token);
-	// //вот тут не понимаю, catch срабатывает
-
 	if (props.token)
-		userMe
-			.get('http://localhost:4000/users/me')
-			.then((el) => console.log(el.status));
-	// .then((el) => setName(el.data.result.name));
+		apiWorker('http://localhost:4000/users/me', 'GET_MY').then((el) =>
+			setName(el.data.result.name)
+		);
 	// .catch(alert('d'));
 
 	if (props.token) {
@@ -45,10 +30,14 @@ function Header(props) {
 						<span className='Name'>{name}</span>
 						<Button2
 							text={Texts.logOut}
-							onClick={() => {
-								userMe.delete('http://localhost:4000/logout');
+							onClick={async () => {
+								await apiWorker(
+									'http://localhost:4000/logout',
+									'DELETE',
+									props.isLogin
+								);
+								props.isLogin(false);
 								localStorage.removeItem('token');
-								props.isLogin(localStorage.getItem('token'));
 							}}
 						/>
 					</div>

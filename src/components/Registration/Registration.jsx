@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import apiWorker from '../../API/apiWorker';
 import '../../App.css';
 import Button2 from '../../common/Button/Button2';
 
@@ -11,10 +12,22 @@ export default function Reg(props) {
 
 	const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
-	const [gmail, setGmail] = useState('');
+	const [email, setEmail] = useState('');
 	let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
 	const navigate = useNavigate();
+
+	async function Validate() {
+		if (password && email && name) {
+			(await apiWorker('http://localhost:4000/register', 'POST', {
+				password: password,
+				email: email,
+				name: name,
+			}))
+				? navigate('/login')
+				: alert('err');
+		}
+	}
 
 	return (
 		<div className='RegisterBox'>
@@ -33,8 +46,8 @@ export default function Reg(props) {
 				<div className='inputToRegister'>
 					<label>Email</label>
 					<input
-						value={gmail}
-						onChange={(el) => setGmail(el.target.value)}
+						value={email}
+						onChange={(el) => setEmail(el.target.value)}
 						type='email'
 						placeholder='Enter Email'
 					/>
@@ -52,25 +65,7 @@ export default function Reg(props) {
 					text='Registration'
 					onClick={(env) => {
 						env.preventDefault();
-						name.split('').length > 3 ? setNameBool(true) : alert('Write Name');
-						password.split('').length > 5
-							? setPasswordBool(true)
-							: alert('pass len > 5');
-						reg.test(gmail) ? setGmailBool(true) : alert('write correct Email');
-
-						if (passwordBool && gmailBool && nameBool) {
-							axios.post('http://localhost:4000/register', {
-								name: name,
-								email: gmail,
-								password: password,
-								headers: {
-									'Content-Type': 'application/json',
-								}, //headers я скопировал из методички я так и не понял зачем он
-							});
-
-							navigate('/login');
-							// ОНО не работает изза тогоч то оно перезргружается
-						}
+						Validate();
 					}}
 				/>
 			</form>

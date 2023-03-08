@@ -13,13 +13,18 @@ export default function Reg(props) {
 	const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
-	let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-
+	// let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+	let apiHook = new apiWorker();
 	const navigate = useNavigate();
 
 	async function Validate() {
 		if (password && email && name) {
-			(await apiWorker('http://localhost:4000/register', 'POST', {
+			// (await apiWorker('http://localhost:4000/register', 'POST', {
+			// 	password: password,
+			// 	email: email,
+			// 	name: name,
+			// }))
+			(await apiHook.post('http://localhost:4000/register', {
 				password: password,
 				email: email,
 				name: name,

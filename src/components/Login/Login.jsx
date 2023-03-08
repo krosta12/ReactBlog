@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
 import '../../App.css';
 import axios from 'axios';
 import Button2 from '../../common/Button/Button2';
 import getTockens from '../../helpers/getTockens';
 import apiWorker from '../../API/apiWorker';
 
-export default function Login() {
+export default function Login({ setJwtToken }) {
+	let apiHook = new apiWorker();
 	// const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
@@ -18,17 +19,16 @@ export default function Login() {
 	const navigate = useNavigate();
 	async function validate() {
 		if (password && email) {
-			const result = await apiWorker('http://localhost:4000/login', 'POST', {
+			const el = await apiHook.post('http://localhost:4000/login', {
 				email: email,
 				password: password,
 			});
-			// result.data.result
-			// 	? localStorage.setItem('token', result.data.result)
-			// 	: alert('invalid data'); не работает
 
-			if (result.data.result) {
-				localStorage.setItem('token', result.data.result);
-				navigate('/');
+			if (el.data.result) {
+				setJwtToken('da'); //костыль, спаспающий всё
+				localStorage.setItem('token', el.data.result);
+
+				navigate('/corces'); //оно не перекидывает на index
 			} else {
 				alert('invalid data');
 			}

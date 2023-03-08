@@ -9,16 +9,22 @@ import getTockens from '../../helpers/getTockens';
 import apiWorker from '../../API/apiWorker';
 
 function Header(props) {
+	let apiHook = new apiWorker();
 	// getTockens();
 
 	props.isLogin(localStorage.getItem('token'));
 	const navigate = useNavigate();
 	const [name, setName] = useState('');
 
-	if (props.token)
-		apiWorker('http://localhost:4000/users/me', 'GET_MY').then((el) =>
-			setName(el.data.result.name)
-		);
+	if (props.token) {
+		// apiWorker('http://localhost:4000/users/me', 'GET_MY').then((el) =>
+		// 	setName(el.data.result.name)
+		// );
+		apiHook.getMe('http://localhost:4000/users/me').then((el) => {
+			setName(el.data.result.name);
+		});
+	}
+
 	// .catch(alert('d'));
 
 	if (props.token) {
@@ -31,11 +37,12 @@ function Header(props) {
 						<Button2
 							text={Texts.logOut}
 							onClick={async () => {
-								await apiWorker(
-									'http://localhost:4000/logout',
-									'DELETE',
-									props.isLogin
-								);
+								apiHook.delete('http://localhost:4000/logout', props.isLogin);
+								// await apiWorker(
+								// 	'http://localhost:4000/logout',
+								// 	'DELETE',
+								// 	props.isLogin
+								// );
 								props.isLogin(false);
 								localStorage.removeItem('token');
 							}}

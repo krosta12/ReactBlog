@@ -8,6 +8,7 @@ import CreateCource from '../CreateCourse/CreateCourse';
 import PipeDuration from '../../helpers/PipeDuration';
 import Button2 from '../../common/Button/Button2';
 import { Texts } from '../../const';
+import apiWorker from '../../API/apiWorker';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
@@ -22,6 +23,7 @@ function Cources(props) {
 	const [applAuthors, setApplAuthor] = useState([]);
 
 	const [searchButton, setSearchButton] = useState('');
+
 	// setPosts(ReadyInfo) re-render err
 	useEffect(() => {
 		search ? 0 : setSearchButton('');

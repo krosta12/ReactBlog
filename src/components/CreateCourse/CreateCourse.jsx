@@ -4,6 +4,7 @@ import DateGenerator from '../../helpers/dateGenerator';
 import Button2 from '../../common/Button/Button2';
 import { v4 } from 'uuid';
 import { Texts } from '../../const';
+import systemApiCreateCource from '../../API/systemApiCreateCource';
 
 function CreateCource({
 	title,
@@ -21,6 +22,7 @@ function CreateCource({
 	setInputAuthorName,
 	setPosts,
 	setIsEdit,
+	setKey,
 }) {
 	// useEffect(() => {
 	// 	if (duration < 0 || duration == NaN) {
@@ -55,23 +57,36 @@ function CreateCource({
 							) {
 								let newAuthorsList = [];
 
-								applAuthors.map((el) => newAuthorsList.push(el.name));
-								setPosts((el) => [
-									...el,
+								applAuthors.map((el) => newAuthorsList.push(el.id));
+								systemApiCreateCource(
 									{
 										id: v4(),
 										title: title,
 										description: description,
 										creationDate: DateGenerator(),
-										duration: duration,
+										duration: parseInt(duration),
 										authors: newAuthorsList,
 									},
-								]);
+									setKey
+								);
+
+								// setPosts((el) => [
+								// 	...el,
+								// 	{
+								// 		id: v4(),
+								// 		title: title,
+								// 		description: description,
+								// 		creationDate: DateGenerator(),
+								// 		duration: duration,
+								// 		authors: newAuthorsList,
+								// 	},
+								// ]);
+
 								setTitle('');
 								setDescription('');
 								setDuration(0);
 								setAuthorList(mockedAuthorsList);
-								setApplAuthor([]);
+								setApplAuthor();
 								setIsEdit(false);
 							} else {
 								alert(0);

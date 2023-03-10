@@ -38,8 +38,14 @@ class apiWorker {
 		const el = await axios.post(url, object);
 		return el;
 	}
+	async postMe(url, object, setKey) {
+		const userMe = this.createUserMe(url);
+		const el = await userMe.post(url, object);
+		setKey(true);
+		return el;
+	}
 	async get(url) {
-		const axiosChild = this.createAxiosChild();
+		const axiosChild = this.createAxiosChild(url);
 		const el = await axiosChild.get(url);
 		return el;
 	}
@@ -62,7 +68,7 @@ class apiWorker {
 		});
 		return userMe;
 	}
-	createAxiosChild() {
+	createAxiosChild({ url }) {
 		const axiosChild = axios.create({
 			baseURL: url,
 		});

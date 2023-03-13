@@ -9,7 +9,7 @@ import PipeDuration from '../../helpers/PipeDuration';
 import Button2 from '../../common/Button/Button2';
 import { Texts } from '../../const';
 import apiWorker from '../../API/apiWorker';
-import systemApiCources from '../../API/systemApiCources';
+import systemApiCources from '../../API/systems/systemApiCources';
 
 function Cources(props) {
 	let myApi = new apiWorker();
@@ -101,13 +101,14 @@ function Cources(props) {
 				setDuration={setDuration}
 				setApplAuthor={setApplAuthor}
 				setAuthorList={setAuthorList}
-				mockedAuthorsList={mockedAuthorsList}
+				mockedAuthorsList={authorList}
 				inputAuthorName={inputAuthorName}
 				authorList={authorList}
 				setInputAuthorName={setInputAuthorName}
 				setPosts={setPosts}
 				setIsEdit={setIsEdit}
 				setKey={setKey}
+				z
 			/>
 		);
 	}

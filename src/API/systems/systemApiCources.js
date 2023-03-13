@@ -1,5 +1,5 @@
 // import { mockedAuthorsList } from '../const';
-import apiWorker from './apiWorker';
+import apiWorker from '../apiWorker';
 
 function systemApiCources(setPostse, key, setKey, setAuthorList) {
 	if (key) {

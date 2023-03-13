@@ -4,7 +4,9 @@ import DateGenerator from '../../helpers/dateGenerator';
 import Button2 from '../../common/Button/Button2';
 import { v4 } from 'uuid';
 import { Texts } from '../../const';
-import systemApiCreateCource from '../../API/systemApiCreateCource';
+import systemApiCreateCource from '../../API/systems/systemApiCreateCource';
+import systemApiCreateAuthor from '../../API/systems/systemApiCreateAuthor';
+import apiWorker from '../../API/apiWorker';
 
 function CreateCource({
 	title,
@@ -24,6 +26,7 @@ function CreateCource({
 	setIsEdit,
 	setKey,
 }) {
+	let api = new apiWorker();
 	// useEffect(() => {
 	// 	if (duration < 0 || duration == NaN) {
 	// 		setDuration('');
@@ -86,7 +89,8 @@ function CreateCource({
 								setDescription('');
 								setDuration(0);
 								setAuthorList(mockedAuthorsList);
-								setApplAuthor();
+								console.log(authorList);
+								setApplAuthor([]);
 								setIsEdit(false);
 							} else {
 								alert(0);
@@ -121,20 +125,31 @@ function CreateCource({
 					</div>
 					<Button2
 						text={Texts.createAuthor}
-						onClick={() => {
+						onClick={async () => {
 							let generatedId = v4();
 							if (inputAuthorName.split('').length > 3) {
-								setAuthorList((el) => [
-									...el,
+								// setAuthorList((el) => [
+								// 	...el,
+								// 	{
+								// 		id: generatedId,
+								// 		name: inputAuthorName,
+								// 	},
+								// ]);
+								// mockedAuthorsList.push({
+								// 	id: generatedId,
+								// 	name: inputAuthorName,
+								// });
+
+								// await
+
+								await systemApiCreateAuthor(
 									{
-										id: generatedId,
 										name: inputAuthorName,
+										// id: generatedId, не надо
 									},
-								]);
-								mockedAuthorsList.push({
-									id: generatedId,
-									name: inputAuthorName,
-								});
+									setAuthorList,
+									inputAuthorName
+								);
 							} else {
 								alert('Write correct name');
 							}

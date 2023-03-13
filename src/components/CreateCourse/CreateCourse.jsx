@@ -1,7 +1,7 @@
 import Input from '../../common/Input/input';
 import { useEffect } from 'react';
 import DateGenerator from '../../helpers/dateGenerator';
-import Button2 from '../../common/Button/Button2';
+import Button from '../../common/Button/Button';
 import { v4 } from 'uuid';
 import { Texts } from '../../const';
 import systemApiCreateCource from '../../API/systems/systemApiCreateCource';
@@ -49,7 +49,7 @@ function CreateCource({
 					/>
 				</div>
 				<div>
-					<Button2
+					<Button
 						text={Texts.createCource}
 						onClick={() => {
 							if (
@@ -123,7 +123,7 @@ function CreateCource({
 							placeholder='Enter author name...'
 						/>
 					</div>
-					<Button2
+					<Button
 						text={Texts.createAuthor}
 						onClick={async () => {
 							let generatedId = v4();
@@ -164,7 +164,7 @@ function CreateCource({
 							<div>
 								<div className='Name'>
 									<span>{el.name}</span>
-									<Button2
+									<Button
 										text={Texts.addAuthor}
 										onClick={() => {
 											setApplAuthor((ela) => [...ela, el]); //ela потому что конфдиктовал с el
@@ -183,7 +183,7 @@ function CreateCource({
 							{applAuthors.map((el) => (
 								<div>
 									<span>{el.name}</span>
-									<Button2
+									<Button
 										text={Texts.deleteAuthor}
 										onClick={() => {
 											setAuthorList((ela) => [...ela, el]); //ela потому что конфдиктовал с el

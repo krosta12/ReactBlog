@@ -1,4 +1,4 @@
-import Button2 from '../../../../common/Button/Button2';
+import Button from '../../../../common/Button/Button';
 import '../../../../App.css';
 import { Texts } from '../../../../const';
 import { useHistory, useNavigate } from 'react-router-dom'; //usehistory заменили в 6 версии
@@ -24,7 +24,7 @@ function CourceCard(props) {
 					<p>Created: {props.creationDate}</p>
 				</div>
 				<div className='ShowButton'>
-					<Button2 //тут что то сломалось хотя не ничё не делал - пришлось играть с link и id
+					<Button //тут что то сломалось хотя не ничё не делал - пришлось играть с link и id
 						text={Texts.showCource}
 						onClick={(el) => {
 							props.setPost({

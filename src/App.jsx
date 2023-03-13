@@ -51,6 +51,10 @@ function App() {
 					<Route path='/registration' element={<Regitration />} />
 					<Route path='/login' element={<Login setJwtToken={setJwtToken} />} />
 				</Route>
+				<Route
+					path='*'
+					element={<ProtectedRoute jwtToken={false} redirectPath='/corces' />}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);

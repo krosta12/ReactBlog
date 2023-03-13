@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import apiWorker from '../../API/apiWorker';
 import '../../App.css';
-import Button2 from '../../common/Button/Button2';
+import Button from '../../common/Button/Button';
 
 export default function Reg(props) {
 	const [nameBool, setNameBool] = useState(false);
@@ -66,7 +66,7 @@ export default function Reg(props) {
 						placeholder='Enter Password'
 					/>
 				</div>
-				<Button2
+				<Button
 					text='Registration'
 					onClick={(env) => {
 						env.preventDefault();

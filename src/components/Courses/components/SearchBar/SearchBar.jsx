@@ -1,5 +1,5 @@
 import Input from '../../../../common/Input/input';
-import Button2 from '../../../../common/Button/Button2';
+import Button from '../../../../common/Button/Button';
 import { Texts } from '../../../../const';
 function SearchBar(props) {
 	return (
@@ -12,7 +12,7 @@ function SearchBar(props) {
 				placeholder='Enter cource name...'
 				butSetState={props.butSetState}
 			/>{' '}
-			<Button2
+			<Button
 				text={Texts.search}
 				onClick={() => {
 					props.butSetState(props.state);

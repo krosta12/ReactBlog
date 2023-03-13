@@ -6,7 +6,7 @@ import ReadyInfo from '../../const';
 import { mockedAuthorsList } from '../../const';
 import CreateCource from '../CreateCourse/CreateCourse';
 import PipeDuration from '../../helpers/PipeDuration';
-import Button2 from '../../common/Button/Button2';
+import Button from '../../common/Button/Button';
 import { Texts } from '../../const';
 import apiWorker from '../../API/apiWorker';
 import systemApiCources from '../../API/systems/systemApiCources';
@@ -55,7 +55,7 @@ function Cources(props) {
 							/>
 						</div>
 						<div>
-							<Button2
+							<Button
 								text={Texts.addNewCource}
 								onClick={() => setIsEdit(true)}
 							/>

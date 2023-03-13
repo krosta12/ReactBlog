@@ -1,12 +1,12 @@
 import '../../App.css';
-import Button2 from '../../common/Button/Button2';
+import Button from '../../common/Button/Button';
 
 export default function CourseInfo(props) {
 	return (
 		<div className='Card'>
 			<div className='Texts'>
 				<h2>{props.post.title}</h2>
-				{/* <Button2 text='back' onClick={alert('D')} /> какойто максимально тупой баг с копкой*/}
+				{/* <Button text='back' onClick={alert('D')} /> какойто максимально тупой баг с копкой*/}
 				<p>{props.post.description}</p>
 			</div>
 			<div className='Info'>

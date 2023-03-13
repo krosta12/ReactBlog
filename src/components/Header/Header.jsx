@@ -1,6 +1,6 @@
 import Logo from './components/Logo/Logo';
 import '../../App.css';
-import Button2 from '../../common/Button/Button2';
+import Button from '../../common/Button/Button';
 import { Texts } from '../../const';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -34,7 +34,7 @@ function Header(props) {
 					<Logo />
 					<div className='InnerHeader'>
 						<span className='Name'>{name}</span>
-						<Button2
+						<Button
 							text={Texts.logOut}
 							onClick={async () => {
 								apiHook.delete('http://localhost:4000/logout', props.isLogin);
@@ -58,7 +58,7 @@ function Header(props) {
 				<div className='Header'>
 					<Logo />
 					<div className='InnerHeader'>
-						<Button2
+						<Button
 							onClick={() => {
 								navigate(`/registration`);
 							}}

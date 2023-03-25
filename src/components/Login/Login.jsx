@@ -19,10 +19,10 @@ export default function Login({ setJwtToken }) {
 			});
 
 			if (el.data.result) {
-				setJwtToken('da'); //костыль, спаспающий всё
+				setJwtToken(el.data.result);
 				localStorage.setItem('token', el.data.result);
 
-				navigate('/corces'); //оно не перекидывает на index
+				navigate('/corces');
 			} else {
 				alert('invalid data');
 			}

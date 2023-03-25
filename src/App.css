@@ -189,16 +189,14 @@ label>input {
   width: 20vw;
 }
 
+
 button {
-  transition: all .2s;
+  transition: ease-in all .2s;
 }
 
 button:hover {
-  /* transform: scale(2); если оставлю то будет налазить, пусть лучше двигет*/
-  padding: .5vw;
   cursor: pointer;
-  transform: translateY(-.25vw);
-  /* еффект списка */
+  transform: scale(1.1);
 }
 
 input {

@@ -106,10 +106,10 @@ function CreateCource({
 										name: inputAuthorName,
 									},
 								]);
-								mockedAuthorsList.push({
-									id: generatedId,
-									name: inputAuthorName,
-								});
+								// mockedAuthorsList.push({
+								// 	id: generatedId,
+								// 	name: inputAuthorName,
+								// });
 							} else {
 								alert('Write correct name');
 							}

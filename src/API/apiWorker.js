@@ -20,7 +20,7 @@ export async function post(url, object) {
 	return el;
 }
 export async function postAsMe(url, object, setKey) {
-	const userMe = createUserMe(url);
+	const userMe = createUserMe();
 	const el = await userMe.post(url, object);
 	setKey(true);
 	return el;

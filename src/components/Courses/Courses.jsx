@@ -6,44 +6,29 @@ import ReadyInfo from '../../const';
 import { mockedAuthorsList } from '../../const';
 import CreateCource from '../CreateCourse/CreateCourse';
 import PipeDuration from '../../helpers/PipeDuration';
-import Button from '../../common/Button/Button';
+import Button2 from '../../common/Button/Button2';
 import { Texts } from '../../const';
-import apiWorker from '../../API/apiWorker';
-import systemApiCources from '../../API/systems/systemApiCources';
 
 function Cources(props) {
-	let myApi = new apiWorker();
-
-	const [key, setKey] = useState(true); //костыль
-
 	const [search, setSearch] = useState('');
 	const [posts, setPosts] = useState(ReadyInfo);
-	const [authorList, setAuthorList] = useState(mockedAuthorsList); //kostil
-	// systemApiCources(setPosts);
-
-	//readyInfo из констант нужен чтоб запонить пробел, можно передать рандомное что-то но не хочу чтоб оно было пустым, ещё я не знаю как это изменить и мне както лень, думаю ге трудно
-
 	const [isEdit, setIsEdit] = useState(false);
 	const [inputAuthorName, setInputAuthorName] = useState('');
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [duration, setDuration] = useState(0);
 
+	const [authorList, setAuthorList] = useState(mockedAuthorsList);
 	const [applAuthors, setApplAuthor] = useState([]);
 
 	const [searchButton, setSearchButton] = useState('');
-
 	// setPosts(ReadyInfo) re-render err
 	useEffect(() => {
 		search ? 0 : setSearchButton('');
-	});
+	}, [search]);
 	if (!isEdit) {
-		//не могу заменить на ??
 		return (
 			<div className='Pos'>
-				{
-					systemApiCources(setPosts, key, setKey, setAuthorList) //костыль
-				}
 				<div className='CourcesBody'>
 					<div className='InnerUppCourcesBody'>
 						<div className='SearchBox'>
@@ -55,7 +40,7 @@ function Cources(props) {
 							/>
 						</div>
 						<div>
-							<Button
+							<Button2
 								text={Texts.addNewCource}
 								onClick={() => setIsEdit(true)}
 							/>
@@ -101,14 +86,12 @@ function Cources(props) {
 				setDuration={setDuration}
 				setApplAuthor={setApplAuthor}
 				setAuthorList={setAuthorList}
-				mockedAuthorsList={authorList}
+				mockedAuthorsList={mockedAuthorsList}
 				inputAuthorName={inputAuthorName}
 				authorList={authorList}
 				setInputAuthorName={setInputAuthorName}
 				setPosts={setPosts}
 				setIsEdit={setIsEdit}
-				setKey={setKey}
-				z
 			/>
 		);
 	}

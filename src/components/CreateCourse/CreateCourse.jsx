@@ -1,12 +1,8 @@
 import Input from '../../common/Input/input';
-import { useEffect } from 'react';
 import DateGenerator from '../../helpers/dateGenerator';
-import Button from '../../common/Button/Button';
+import Button2 from '../../common/Button/Button2';
 import { v4 } from 'uuid';
 import { Texts } from '../../const';
-import systemApiCreateCource from '../../API/systems/systemApiCreateCource';
-import systemApiCreateAuthor from '../../API/systems/systemApiCreateAuthor';
-import apiWorker from '../../API/apiWorker';
 
 function CreateCource({
 	title,
@@ -24,18 +20,7 @@ function CreateCource({
 	setInputAuthorName,
 	setPosts,
 	setIsEdit,
-	setKey,
 }) {
-	let api = new apiWorker();
-	// useEffect(() => {
-	// 	if (duration < 0 || duration == NaN) {
-	// 		setDuration('');
-	// 	} else if (parseInt(duration)) {
-	// 		setDuration(parseInt(duration));
-	// 	}
-	// });
-	// я так и не смог буква Е и знак - проходят
-
 	return (
 		<div className='EditBody'>
 			<div className='EditInnerUp'>
@@ -49,7 +34,7 @@ function CreateCource({
 					/>
 				</div>
 				<div>
-					<Button
+					<Button2
 						text={Texts.createCource}
 						onClick={() => {
 							if (
@@ -60,36 +45,22 @@ function CreateCource({
 							) {
 								let newAuthorsList = [];
 
-								applAuthors.map((el) => newAuthorsList.push(el.id));
-								systemApiCreateCource(
+								applAuthors.map((el) => newAuthorsList.push(el.name));
+								setPosts((el) => [
+									...el,
 									{
 										id: v4(),
 										title: title,
 										description: description,
 										creationDate: DateGenerator(),
-										duration: parseInt(duration),
+										duration: duration,
 										authors: newAuthorsList,
 									},
-									setKey
-								);
-
-								// setPosts((el) => [
-								// 	...el,
-								// 	{
-								// 		id: v4(),
-								// 		title: title,
-								// 		description: description,
-								// 		creationDate: DateGenerator(),
-								// 		duration: duration,
-								// 		authors: newAuthorsList,
-								// 	},
-								// ]);
-
+								]);
 								setTitle('');
 								setDescription('');
 								setDuration(0);
 								setAuthorList(mockedAuthorsList);
-								console.log(authorList);
 								setApplAuthor([]);
 								setIsEdit(false);
 							} else {
@@ -123,33 +94,22 @@ function CreateCource({
 							placeholder='Enter author name...'
 						/>
 					</div>
-					<Button
+					<Button2
 						text={Texts.createAuthor}
-						onClick={async () => {
+						onClick={() => {
 							let generatedId = v4();
 							if (inputAuthorName.split('').length > 3) {
-								// setAuthorList((el) => [
-								// 	...el,
-								// 	{
-								// 		id: generatedId,
-								// 		name: inputAuthorName,
-								// 	},
-								// ]);
-								// mockedAuthorsList.push({
-								// 	id: generatedId,
-								// 	name: inputAuthorName,
-								// });
-
-								// await
-
-								await systemApiCreateAuthor(
+								setAuthorList((el) => [
+									...el,
 									{
+										id: generatedId,
 										name: inputAuthorName,
-										// id: generatedId, не надо
 									},
-									setAuthorList,
-									inputAuthorName
-								);
+								]);
+								mockedAuthorsList.push({
+									id: generatedId,
+									name: inputAuthorName,
+								});
 							} else {
 								alert('Write correct name');
 							}
@@ -164,7 +124,7 @@ function CreateCource({
 							<div>
 								<div className='Name'>
 									<span>{el.name}</span>
-									<Button
+									<Button2
 										text={Texts.addAuthor}
 										onClick={() => {
 											setApplAuthor((ela) => [...ela, el]); //ela потому что конфдиктовал с el
@@ -183,7 +143,7 @@ function CreateCource({
 							{applAuthors.map((el) => (
 								<div>
 									<span>{el.name}</span>
-									<Button
+									<Button2
 										text={Texts.deleteAuthor}
 										onClick={() => {
 											setAuthorList((ela) => [...ela, el]); //ela потому что конфдиктовал с el

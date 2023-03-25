@@ -1,30 +1,20 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import apiWorker from '../../API/apiWorker';
+
+import { post } from '../../API/apiWorker';
+import Button2 from '../../common/Button/Button2';
+
 import '../../App.css';
-import Button from '../../common/Button/Button';
 
 export default function Reg(props) {
-	const [nameBool, setNameBool] = useState(false);
-	const [passwordBool, setPasswordBool] = useState(false);
-	const [gmailBool, setGmailBool] = useState(false);
-
 	const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
-	// let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-	let apiHook = new apiWorker();
 	const navigate = useNavigate();
 
 	async function Validate() {
 		if (password && email && name) {
-			// (await apiWorker('http://localhost:4000/register', 'POST', {
-			// 	password: password,
-			// 	email: email,
-			// 	name: name,
-			// }))
-			(await apiHook.post('http://localhost:4000/register', {
+			(await post('http://localhost:4000/register', {
 				password: password,
 				email: email,
 				name: name,
@@ -36,7 +26,6 @@ export default function Reg(props) {
 
 	return (
 		<div className='RegisterBox'>
-			{/* action='back' ломает   form перезагружает станицу*/}
 			<form>
 				<h1>Registration</h1>
 				<div className='inputToRegister'>
@@ -66,7 +55,7 @@ export default function Reg(props) {
 						placeholder='Enter Password'
 					/>
 				</div>
-				<Button
+				<Button2
 					text='Registration'
 					onClick={(env) => {
 						env.preventDefault();
@@ -81,6 +70,3 @@ export default function Reg(props) {
 		</div>
 	);
 }
-
-// Line 2:1:  Replace `····` with `↹`  prettier/prettier
-// Editor: Format On Save : false и всё стало работать

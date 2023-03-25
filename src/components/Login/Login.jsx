@@ -1,25 +1,19 @@
 import { useState } from 'react';
-import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import Button2 from '../../common/Button/Button2';
+import { post } from '../../API/apiWorker';
+
 import '../../App.css';
-import axios from 'axios';
-import Button from '../../common/Button/Button';
-import getTockens from '../../helpers/getTockens';
-import apiWorker from '../../API/apiWorker';
 
 export default function Login({ setJwtToken }) {
-	let apiHook = new apiWorker();
-	// const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
-
-	// const [nameBool, setNameBool] = useState(false);
-	// const [passwordBool, setPasswordBool] = useState(false);
-	// const [gmailBool, setEmailBool] = useState(false);
 
 	const navigate = useNavigate();
 	async function validate() {
 		if (password && email) {
-			const el = await apiHook.post('http://localhost:4000/login', {
+			const el = await post('http://localhost:4000/login', {
 				email: email,
 				password: password,
 			});
@@ -62,7 +56,7 @@ export default function Login({ setJwtToken }) {
 						onChange={(el) => setPassword(el.target.value)}
 					/>
 				</div>
-				<Button text='Enter' type='submit' />
+				<Button2 text='Enter' type='submit' />
 			</form>
 
 			<p>

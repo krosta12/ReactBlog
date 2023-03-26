@@ -106,12 +106,6 @@ function CreateCource({
 										name: inputAuthorName,
 									},
 								]);
-								// mockedAuthorsList.push({
-								// 	id: generatedId,
-								// 	name: inputAuthorName,
-								// });
-
-								//был баг, юзеров мог создать только пользователь с именем admin, я пошёл, поел, и баг сам пропал
 							} else {
 								alert('Write correct name');
 							}

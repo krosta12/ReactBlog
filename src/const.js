@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import React from 'react';
-
 export const Texts = {
 	addNewCource: 'Add new Cource',
 	showCource: 'Show Cource',
@@ -15,6 +12,8 @@ export const Texts = {
 	duration: 'Duration',
 	logOut: 'Log out',
 };
+
+export let URL = 'http://localhost:4000';
 
 const mockedCoursesList = [
 	{
@@ -86,6 +85,4 @@ function help(promose, name) {
 
 mockedAuthorsList.map((el) => help(el.id, el.name));
 
-//функцию делал 40 минут
-// всё сломалось ещё 20
 export default ReadyInfo;

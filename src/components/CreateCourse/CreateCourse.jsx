@@ -1,7 +1,10 @@
-import Input from '../../common/Input/input';
-import DateGenerator from '../../helpers/dateGenerator';
-import Button2 from '../../common/Button/Button2';
 import { v4 } from 'uuid';
+
+import Input from '../../common/Input/input';
+import Button2 from '../../common/Button/Button2';
+
+import DateGenerator from '../../helpers/dateGenerator';
+
 import { Texts } from '../../const';
 
 function CreateCource({
@@ -123,10 +126,10 @@ function CreateCource({
 									<Button2
 										text={Texts.addAuthor}
 										onClick={() => {
-											setApplAuthor((ela) => [...ela, el]); //ela потому что конфдиктовал с el
+											setApplAuthor((elA) => [...elA, el]);
 											setAuthorList((elem) =>
 												elem.filter((elemB) => elemB != el)
-											); //с ELEMB тоже самое
+											);
 										}}
 									/>
 								</div>
@@ -142,10 +145,10 @@ function CreateCource({
 									<Button2
 										text={Texts.deleteAuthor}
 										onClick={() => {
-											setAuthorList((ela) => [...ela, el]); //ela потому что конфдиктовал с el
+											setAuthorList((elaA) => [...elA, el]);
 											setApplAuthor((elem) =>
 												elem.filter((elemB) => elemB != el)
-											); //с ELEMB тоже самое
+											);
 										}}
 									/>
 								</div>

@@ -1,21 +1,17 @@
-import { createUserMe } from './helpers/CreateUserMe';
-import { createAxiosChild } from './helpers/CreateAxiosChild';
+import CreateUserMe from './helpers/CreateUserMe';
 
-export async function post(url, object, setKey) {
-	const userMe = createUserMe();
+export async function post(url, object) {
+	let userMe = CreateUserMe(); //if I don’t call it like that, then the token will be static
 	const el = await userMe.post(url, object);
-	!!setKey && setKey(true);
 	return el;
 }
 
 export async function get(url) {
-	let userMe = createUserMe();
+	let userMe = CreateUserMe();
 	const el = userMe.get(url);
 	return el;
-
-	// axiosChild.get(url); он вроде не надо, но проветить сейчас не могу
 }
 export async function _delete(url) {
-	let userMe = createUserMe();
-	userMe.delete(url).then(alert('ad'));
+	let userMe = CreateUserMe();
+	userMe.delete(url);
 }

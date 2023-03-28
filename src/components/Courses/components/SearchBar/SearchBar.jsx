@@ -1,5 +1,6 @@
 import Input from '../../../../common/Input/input';
 import Button2 from '../../../../common/Button/Button2';
+
 import { Texts } from '../../../../const';
 function SearchBar(props) {
 	return (

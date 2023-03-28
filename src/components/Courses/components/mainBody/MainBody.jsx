@@ -1,8 +1,11 @@
 import CourceCard from '../CourseCard/CourseCard';
-import '../.../../../../../App.css';
+
 import PipeDuration from '../../../../helpers/PipeDuration';
 import Button2 from '../../../../common/Button/Button2';
+
 import { Texts } from '../../../../const';
+
+import '../.../../../../../App.css';
 
 export function MainBody({
 	searchButton,

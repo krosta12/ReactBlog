@@ -15,9 +15,11 @@ function Header(props) {
 	const [name, setName] = useState('');
 
 	if (props.token) {
-		get('http://localhost:4000/users/me').then((el) => {
-			setName(el.data.result.name);
-		});
+		get('/users/me')
+			.then((el) => {
+				setName(el.data.result.name);
+			})
+			.catch();
 	}
 
 	return props.token ? (
@@ -29,7 +31,7 @@ function Header(props) {
 					<Button2
 						text={Texts.logOut}
 						onClick={async () => {
-							_delete('http://localhost:4000/logout', props.isLogin);
+							_delete('/logout', props.isLogin);
 							props.isLogin(false);
 							localStorage.removeItem('token');
 						}}

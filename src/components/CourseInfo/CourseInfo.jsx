@@ -1,5 +1,4 @@
 import '../../App.css';
-import Button2 from '../../common/Button/Button2';
 
 export default function CourseInfo(props) {
 	return (

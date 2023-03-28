@@ -13,14 +13,14 @@ export default function Login({ setJwtToken }) {
 	const navigate = useNavigate();
 	async function validate() {
 		if (password && email) {
-			const el = await post('http://localhost:4000/login', {
+			const el = await post('/login', {
 				email: email,
 				password: password,
 			});
 
 			if (el.data.result) {
-				setJwtToken(el.data.result);
 				localStorage.setItem('token', el.data.result);
+				setJwtToken(localStorage.getItem('token'));
 
 				navigate('/corces');
 			} else {

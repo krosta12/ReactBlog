@@ -6,6 +6,7 @@ import Cources from './components/Courses/Courses';
 import Regitration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import CourseInfo from './components/CourseInfo/CourseInfo';
+
 import ProtectedRoute from './helpers/ProtectedRoute';
 
 function App() {

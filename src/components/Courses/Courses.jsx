@@ -1,13 +1,18 @@
+import { useEffect, useState } from 'react';
+
 import SearchBar from './components/SearchBar/SearchBar';
 import CourceCard from './components/CourseCard/CourseCard';
-import '../../App.css';
-import { useEffect, useState } from 'react';
+import PipeDuration from '../../helpers/PipeDuration';
+
+import CreateCource from '../CreateCourse/CreateCourse';
+
+import Button2 from '../../common/Button/Button2';
+
+import { Texts } from '../../const';
 import ReadyInfo from '../../const';
 import { mockedAuthorsList } from '../../const';
-import CreateCource from '../CreateCourse/CreateCourse';
-import PipeDuration from '../../helpers/PipeDuration';
-import Button2 from '../../common/Button/Button2';
-import { Texts } from '../../const';
+
+import '../../App.css';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
@@ -22,7 +27,9 @@ function Cources(props) {
 	const [applAuthors, setApplAuthor] = useState([]);
 
 	const [searchButton, setSearchButton] = useState('');
-	// setPosts(ReadyInfo) re-render err
+
+	const [name, setName] = useState('');
+
 	useEffect(() => {
 		search ? 0 : setSearchButton('');
 	}, [search]);

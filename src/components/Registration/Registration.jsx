@@ -14,7 +14,7 @@ export default function Reg(props) {
 
 	async function Validate() {
 		if (password && email && name) {
-			(await post('http://localhost:4000/register', {
+			(await post('/register', {
 				password: password,
 				email: email,
 				name: name,

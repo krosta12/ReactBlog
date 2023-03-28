@@ -3,4 +3,3 @@ function PipeDuration(el) {
 }
 
 export default PipeDuration;
-//

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { post } from '../../API/apiWorker';
-import Button2 from '../../common/Button/Button2';
+import Button from '../../common/Button/Button';
 
 import '../../App.css';
 
@@ -55,7 +55,7 @@ export default function Reg(props) {
 						placeholder='Enter Password'
 					/>
 				</div>
-				<Button2
+				<Button
 					text='Registration'
 					onClick={(env) => {
 						env.preventDefault();

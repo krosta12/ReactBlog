@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import Button2 from '../../common/Button/Button2';
+import Button from '../../common/Button/Button';
 import { post } from '../../API/apiWorker';
 
 import '../../App.css';
@@ -56,7 +56,7 @@ export default function Login({ setJwtToken }) {
 						onChange={(el) => setPassword(el.target.value)}
 					/>
 				</div>
-				<Button2 text='Enter' type='submit' />
+				<Button text='Enter' type='submit' />
 			</form>
 
 			<p>

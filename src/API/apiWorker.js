@@ -1,17 +1,30 @@
-import CreateUserMe from './helpers/CreateUserMe';
+const CreateUserMe = axios.create({
+	baseURL: URL,
+});
+
+CreateUserMe.interceptors.request.use(
+	(config) => {
+		const token = localStorage.getItem('token');
+
+		if (token) {
+			config.headers.Authorization = token;
+		}
+		return config;
+	},
+	(error) => {
+		return Promise.reject(error);
+	}
+);
 
 export async function post(url, object) {
-	let userMe = CreateUserMe(); //if I don’t call it like that, then the token will be static
-	const el = await userMe.post(url, object);
+	const el = await CreateUserMe.post(url, object);
 	return el;
 }
 
 export async function get(url) {
-	let userMe = CreateUserMe();
-	const el = userMe.get(url);
+	const el = CreateUserMe.get(url);
 	return el;
 }
 export async function _delete(url) {
-	let userMe = CreateUserMe();
-	userMe.delete(url);
+	CreateUserMe.delete(url);
 }

@@ -5,7 +5,7 @@ export default function CourseInfo(props) {
 		<div className='Card'>
 			<div className='Texts'>
 				<h2>{props.post.title}</h2>
-				{/* <Button2 text='back' onClick={alert('D')} /> какойто максимально тупой баг с копкой*/}
+				<Button text='back' onClick={alert('Test Click!')} />
 				<p>{props.post.description}</p>
 			</div>
 			<div className='Info'>

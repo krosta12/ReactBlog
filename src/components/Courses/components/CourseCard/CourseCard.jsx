@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import Button2 from '../../../../common/Button/Button2';
+import Button from '../../../../common/Button/Button';
 
 import { Texts } from '../../../../const';
 
@@ -27,7 +27,7 @@ function CourceCard(props) {
 					<p>Created: {props.creationDate}</p>
 				</div>
 				<div className='ShowButton'>
-					<Button2
+					<Button
 						text={Texts.showCource}
 						onClick={(el) => {
 							props.setPost({

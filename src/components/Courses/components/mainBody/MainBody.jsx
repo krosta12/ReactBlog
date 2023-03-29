@@ -1,7 +1,7 @@
 import CourceCard from '../CourseCard/CourseCard';
 
 import PipeDuration from '../../../../helpers/PipeDuration';
-import Button2 from '../../../../common/Button/Button2';
+import Button from '../../../../common/Button/Button';
 
 import { Texts } from '../../../../const';
 
@@ -28,7 +28,7 @@ export function MainBody({
 						/>
 					</div>
 					<div>
-						<Button2
+						<Button
 							text={Texts.addNewCource}
 							onClick={() => setIsEdit(true)}
 						/>

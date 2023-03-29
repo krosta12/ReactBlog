@@ -6,7 +6,7 @@ import PipeDuration from '../../helpers/PipeDuration';
 
 import CreateCource from '../CreateCourse/CreateCourse';
 
-import Button2 from '../../common/Button/Button2';
+import Button from '../../common/Button/Button';
 
 import { Texts } from '../../const';
 import ReadyInfo from '../../const';
@@ -47,10 +47,7 @@ function Cources(props) {
 						/>
 					</div>
 					<div>
-						<Button2
-							text={Texts.addNewCource}
-							onClick={() => setIsEdit(true)}
-						/>
+						<Button text={Texts.addNewCource} onClick={() => setIsEdit(true)} />
 					</div>
 				</div>
 

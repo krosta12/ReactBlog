@@ -13,7 +13,7 @@ export const Texts = {
 	logOut: 'Log out',
 };
 
-export let URL = 'http://localhost:4000';
+export const URL = 'http://localhost:4000';
 
 const mockedCoursesList = [
 	{

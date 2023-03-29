@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 
 import Input from '../../common/Input/input';
-import Button2 from '../../common/Button/Button2';
+import Button from '../../common/Button/Button';
 
 import DateGenerator from '../../helpers/dateGenerator';
 
@@ -37,7 +37,7 @@ function CreateCource({
 					/>
 				</div>
 				<div>
-					<Button2
+					<Button
 						text={Texts.createCource}
 						onClick={() => {
 							if (
@@ -52,7 +52,6 @@ function CreateCource({
 								setPosts((el) => [
 									...el,
 									{
-										id: v4(),
 										title: title,
 										description: description,
 										creationDate: DateGenerator(),
@@ -97,7 +96,7 @@ function CreateCource({
 							placeholder='Enter author name...'
 						/>
 					</div>
-					<Button2
+					<Button
 						text={Texts.createAuthor}
 						onClick={() => {
 							let generatedId = v4();
@@ -123,7 +122,7 @@ function CreateCource({
 							<div>
 								<div className='Name'>
 									<span>{el.name}</span>
-									<Button2
+									<Button
 										text={Texts.addAuthor}
 										onClick={() => {
 											setApplAuthor((elA) => [...elA, el]);
@@ -142,10 +141,10 @@ function CreateCource({
 							{applAuthors.map((el) => (
 								<div>
 									<span>{el.name}</span>
-									<Button2
+									<Button
 										text={Texts.deleteAuthor}
 										onClick={() => {
-											setAuthorList((elaA) => [...elA, el]);
+											setAuthorList((elA) => [...elA, el]);
 											setApplAuthor((elem) =>
 												elem.filter((elemB) => elemB != el)
 											);

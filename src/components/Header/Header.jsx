@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 import Logo from './components/Logo/Logo';
 
-import Button2 from '../../common/Button/Button2';
+import Button from '../../common/Button/Button';
 import { get, _delete } from '../../API/apiWorker';
 import { Texts } from '../../const';
 
@@ -28,7 +28,7 @@ function Header(props) {
 				<Logo />
 				<div className='InnerHeader'>
 					<span className='Name'>{name}</span>
-					<Button2
+					<Button
 						text={Texts.logOut}
 						onClick={async () => {
 							_delete('/logout', props.isLogin);
@@ -45,7 +45,7 @@ function Header(props) {
 			<div className='Header'>
 				<Logo />
 				<div className='InnerHeader'>
-					<Button2
+					<Button
 						onClick={() => {
 							navigate(`/registration`);
 						}}

@@ -28,10 +28,7 @@ export function MainBody({
 						/>
 					</div>
 					<div>
-						<Button
-							text={Texts.addNewCource}
-							onClick={() => setIsEdit(true)}
-						/>
+						<Button text={Texts.addNewCource} onClick={() => setIsEdit(true)} />
 					</div>
 				</div>
 

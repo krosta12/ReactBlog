@@ -38,7 +38,7 @@ function Header(props) {
 					/>
 				</div>
 			</div>
-			<Outlet />;
+			<Outlet />
 		</>
 	) : (
 		<>
@@ -53,7 +53,7 @@ function Header(props) {
 					/>
 				</div>
 			</div>
-			<Outlet />;
+			<Outlet />
 		</>
 	);
 }

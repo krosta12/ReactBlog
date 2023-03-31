@@ -20,7 +20,6 @@ CreateUserMe.interceptors.request.use(
 
 CreateUserMe.interceptors.response.use(
 	(config) => {
-		console.log(config);
 		return config;
 	},
 	(error) => {

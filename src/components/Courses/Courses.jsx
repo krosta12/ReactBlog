@@ -54,7 +54,6 @@ function Cources(props) {
 				<div>
 					{posts
 						.filter((el) => {
-							console.log(typeof searchButton);
 							if (el.title.toLowerCase().includes(searchButton.toLowerCase())) {
 								return el;
 							}

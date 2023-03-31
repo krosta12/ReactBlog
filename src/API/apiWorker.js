@@ -18,6 +18,18 @@ CreateUserMe.interceptors.request.use(
 	}
 );
 
+CreateUserMe.interceptors.response.use(
+	(config) => {
+		console.log(config);
+		return config;
+	},
+	(error) => {
+		if (error.response.status == 401) {
+			//refresh code
+		}
+	}
+);
+
 export async function post(url, object) {
 	const el = await CreateUserMe.post(url, object);
 	return el;

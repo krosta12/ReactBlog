@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { post } from '../../API/apiWorker';
 import Button from '../../common/Button/Button';
 
 import '../../App.css';
+
+import Validate from '../../helpers/ValidateFunction';
 
 export default function Reg(props) {
 	const [name, setName] = useState('');
@@ -12,16 +13,9 @@ export default function Reg(props) {
 	const [email, setEmail] = useState('');
 	const navigate = useNavigate();
 
-	async function Validate() {
-		if (password && email && name) {
-			(await post('/register', {
-				password: password,
-				email: email,
-				name: name,
-			}))
-				? navigate('/login')
-				: alert('err');
-		}
+	function Register(env) {
+		env.preventDefault();
+		Validate({ password, email, name, navigate });
 	}
 
 	return (
@@ -58,8 +52,7 @@ export default function Reg(props) {
 				<Button
 					text='Registration'
 					onClick={(env) => {
-						env.preventDefault();
-						Validate();
+						Register(env);
 					}}
 				/>
 			</form>

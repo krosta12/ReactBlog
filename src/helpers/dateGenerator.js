@@ -4,6 +4,4 @@ function DateGenerator() {
 	return newDate;
 }
 
-//я решил не списывать твоё решение
-
 export default DateGenerator;

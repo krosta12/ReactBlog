@@ -189,16 +189,14 @@ label>input {
   width: 20vw;
 }
 
+
 button {
-  transition: all .2s;
+  transition: ease-in all .2s;
 }
 
 button:hover {
-  /* transform: scale(2); если оставлю то будет налазить, пусть лучше двигет*/
-  padding: .5vw;
   cursor: pointer;
-  transform: translateY(-.25vw);
-  /* еффект списка */
+  transform: scale(1.1);
 }
 
 input {
@@ -207,4 +205,43 @@ input {
 
 .SearchBox>div {
   display: flex;
+}
+
+.RegisterBox{
+  width: 100%;
+  height: 45vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.RegisterBox>form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.RegisterBox>form>button{
+  margin-top: 3vw;
+}
+
+.inputToRegister>label{
+  margin-top: 2vw;
+}
+
+.Main{
+  display: flex;
+  align-items: center;
+  margin: 5vw 10vw;
+}
+
+.Main>button{
+  position: absolute;
+  top: 5vw;
+  left: 5vw;
+}
+
+.infoInnerCard{
+  margin-top: 7vw;
 }

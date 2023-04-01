@@ -1,8 +1,11 @@
+import { v4 } from 'uuid';
+
 import Input from '../../common/Input/input';
 import Button from '../../common/Button/Button';
-import { useEffect } from 'react';
+
 import DateGenerator from '../../helpers/dateGenerator';
-import { Button2 } from '../../common/Button/Button2';
+
+import { Texts } from '../../const';
 
 function CreateCource({
 	title,
@@ -21,21 +24,12 @@ function CreateCource({
 	setPosts,
 	setIsEdit,
 }) {
-	// useEffect(() => {
-	// 	if (duration < 0 || duration == NaN) {
-	// 		setDuration('');
-	// 	} else if (parseInt(duration)) {
-	// 		setDuration(parseInt(duration));
-	// 	}
-	// });
-	// я так и не смог буква Е и знак - проходят
-
 	return (
 		<div className='EditBody'>
 			<div className='EditInnerUp'>
 				<div>
 					<Input
-						labelText={'Title'}
+						labelText={Texts.title}
 						event='title'
 						placeholder='Write Title'
 						state={title}
@@ -43,28 +37,8 @@ function CreateCource({
 					/>
 				</div>
 				<div>
-					{/* <Buttozn
-						inputs={[title, description, duration, applAuthors]}
-						setInputs={[
-							setTitle,
-							setDescription,
-							setDuration,
-							setApplAuthor,
-							setAuthorList,
-							mockedAuthorsList,
-						]}
-						event='showPosts'
-						applAuthors={applAuthors}
-						description={description}
-						title={title}
-						duration={duration}
-						setPosts={setPosts}
-						setIsEdit={setIsEdit}
-						innerText='Create Cource'
-					/> */}
-
-					<Button2
-						text={'Create Cource'}
+					<Button
+						text={Texts.createCource}
 						onClick={() => {
 							if (
 								title.split('').length > 3 &&
@@ -78,7 +52,6 @@ function CreateCource({
 								setPosts((el) => [
 									...el,
 									{
-										id: Math.random().toString(),
 										title: title,
 										description: description,
 										creationDate: DateGenerator(),
@@ -102,7 +75,7 @@ function CreateCource({
 
 			<div className='MainTextBox'>
 				<Input
-					labelText={'Description'}
+					labelText={Texts.description}
 					state={description}
 					setState={setDescription}
 					event='description'
@@ -116,26 +89,25 @@ function CreateCource({
 					<p>Authors</p>
 					<div>
 						<Input
-							labelText={'Author name'}
+							labelText={Texts.authorName}
 							state={inputAuthorName}
 							setState={setInputAuthorName}
 							event='authorName'
 							placeholder='Enter author name...'
 						/>
 					</div>
-					<Button2
-						text={'Create author'}
+					<Button
+						text={Texts.createAuthor}
 						onClick={() => {
-							let i = Math.random().toString();
+							let generatedId = v4();
 							if (inputAuthorName.split('').length > 3) {
 								setAuthorList((el) => [
 									...el,
 									{
-										id: i,
+										id: generatedId,
 										name: inputAuthorName,
 									},
 								]);
-								mockedAuthorsList.push({ id: i, name: inputAuthorName });
 							} else {
 								alert('Write correct name');
 							}
@@ -150,13 +122,13 @@ function CreateCource({
 							<div>
 								<div className='Name'>
 									<span>{el.name}</span>
-									<Button2
-										text={'Add author'}
+									<Button
+										text={Texts.addAuthor}
 										onClick={() => {
-											setApplAuthor((ela) => [...ela, el]); //ela потому что конфдиктовал с el
+											setApplAuthor((elA) => [...elA, el]);
 											setAuthorList((elem) =>
 												elem.filter((elemB) => elemB != el)
-											); //с ELEMB тоже самое
+											);
 										}}
 									/>
 								</div>
@@ -169,13 +141,13 @@ function CreateCource({
 							{applAuthors.map((el) => (
 								<div>
 									<span>{el.name}</span>
-									<Button2
-										text={'Delete author'}
+									<Button
+										text={Texts.deleteAuthor}
 										onClick={() => {
-											setAuthorList((ela) => [...ela, el]); //ela потому что конфдиктовал с el
+											setAuthorList((elA) => [...elA, el]);
 											setApplAuthor((elem) =>
 												elem.filter((elemB) => elemB != el)
-											); //с ELEMB тоже самое
+											);
 										}}
 									/>
 								</div>
@@ -190,7 +162,7 @@ function CreateCource({
 				<div>
 					<Input
 						extraItem={true}
-						labelText={'Duration'}
+						labelText={Texts.duration}
 						placeholder='Duration...'
 						state={duration}
 						setState={setDuration}

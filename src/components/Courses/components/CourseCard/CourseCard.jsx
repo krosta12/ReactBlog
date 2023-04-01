@@ -1,7 +1,27 @@
-import { Button2 } from '../../../../common/Button/Button2';
+import { useNavigate } from 'react-router-dom';
+
+import Button from '../../../../common/Button/Button';
+
+import { Texts } from '../../../../const';
+
 import '../../../../App.css';
 
 function CourceCard(props) {
+	const navigate = useNavigate();
+
+	function StartShowPost(props) {
+		props.setPost({
+			id: props.id,
+			title: props.theme,
+			description: props.text,
+			creationDate: props.creationDate,
+			duration: props.duration,
+			authors: props.authors,
+		});
+
+		navigate(`/courses/:id=${props.id}`);
+	}
+
 	return (
 		<div div className='Card'>
 			<div className='Texts'>
@@ -16,11 +36,16 @@ function CourceCard(props) {
 							return <span>{el} </span>;
 						})}
 					</div>
-					<p>Duration: {props.duration}</p>
+					<p>Duration: {props.duration} Hours</p>
 					<p>Created: {props.creationDate}</p>
 				</div>
 				<div className='ShowButton'>
-					<Button2 text='Show Cource' onClick={() => ''} />
+					<Button
+						text={Texts.showCource}
+						onClick={(el) => {
+							StartShowPost(props);
+						}}
+					/>
 				</div>
 			</div>
 		</div>

@@ -1,14 +1,18 @@
-import Button from '../../common/Button/Button';
+import { useEffect, useState } from 'react';
+
 import SearchBar from './components/SearchBar/SearchBar';
 import CourceCard from './components/CourseCard/CourseCard';
-import '../../App.css';
-import { useEffect, useState } from 'react';
-import ReadyInfo from '../../cost';
-import Input from '../../common/Input/input';
-import { mockedAuthorsList } from '../../cost';
-import CreateCource from '../CreateCourse/CreateCourse';
 import PipeDuration from '../../helpers/PipeDuration';
-import { Button2 } from '../../common/Button/Button2';
+
+import CreateCource from '../CreateCourse/CreateCourse';
+
+import Button from '../../common/Button/Button';
+
+import { Texts } from '../../const';
+import ReadyInfo from '../../const';
+import { mockedAuthorsList } from '../../const';
+
+import '../../App.css';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
@@ -23,47 +27,39 @@ function Cources(props) {
 	const [applAuthors, setApplAuthor] = useState([]);
 
 	const [searchButton, setSearchButton] = useState('');
-	// setPosts(ReadyInfo) re-render err
+
+	const [name, setName] = useState('');
+
 	useEffect(() => {
 		search ? 0 : setSearchButton('');
-	});
-	if (!isEdit) {
-		return (
-			<div className='Pos'>
-				<div className='CourcesBody'>
-					<div className='InnerUppCourcesBody'>
-						<div className='SearchBox'>
-							<SearchBar
-								butSatate={searchButton}
-								butSetState={setSearchButton}
-								state={search}
-								setState={setSearch}
-							/>
-						</div>
-						<div>
-							{/* <Button
-								setIsEdit={setIsEdit}
-								event='create'
-								innerText='Add new Cource'
-							/> */}
-							<Button2
-								text={'Add new Cource'}
-								onClick={() => setIsEdit(true)}
-							/>
-						</div>
-					</div>
+	}, [search]);
 
+	return !isEdit ? (
+		<div className='Pos'>
+			<div className='CourcesBody'>
+				<div className='InnerUppCourcesBody'>
+					<div className='SearchBox'>
+						<SearchBar
+							butSatate={searchButton}
+							butSetState={setSearchButton}
+							state={search}
+							setState={setSearch}
+						/>
+					</div>
 					<div>
-						{posts
-							.filter((el) => {
-								if (
-									el.title.toLowerCase().includes(searchButton.toLowerCase()) ||
-									el.id.toLowerCase().includes(searchButton.toLowerCase())
-								) {
-									return el;
-								}
-							})
-							.map((el) => (
+						<Button text={Texts.addNewCource} onClick={() => setIsEdit(true)} />
+					</div>
+				</div>
+
+				<div>
+					{posts
+						.filter((el) => {
+							if (el.title.toLowerCase().includes(searchButton.toLowerCase())) {
+								return el;
+							}
+						})
+						.map((el) => (
+							<>
 								<CourceCard
 									id={el.id}
 									theme={el.title}
@@ -71,34 +67,32 @@ function Cources(props) {
 									creationDate={el.creationDate}
 									duration={PipeDuration(el)}
 									authors={el.authors}
+									setPost={props.setPost}
 								/>
-							))}
-					</div>
+							</>
+						))}
 				</div>
 			</div>
-		);
-	} else {
-		return (
-			<CreateCource
-				title={title}
-				description={description}
-				duration={duration}
-				applAuthors={applAuthors}
-				setDescription={setDescription}
-				setTitle={setTitle}
-				setDuration={setDuration}
-				setApplAuthor={setApplAuthor}
-				setAuthorList={setAuthorList}
-				mockedAuthorsList={mockedAuthorsList}
-				inputAuthorName={inputAuthorName}
-				authorList={authorList}
-				setInputAuthorName={setInputAuthorName}
-				setPosts={setPosts}
-				setIsEdit={setIsEdit}
-			/>
-		);
-	}
-	//5 xfc + 5xfcjd
+		</div>
+	) : (
+		<CreateCource
+			title={title}
+			description={description}
+			duration={duration}
+			applAuthors={applAuthors}
+			setDescription={setDescription}
+			setTitle={setTitle}
+			setDuration={setDuration}
+			setApplAuthor={setApplAuthor}
+			setAuthorList={setAuthorList}
+			mockedAuthorsList={mockedAuthorsList}
+			inputAuthorName={inputAuthorName}
+			authorList={authorList}
+			setInputAuthorName={setInputAuthorName}
+			setPosts={setPosts}
+			setIsEdit={setIsEdit}
+		/>
+	);
 }
 
 export default Cources;

@@ -229,3 +229,19 @@ input {
 .inputToRegister>label{
   margin-top: 2vw;
 }
+
+.Main{
+  display: flex;
+  align-items: center;
+  margin: 5vw 10vw;
+}
+
+.Main>button{
+  position: absolute;
+  top: 5vw;
+  left: 5vw;
+}
+
+.infoInnerCard{
+  margin-top: 7vw;
+}

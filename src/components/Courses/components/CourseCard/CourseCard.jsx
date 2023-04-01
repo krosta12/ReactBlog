@@ -9,6 +9,19 @@ import '../../../../App.css';
 function CourceCard(props) {
 	const navigate = useNavigate();
 
+	function StartShowPost(props) {
+		props.setPost({
+			id: props.id,
+			title: props.theme,
+			description: props.text,
+			creationDate: props.creationDate,
+			duration: props.duration,
+			authors: props.authors,
+		});
+
+		navigate(`/courses/:id=${props.id}`);
+	}
+
 	return (
 		<div div className='Card'>
 			<div className='Texts'>
@@ -30,16 +43,7 @@ function CourceCard(props) {
 					<Button
 						text={Texts.showCource}
 						onClick={(el) => {
-							props.setPost({
-								id: props.id,
-								title: props.theme,
-								description: props.text,
-								creationDate: props.creationDate,
-								duration: props.duration,
-								authors: props.authors,
-							});
-
-							navigate(`/courses/:id=${props.id}`);
+							StartShowPost(props);
 						}}
 					/>
 				</div>

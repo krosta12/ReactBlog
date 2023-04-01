@@ -22,7 +22,7 @@ export default function Login({ setJwtToken }) {
 				localStorage.setItem('token', el.data.result);
 				setJwtToken(localStorage.getItem('token'));
 
-				navigate('/corces');
+				navigate('/courses');
 			} else {
 				alert('invalid data');
 			}

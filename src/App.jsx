@@ -18,10 +18,10 @@ function App() {
 			<Routes>
 				<Route
 					path='/'
-					element={<ProtectedRoute jwtToken={false} redirectPath='/corces' />}
+					element={<ProtectedRoute jwtToken={false} redirectPath='/courses' />}
 				/>
 				<Route
-					path='/corces'
+					path='/courses'
 					element={
 						<ProtectedRoute jwtToken={jwtToken} redirectPath={'/login'} />
 					}
@@ -38,9 +38,12 @@ function App() {
 								</div>
 							}
 						/>
-						<Route path={`courses/:id`} element={<CourseInfo post={post} />} />
 					</Route>
 				</Route>
+				<Route
+					path={`/courses/:id=${post.id}`}
+					element={<CourseInfo post={post} />}
+				/>
 				<Route
 					path='/'
 					element={<Header isLogin={setJwtToken} token={jwtToken} />}
@@ -49,8 +52,8 @@ function App() {
 					<Route path='/login' element={<Login setJwtToken={setJwtToken} />} />
 				</Route>
 				<Route
-					path='*'
-					element={<ProtectedRoute jwtToken={false} redirectPath='/corces' />}
+					path='k'
+					element={<ProtectedRoute jwtToken={false} redirectPath='/courses' />}
 				/>
 			</Routes>
 		</BrowserRouter>

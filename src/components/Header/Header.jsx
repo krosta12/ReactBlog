@@ -10,16 +10,20 @@ import { Texts } from '../../const';
 import '../../App.css';
 
 function Header(props) {
+	async function LogOutFunction() {
+		_delete('/logout', props.isLogin);
+		props.isLogin(false);
+		localStorage.removeItem('token');
+	}
+
 	props.isLogin(localStorage.getItem('token'));
 	const navigate = useNavigate();
 	const [name, setName] = useState('');
 
 	if (props.token) {
-		get('/users/me')
-			.then((el) => {
-				setName(el.data.result.name);
-			})
-			.catch();
+		get('/users/me').then((el) => {
+			setName(el.data.result.name);
+		});
 	}
 
 	return props.token ? (
@@ -30,10 +34,8 @@ function Header(props) {
 					<span className='Name'>{name}</span>
 					<Button
 						text={Texts.logOut}
-						onClick={async () => {
-							_delete('/logout', props.isLogin);
-							props.isLogin(false);
-							localStorage.removeItem('token');
+						onClick={() => {
+							LogOutFunction();
 						}}
 					/>
 				</div>

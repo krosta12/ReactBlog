@@ -52,7 +52,7 @@ function App() {
 					<Route path='/login' element={<Login setJwtToken={setJwtToken} />} />
 				</Route>
 				<Route
-					path='k'
+					path='*'
 					element={<ProtectedRoute jwtToken={false} redirectPath='/courses' />}
 				/>
 			</Routes>

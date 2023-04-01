@@ -1,5 +1,7 @@
 import axios from 'axios';
+
 import { URL } from '../const';
+
 const CreateUserMe = axios.create({
 	baseURL: URL,
 });
@@ -18,16 +20,9 @@ CreateUserMe.interceptors.request.use(
 	}
 );
 
-CreateUserMe.interceptors.response.use(
-	(config) => {
-		return config;
-	},
-	(error) => {
-		if (error.response.status == 401) {
-			//refresh code
-		}
-	}
-);
+CreateUserMe.interceptors.response.use((config) => {
+	return config;
+});
 
 export async function post(url, object) {
 	const el = await CreateUserMe.post(url, object);

@@ -44,7 +44,7 @@ function App() {
 					path={`/courses/:id=${post.id}`}
 					element={<CourseInfo post={post} />}
 				/>
-				
+				{/*  */}
 				<Route
 					path='/'
 					element={<Header isLogin={setJwtToken} token={jwtToken} />}

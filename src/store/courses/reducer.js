@@ -1,1 +1,2 @@
-const coursesInitialState = []
+const coursesInitialState = [];
+export default function () {}

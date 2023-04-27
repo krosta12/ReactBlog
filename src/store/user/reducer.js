@@ -1,7 +1,7 @@
 const userInitialState = {
-    isAuth: false, 
-    name: '',
-    email: '', 
-    token: '', 
-    };
-   
+	isAuth: false,
+	name: '',
+	email: '',
+	token: '',
+};
+export default function () {}

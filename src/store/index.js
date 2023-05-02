@@ -1,18 +1,17 @@
-import userReducer from './user/reducer';
-import autorReducers from './authors/actionCreators';
-import coursesReducer from './courses/reducer';
+import userReducer from './user/actionCreators';
+import authorReducers from './authors/actionCreators';
+import coursesReducer from './courses/actionCreators';
 
 import { configureStore } from '@reduxjs/toolkit';
 
 let RootReducer = {
 	userReducer,
 	coursesReducer,
-	autorReducers,
+	authorReducers,
 };
 
-export default configureStore({
-	reducer: {
-		named: autorReducers,
-		// named:RootReducer not are work
-	},
+let store = configureStore({
+	reducer: RootReducer, //must learn
 });
+
+export default store;

@@ -7,12 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { _name1 } from '../../../../store/authors/actionCreators';
 
 import { Texts } from '../../../../const';
+import { authorList } from '../../../../store/selectors/selectors';
 
 function SearchBar(props) {
+	let AuthorList = authorList();
 	let dispatch = useDispatch();
-	let iDontKnow = useSelector((state) => {
-		state.named.authorsInitialState;
-	});
+
 	return (
 		<div>
 			<Input
@@ -27,7 +27,8 @@ function SearchBar(props) {
 				text={Texts.search}
 				onClick={() => {
 					store.dispatch(_name1());
-					props.butSetState(props.state);
+					console.log(AuthorList);
+					props.butSetState(props.state); //must create function
 				}}
 			/>
 		</div>

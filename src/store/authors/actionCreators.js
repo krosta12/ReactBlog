@@ -1,28 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { name1, name2, name3 } from './reducer';
 
-const authorsInitialState = ['example'];
+const authorsInitialState = [];
 
 export const authorSlice = createSlice({
-	name: 'named',
-	initialState: { authorsInitialState },
+	name: 'authorReducerSlice',
+	initialState: authorsInitialState,
 	reducers: {
-		// _name1: name1,
-		// _name2: name2,
-		// _name3: name3,
 		_name1: (state) => {
-			state.authorsInitialState.push('w');
-			console.log(state.authorsInitialState[2]);
+			console.log(state);
 			console.log('NAME1');
-			//to check it, you must click on "search" button
+			return state; //must rename reducers!
 		},
 		_name2: (state) => {
 			console.log(state);
 			console.log('NAME2');
+			return state;
 		},
 		_name3: (state) => {
 			console.log(state);
 			console.log('NAME3');
+			return state;
 		},
 	},
 });

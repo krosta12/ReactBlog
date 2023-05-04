@@ -4,13 +4,12 @@ import Button from '../../../../common/Button/Button';
 import store from '../../../../store';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { _name1 } from '../../../../store/authors/actionCreators';
+import { getAllCourses } from '../../../../store/courses/actionCreators';
 
 import { Texts } from '../../../../const';
-import { authorList } from '../../../../store/selectors/selectors';
+import { coursesList } from '../../../../store/selectors/selectors';
 
 function SearchBar(props) {
-	let AuthorList = authorList();
 	let dispatch = useDispatch();
 
 	return (
@@ -26,8 +25,7 @@ function SearchBar(props) {
 			<Button
 				text={Texts.search}
 				onClick={() => {
-					store.dispatch(_name1());
-					console.log(AuthorList);
+					store.dispatch(getAllCourses());
 					props.butSetState(props.state); //must create function
 				}}
 			/>

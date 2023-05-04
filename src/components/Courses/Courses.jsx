@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 
+import store from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCourses } from '../../store/user/actionCreators';
+import { coursesList } from '../../store/selectors/selectors';
+
 import SearchBar from './components/SearchBar/SearchBar';
 import CourceCard from './components/CourseCard/CourseCard';
 import PipeDuration from '../../helpers/PipeDuration';
@@ -16,7 +21,7 @@ import '../../App.css';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
-	const [posts, setPosts] = useState(ReadyInfo);
+	const [posts, setPosts] = useState([]);
 	const [isEdit, setIsEdit] = useState(false);
 	const [inputAuthorName, setInputAuthorName] = useState('');
 	const [title, setTitle] = useState('');
@@ -30,8 +35,16 @@ function Cources(props) {
 
 	const [name, setName] = useState('');
 
+	const dispatch = useDispatch();
+	let selector = useSelector((state) => {
+		return state;
+	});
+
+	store.dispatch(getAllCourses());
+
 	useEffect(() => {
 		search ? 0 : setSearchButton('');
+		console.log(selector.coursesReducer); //must fix
 	}, [search]);
 
 	return !isEdit ? (

@@ -8,4 +8,11 @@ export function authorList() {
 	});
 }
 
+export function coursesList() {
+	useSelector((state) => {
+		console.log(state);
+		return state;
+	});
+}
+
 //must all fix

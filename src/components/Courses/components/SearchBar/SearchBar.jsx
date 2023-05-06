@@ -1,14 +1,9 @@
 import Input from '../../../../common/Input/input';
 import Button from '../../../../common/Button/Button';
 
-import store from '../../../../store';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { getAllCourses } from '../../../../store/courses/actionCreators';
+import { useDispatch } from 'react-redux';
 
 import { Texts } from '../../../../const';
-import { coursesList } from '../../../../store/selectors/selectors';
-import { fetch } from '../../../../store/asyncAPI/da';
 
 function SearchBar(props) {
 	let dispatch = useDispatch();

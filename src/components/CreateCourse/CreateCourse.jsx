@@ -25,7 +25,6 @@ function CreateCource({
 	inputAuthorName,
 	authorList,
 	setInputAuthorName,
-	setPosts,
 	setIsEdit,
 }) {
 	return (
@@ -65,16 +64,6 @@ function CreateCource({
 
 								post('/courses/add', postToPublicate);
 								store.dispatch(setCreatedCource(postToPublicate));
-								// setPosts((el) => [
-								// 	...el,
-								// 	{
-								// 		title: title,
-								// 		description: description,
-								// 		creationDate: DateGenerator(),
-								// 		duration: duration,
-								// 		authors: newAuthorsList,
-								// 	},
-								// ]);
 								setTitle('');
 								setDescription('');
 								setDuration(0);

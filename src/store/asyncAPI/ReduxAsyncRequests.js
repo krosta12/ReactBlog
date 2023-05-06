@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { get } from '../../API/apiWorker';
-import { useDispatch } from 'react-redux';
 import { getAllCourses } from '../courses/actionCreators';
 import store from '..';
 

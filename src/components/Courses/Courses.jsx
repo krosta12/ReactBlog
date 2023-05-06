@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 
 import store from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCourses } from '../../store/user/actionCreators';
-import { coursesList } from '../../store/selectors/selectors';
 
 import SearchBar from './components/SearchBar/SearchBar';
 import CourceCard from './components/CourseCard/CourseCard';
@@ -14,10 +12,10 @@ import CreateCource from '../CreateCourse/CreateCourse';
 import Button from '../../common/Button/Button';
 
 import { Texts } from '../../const';
-import ReadyInfo from '../../const';
+
 import { mockedAuthorsList } from '../../const';
 
-import { fetch } from '../../store/asyncAPI/da';
+import { fetch } from '../../store/asyncAPI/ReduxAsyncRequests';
 
 import '../../App.css';
 
@@ -35,8 +33,6 @@ function Cources(props) {
 
 	const [searchButton, setSearchButton] = useState('');
 
-	const [name, setName] = useState('');
-
 	const dispatch = useDispatch();
 
 	let selector = useSelector((state) => {
@@ -46,7 +42,7 @@ function Cources(props) {
 	useEffect(() => {
 		store.dispatch(fetch());
 		console.log(selector);
-	}, []); //fix it
+	}, []);
 
 	useEffect(() => {
 		search ? 0 : setSearchButton('');
@@ -113,7 +109,6 @@ function Cources(props) {
 			inputAuthorName={inputAuthorName}
 			authorList={authorList}
 			setInputAuthorName={setInputAuthorName}
-			setPosts={setPosts}
 			setIsEdit={setIsEdit}
 		/>
 	);

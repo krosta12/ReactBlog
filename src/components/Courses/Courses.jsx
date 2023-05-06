@@ -17,6 +17,8 @@ import { Texts } from '../../const';
 import ReadyInfo from '../../const';
 import { mockedAuthorsList } from '../../const';
 
+import { fetch } from '../../store/asyncAPI/da';
+
 import '../../App.css';
 
 function Cources(props) {
@@ -36,16 +38,25 @@ function Cources(props) {
 	const [name, setName] = useState('');
 
 	const dispatch = useDispatch();
+
 	let selector = useSelector((state) => {
-		return state;
+		return state.coursesReducer.initialList;
 	});
 
-	store.dispatch(getAllCourses());
+	useEffect(() => {
+		store.dispatch(fetch());
+		console.log(selector);
+	}, []); //fix it
 
 	useEffect(() => {
 		search ? 0 : setSearchButton('');
-		console.log(selector.coursesReducer); //must fix
 	}, [search]);
+
+	useEffect(() => {
+		if (selector != null) {
+			setPosts(selector);
+		}
+	}); //so bad
 
 	return !isEdit ? (
 		<div className='Pos'>

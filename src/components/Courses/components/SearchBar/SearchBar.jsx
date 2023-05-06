@@ -8,6 +8,7 @@ import { getAllCourses } from '../../../../store/courses/actionCreators';
 
 import { Texts } from '../../../../const';
 import { coursesList } from '../../../../store/selectors/selectors';
+import { fetch } from '../../../../store/asyncAPI/da';
 
 function SearchBar(props) {
 	let dispatch = useDispatch();
@@ -25,8 +26,7 @@ function SearchBar(props) {
 			<Button
 				text={Texts.search}
 				onClick={() => {
-					store.dispatch(getAllCourses());
-					props.butSetState(props.state); //must create function
+					props.butSetState(props.state);
 				}}
 			/>
 		</div>

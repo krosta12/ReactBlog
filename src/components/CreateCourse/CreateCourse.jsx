@@ -7,6 +7,10 @@ import DateGenerator from '../../helpers/dateGenerator';
 
 import { Texts } from '../../const';
 
+import { post } from '../../API/apiWorker';
+import store from '../../store';
+import { setCreatedCource } from '../../store/courses/actionCreators';
+
 function CreateCource({
 	title,
 	description,
@@ -40,6 +44,7 @@ function CreateCource({
 					<Button
 						text={Texts.createCource}
 						onClick={() => {
+							//must create function
 							if (
 								title.split('').length > 3 &&
 								description.split('').length > 3 &&
@@ -48,17 +53,28 @@ function CreateCource({
 							) {
 								let newAuthorsList = [];
 
-								applAuthors.map((el) => newAuthorsList.push(el.name));
-								setPosts((el) => [
-									...el,
-									{
-										title: title,
-										description: description,
-										creationDate: DateGenerator(),
-										duration: duration,
-										authors: newAuthorsList,
-									},
-								]);
+								applAuthors.map((el) => newAuthorsList.push(el.id));
+
+								let postToPublicate = {
+									title: title,
+									description: description,
+									creationDate: DateGenerator(),
+									duration: parseInt(duration),
+									authors: newAuthorsList,
+								};
+
+								post('/courses/add', postToPublicate);
+								store.dispatch(setCreatedCource(postToPublicate));
+								// setPosts((el) => [
+								// 	...el,
+								// 	{
+								// 		title: title,
+								// 		description: description,
+								// 		creationDate: DateGenerator(),
+								// 		duration: duration,
+								// 		authors: newAuthorsList,
+								// 	},
+								// ]);
 								setTitle('');
 								setDescription('');
 								setDuration(0);

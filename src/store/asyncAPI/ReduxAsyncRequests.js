@@ -3,16 +3,19 @@ import { get } from '../../API/apiWorker';
 import { getAllCourses } from '../courses/actionCreators';
 import store from '..';
 
-export const fetch = createAsyncThunk('counterSlice/fetch', async () => {
-	let coursesList = await get('/courses/all');
-	let authorsList = await get('/authors/all');
+export const compiledCoursesList = createAsyncThunk(
+	'counterSlice/fetch',
+	async () => {
+		let coursesList = await get('/courses/all');
+		let authorsList = await get('/authors/all');
 
-	let allAuthors = authorsList.data.result;
-	let allCourses = coursesList.data.result;
+		let allAuthors = authorsList.data.result;
+		let allCourses = coursesList.data.result;
 
-	allAuthors.map((el) => replaceIds(allCourses, el.id, el.name));
-	store.dispatch(getAllCourses(allCourses));
-});
+		allAuthors.map((el) => replaceIds(allCourses, el.id, el.name));
+		store.dispatch(getAllCourses(allCourses));
+	}
+);
 
 function replaceIds(allCourses, id, name) {
 	allCourses.map((el, i) => {

@@ -4,13 +4,12 @@ const actionCreators = createSlice({
 	name: 'coursesSlice',
 	initialState: { initialList: null },
 	reducers: {
-		getAllCourses(state, payload) {
-			console.log('list updated!');
-			state.initialList = [...payload.payload];
+		getAllCourses(state, action) {
+			state.initialList = [...action.payload];
 			return state;
 		},
-		setCreatedCource(state, payload) {
-			state.initialList = [...state.initialList, payload.payload];
+		setCreatedCource(state, action) {
+			state.initialList = [...state.initialList, action.payload];
 			return state;
 		},
 	},

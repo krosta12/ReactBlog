@@ -1,10 +1,7 @@
 import { useSelector } from 'react-redux';
 import { _name1 } from '../authors/actionCreators';
 
-export function authorList() {
+export const coursesList = () =>
 	useSelector((state) => {
-		return state.autorReducers;
+		return state.coursesReducer.initialList;
 	});
-}
-
-export const coursesList = (state) => state.courcesReducer.initialList;

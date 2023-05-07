@@ -15,9 +15,10 @@ import { Texts } from '../../const';
 
 import { mockedAuthorsList } from '../../const';
 
-import { fetch } from '../../store/asyncAPI/ReduxAsyncRequests';
+import { compiledCoursesList } from '../../store/asyncAPI/ReduxAsyncRequests';
 
 import '../../App.css';
+import { coursesList } from '../../store/selectors/selectors';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
@@ -35,13 +36,10 @@ function Cources(props) {
 
 	const dispatch = useDispatch();
 
-	let selector = useSelector((state) => {
-		return state.coursesReducer.initialList;
-	});
+	let selector = coursesList();
 
 	useEffect(() => {
-		store.dispatch(fetch());
-		console.log(selector);
+		dispatch(compiledCoursesList());
 	}, []);
 
 	useEffect(() => {

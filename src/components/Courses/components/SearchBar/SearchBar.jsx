@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { Texts } from '../../../../const';
 
 function SearchBar(props) {
-	let dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	return (
 		<div>

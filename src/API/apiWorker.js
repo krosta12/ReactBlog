@@ -25,7 +25,6 @@ CreateUserMe.interceptors.response.use((config) => {
 });
 
 export async function post(url, object) {
-	console.log(url);
 	const el = await CreateUserMe.post(url, object);
 	return el;
 }

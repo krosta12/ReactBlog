@@ -40,7 +40,7 @@ function Cources(props) {
 
 	useEffect(() => {
 		dispatch(compiledCoursesList());
-	}, []);
+	}, [selector]);
 
 	useEffect(() => {
 		search ? 0 : setSearchButton('');

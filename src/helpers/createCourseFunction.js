@@ -1,11 +1,11 @@
 //must create function
 
 import DateGenerator from './dateGenerator';
-import { post } from '../API/apiWorker';
+import { get, post } from '../API/apiWorker';
 import store from '../store';
 import { setCreatedCource } from '../store/courses/actionCreators';
 
-export function createCourseFunction(
+export async function createCourseFunction(
 	title,
 	description,
 	duration,
@@ -18,6 +18,8 @@ export function createCourseFunction(
 	mockedAuthorsList,
 	setIsEdit
 ) {
+	let allAuthors = await get('/authors/all');
+
 	if (
 		title.split('').length > 3 &&
 		description.split('').length > 3 &&
@@ -37,6 +39,7 @@ export function createCourseFunction(
 		};
 
 		post('/courses/add', postToPublicate);
+
 		store.dispatch(setCreatedCource(postToPublicate));
 		setTitle('');
 		setDescription('');

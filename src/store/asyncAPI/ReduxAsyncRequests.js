@@ -13,7 +13,8 @@ export const compiledCoursesList = createAsyncThunk(
 		let allCourses = coursesList.data.result;
 
 		allAuthors.map((el) => replaceIds(allCourses, el.id, el.name));
-		store.dispatch(getAllCourses(allCourses));
+
+		store.dispatch(getAllCourses(allCourses)); //without 'store' dosen't work
 	}
 );
 

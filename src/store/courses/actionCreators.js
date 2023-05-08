@@ -10,6 +10,7 @@ const actionCreators = createSlice({
 		},
 		setCreatedCource(state, action) {
 			state.initialList = [...state.initialList, action.payload];
+			console.log(state.initialList);
 			return state;
 		},
 	},

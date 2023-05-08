@@ -4,10 +4,16 @@ import Button from '../../../../common/Button/Button';
 
 import { Texts } from '../../../../const';
 
+import { _delete } from '../../../../API/apiWorker';
+
+import { useDispatch } from 'react-redux';
+import { compiledCoursesList } from '../../../../store/asyncAPI/ReduxAsyncRequests';
+
 import '../../../../App.css';
 
 function CourceCard(props) {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	function StartShowPost(props) {
 		props.setPost({
@@ -23,7 +29,7 @@ function CourceCard(props) {
 	}
 
 	return (
-		<div div className='Card'>
+		<div div className='Card' id={props.id}>
 			<div className='Texts'>
 				<h2>{props.theme}</h2>
 				<p>{props.text}</p>
@@ -44,6 +50,17 @@ function CourceCard(props) {
 						text={Texts.showCource}
 						onClick={(el) => {
 							StartShowPost(props);
+						}}
+					/>
+					<Button text='edit' />
+					<Button
+						text='delete'
+						onClick={async (el) => {
+							await _delete(
+								`/courses/${el.target.parentNode.parentNode.parentNode.id}`
+							);
+
+							dispatch(compiledCoursesList());
 						}}
 					/>
 				</div>

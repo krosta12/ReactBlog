@@ -16,19 +16,18 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route
-					path='/'
-					element={<ProtectedRoute jwtToken={false} redirectPath='/courses' />}
-				/>
-				<Route
-					path='/courses'
-					element={
-						<ProtectedRoute jwtToken={jwtToken} redirectPath={'/login'} />
-					}
-				>
+				<Route element={<Header isLogin={setJwtToken} token={jwtToken} />}>
 					<Route
-						path='*'
-						element={<Header isLogin={setJwtToken} token={jwtToken} />}
+						path='/'
+						element={
+							<ProtectedRoute jwtToken={false} redirectPath='/courses' />
+						}
+					/>
+					<Route
+						path='/courses'
+						element={
+							<ProtectedRoute jwtToken={jwtToken} redirectPath={'/login'} />
+						}
 					>
 						<Route
 							index
@@ -39,22 +38,21 @@ function App() {
 							}
 						/>
 					</Route>
-				</Route>
-				<Route
-					path={`/courses/:id=${post.id}`}
-					element={<CourseInfo post={post} />}
-				/>
-				<Route
-					path='/'
-					element={<Header isLogin={setJwtToken} token={jwtToken} />}
-				>
+					<Route
+						path={`/courses/:id=${post.id}`}
+						element={<CourseInfo post={post} />}
+					/>
+					{/* fix protected Rote! */}
 					<Route path='/registration' element={<Regitration />} />
 					<Route path='/login' element={<Login setJwtToken={setJwtToken} />} />
+
+					<Route
+						path='*'
+						element={
+							<ProtectedRoute jwtToken={false} redirectPath='/courses' />
+						}
+					/>
 				</Route>
-				<Route
-					path='*'
-					element={<ProtectedRoute jwtToken={false} redirectPath='/courses' />}
-				/>
 			</Routes>
 		</BrowserRouter>
 	);

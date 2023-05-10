@@ -11,6 +11,7 @@ import { post } from '../../API/apiWorker';
 import store from '../../store';
 import { setCreatedCource } from '../../store/courses/actionCreators';
 import { createCourseFunction } from '../../helpers/createCourseFunction';
+import { get } from '../../API/apiWorker';
 
 function CreateCource({
 	title,
@@ -87,17 +88,17 @@ function CreateCource({
 					</div>
 					<Button
 						text={Texts.createAuthor}
-						onClick={() => {
+						onClick={async () => {
 							//must create function
 							let generatedId = v4();
 							if (inputAuthorName.split('').length > 3) {
-								setAuthorList((el) => [
-									...el,
-									{
-										id: generatedId,
-										name: inputAuthorName,
-									},
-								]);
+								await post('authors/add/', {
+									id: generatedId,
+									name: inputAuthorName,
+								});
+								let w = await get('authors/all');
+								w = w.data.result;
+								setAuthorList((el) => w); //BIG BUG! if name of this variable != w, it's doesn't work
 							} else {
 								alert('Write correct name');
 							}

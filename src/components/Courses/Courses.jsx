@@ -15,10 +15,13 @@ import { Texts } from '../../const';
 
 import { mockedAuthorsList } from '../../const';
 
-import { compiledCoursesList } from '../../store/asyncAPI/ReduxAsyncRequests';
+import {
+	authorsGetter,
+	compiledCoursesList,
+} from '../../store/asyncAPI/ReduxAsyncRequests';
 
 import '../../App.css';
-import { coursesList } from '../../store/selectors/selectors';
+import { authorsList, coursesList } from '../../store/selectors/selectors';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
@@ -29,28 +32,36 @@ function Cources(props) {
 	const [description, setDescription] = useState('');
 	const [duration, setDuration] = useState(0);
 
-	const [authorList, setAuthorList] = useState(mockedAuthorsList);
+	const [authorList, setAuthorList] = useState([]);
 	const [applAuthors, setApplAuthor] = useState([]);
 
 	const [searchButton, setSearchButton] = useState('');
 
 	const dispatch = useDispatch();
 
-	let selector = coursesList();
+	let _allCourses = coursesList();
+	let _allAuthors = authorsList();
 
 	useEffect(() => {
 		dispatch(compiledCoursesList());
-	}, [selector]);
+		dispatch(authorsGetter());
+	}, [authorList]);
 
 	useEffect(() => {
 		search ? 0 : setSearchButton('');
 	}, [search]);
 
 	useEffect(() => {
-		if (selector != null) {
-			setPosts(selector);
+		if (_allCourses != null) {
+			setPosts(_allCourses);
 		}
-	}); //so bad
+	}); //so many UseEffects!!
+
+	useEffect(() => {
+		if (_allAuthors != null) {
+			setAuthorList(_allAuthors);
+		}
+	}, [isEdit]);
 
 	return !isEdit ? (
 		<div className='Pos'>

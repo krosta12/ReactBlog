@@ -1,19 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const authorsInitialState = [];
-
-export const authorSlice = createSlice({
+const authorSlice = createSlice({
 	name: 'authorReducerSlice',
-	initialState: authorsInitialState,
+	initialState: { authorsInitialState: null },
 	reducers: {
-		_name1: (state) => {
-			console.log(state);
-			console.log('NAME1');
+		getAllAuthors: (state, action) => {
+			state.authorsInitialState = [...action.payload];
 			return state; //must rename reducers!
 		},
-		_name2: (state) => {
-			console.log(state);
-			console.log('NAME2');
+		setAuthorsToList: (state, action) => {
+			state.authorsInitialState = [
+				...state.authorsInitialState,
+				action.payload,
+			];
 			return state;
 		},
 		_name3: (state) => {
@@ -24,6 +23,6 @@ export const authorSlice = createSlice({
 	},
 });
 
-export const { _name1, _name2, _name3 } = authorSlice.actions;
+export const { getAllAuthors, _name2, _name3 } = authorSlice.actions;
 
 export default authorSlice.reducer;

@@ -2,12 +2,21 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { get } from '../../API/apiWorker';
 import { getAllCourses } from '../courses/actionCreators';
 import store from '..';
+import { getAllAuthors } from '../authors/actionCreators';
+
+async function getterCourses() {
+	return await get('/courses/all');
+}
+
+async function getterAuthors() {
+	return await get('/authors/all');
+}
 
 export const compiledCoursesList = createAsyncThunk(
 	'counterSlice/fetch',
 	async () => {
-		let coursesList = await get('/courses/all');
-		let authorsList = await get('/authors/all');
+		let coursesList = await getterCourses();
+		let authorsList = await getterAuthors();
 
 		let allAuthors = authorsList.data.result;
 		let allCourses = coursesList.data.result;
@@ -27,3 +36,12 @@ function replaceIds(allCourses, id, name) {
 		});
 	});
 }
+
+export const authorsGetter = createAsyncThunk(
+	'authorReducerSlice/fetch',
+	async () => {
+		let i = await getterAuthors();
+		i = i.data.result;
+		store.dispatch(getAllAuthors(i));
+	}
+);

@@ -1,0 +1,231 @@
+body {
+  color: wheat;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
+  background-image: url("../assets/images/backgroundImage.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+body button {
+  font-size: 1.2vw;
+  border-radius: 0.5vw;
+  font-weight: 900;
+}
+body input {
+  font-size: 1.2vw;
+  font-weight: 900;
+}
+body label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1vw;
+  font-weight: 700;
+}
+body label > input {
+  width: 20vw;
+}
+body button {
+  transition: ease-in all 0.2s;
+}
+body button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+body input {
+  cursor: text;
+}
+body form {
+  background-color: rgba(0, 0, 0, 0.462745098);
+  padding: 6vw 5vw;
+  border-radius: 2vw;
+}
+body .Main {
+  display: flex;
+  align-items: center;
+  margin: 10vw;
+  position: relative;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.3607843137);
+  padding: 1.5vw;
+  border-radius: 1vw;
+}
+body .Main > button {
+  position: absolute;
+  left: -5vw;
+  top: -8vw;
+  padding: 0.3vw;
+}
+body .RegisterBox {
+  width: 100%;
+  height: 45vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body .RegisterBox p {
+  font-weight: 800;
+  background-color: rgba(0, 0, 0, 0.5058823529);
+  padding: 1vw;
+  border-radius: 2vw;
+}
+body .RegisterBox p a {
+  color: aqua;
+}
+body .RegisterBox > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .RegisterBox > form > button {
+  margin-top: 3vw;
+}
+body .inputToRegister > label {
+  margin-top: 2vw;
+}
+body .Header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.555);
+  align-items: center;
+  color: white;
+}
+body .Header .InnerHeader {
+  margin: 2vw;
+  display: flex;
+  font-size: 2vw;
+}
+body .Header .InnerHeader .Name {
+  margin-right: 1vw;
+}
+body .Pos {
+  display: flex;
+  justify-content: center;
+}
+body .Pos .CourcesBody {
+  margin-top: 3vw;
+  width: 80%;
+}
+body .Pos .CourcesBody .InnerUppCourcesBody {
+  display: flex;
+  justify-content: space-between;
+}
+body .Pos .CourcesBody .InnerUppCourcesBody .SearchBox > div {
+  display: flex;
+}
+body .Pos .CourcesBody .Card {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5vw;
+  background-color: rgba(0, 0, 0, 0.3607843137);
+  padding: 1.5vw;
+  border-radius: 1vw;
+}
+body .Pos .CourcesBody .Card .Texts {
+  font-size: 1vw;
+  font-weight: 600;
+  width: 60%;
+}
+body .Pos .CourcesBody .Card .Info {
+  width: 30%;
+}
+body .Pos .CourcesBody .Card .Info .InfoInner {
+  font-size: 1.05vw;
+}
+body .Pos .CourcesBody .Card .Info .InfoInner .authors {
+  overflow: hidden;
+  height: 1.4vw;
+  width: 20vw;
+  text-overflow: ellipsis;
+}
+body .EditBody {
+  width: 80%;
+  margin: 0 auto;
+}
+body .EditBody .EditInnerUp {
+  margin: 2vw 4vw;
+  display: flex;
+  justify-content: space-between;
+}
+body .EditBody .MainTextBox {
+  margin: 2vw 4vw;
+}
+body .EditBody .MainTextBox .description {
+  width: 100%;
+  height: 20vw;
+}
+body .EditBody .MainTextBox .description::-moz-placeholder {
+  position: absolute;
+  font-size: 1vw;
+  font-weight: 900;
+}
+body .EditBody .MainTextBox .description::placeholder {
+  position: absolute;
+  font-size: 1vw;
+  font-weight: 900;
+}
+body .EditBody .BigInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 2vw 4vw;
+}
+body .EditBody .BigInfoContainer .CreateAuthorBox {
+  display: flex;
+  flex-direction: column;
+}
+body .EditBody .BigInfoContainer .CreateAuthorBox > p {
+  margin: 0 auto;
+}
+body .EditBody .BigInfoContainer .isApllyedAuthorBox {
+  display: flex;
+  flex-direction: column;
+}
+body .EditBody .BigInfoContainer .isApllyedAuthorBox .ApllyedAuthors {
+  display: flex;
+  flex-direction: column;
+}
+body .EditBody .BigInfoContainer .isApllyedAuthorBox .ApllyedAuthors .ApllyedBox {
+  display: flex;
+  flex-direction: column;
+  margin: 4vw 0;
+}
+body .EditBody .BigInfoContainer .isApllyedAuthorBox .ApllyedAuthors .ApllyedBox > div {
+  margin: 0.2vw 0;
+  display: flex;
+  justify-content: space-between;
+}
+body .EditBody .BigInfoContainer .isApllyedAuthorBox .notAppled {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+body .EditBody .BigInfoContainer .isApllyedAuthorBox .notAppled .AuthorsTitle {
+  margin-left: 5vw;
+  font-weight: 600;
+  font-size: 1.2vw;
+}
+body .EditBody .BigInfoContainer .isApllyedAuthorBox .notAppled div {
+  margin: 0.1vw 0;
+  display: flex;
+  justify-content: space-between;
+}
+body .EditBody .DurationBox .Duration {
+  font-size: 2vw;
+  margin-left: 5vw;
+  font-weight: 600;
+}
+body .EditBody .DurationBox .DurationPEl {
+  font-size: 1.2vw;
+  font-weight: 600;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.SearchBox > div {
+  display: flex;
+}/*# sourceMappingURL=AllAppStyles.css.map */

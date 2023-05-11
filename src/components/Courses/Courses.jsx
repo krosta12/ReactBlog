@@ -20,7 +20,7 @@ import {
 	compiledCoursesList,
 } from '../../store/asyncAPI/ReduxAsyncRequests';
 
-import '../../App.css';
+import '../../CSS/AllAppStyles.css';
 import { authorsList, coursesList } from '../../store/selectors/selectors';
 
 function Cources(props) {

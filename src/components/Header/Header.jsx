@@ -7,7 +7,7 @@ import Button from '../../common/Button/Button';
 import { get, _delete } from '../../API/apiWorker';
 import { Texts } from '../../const';
 
-import '../../App.css';
+import '../../CSS/AllAppStyles.css';
 
 function Header(props) {
 	async function LogOutFunction() {

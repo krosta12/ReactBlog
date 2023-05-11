@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import '../../App.css';
+import '../../CSS/AllAppStyles.css';
 
 import Button from '../../common/Button/Button';
 

@@ -9,7 +9,7 @@ import { _delete } from '../../../../API/apiWorker';
 import { useDispatch } from 'react-redux';
 import { compiledCoursesList } from '../../../../store/asyncAPI/ReduxAsyncRequests';
 
-import '../../../../App.css';
+import '../../../../CSS/AllAppStyles.css';
 
 function CourceCard(props) {
 	const navigate = useNavigate();

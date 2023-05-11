@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '../../common/Button/Button';
 
-import '../../App.css';
+import '../../CSS/AllAppStyles.css';
 
 import Validate from '../../helpers/ValidateFunction';
 

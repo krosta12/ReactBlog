@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import { post } from '../../API/apiWorker';
 
-import '../../App.css';
+import '../../CSS/AllAppStyles.css';
 
 export default function Login({ setJwtToken }) {
 	const [password, setPassword] = useState('');

@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 
-export const coursesList = () =>
+export const GetterCoursesListFromRedux = () =>
 	useSelector((state) => {
 		return state.coursesReducer.initialList;
 	});
-export const authorsList = () =>
+export const GetterAuthorsListFromRdux = () =>
 	useSelector((state) => {
 		return state.authorReducers.authorsInitialState;
 	});

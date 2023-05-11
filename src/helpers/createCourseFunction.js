@@ -18,8 +18,6 @@ export async function createCourseFunction(
 	mockedAuthorsList,
 	setIsEdit
 ) {
-	let allAuthors = await get('/authors/all');
-
 	if (
 		title.split('').length > 3 &&
 		description.split('').length > 3 &&

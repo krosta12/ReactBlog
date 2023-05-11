@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import store from '../../store';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import SearchBar from './components/SearchBar/SearchBar';
 import CourceCard from './components/CourseCard/CourseCard';
@@ -21,7 +20,10 @@ import {
 } from '../../store/asyncAPI/ReduxAsyncRequests';
 
 import '../../CSS/AllAppStyles.css';
-import { authorsList, coursesList } from '../../store/selectors/selectors';
+import {
+	GetterAuthorsListFromRdux,
+	GetterCoursesListFromRedux,
+} from '../../store/selectors/selectors';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
@@ -39,8 +41,8 @@ function Cources(props) {
 
 	const dispatch = useDispatch();
 
-	let _allCourses = coursesList();
-	let _allAuthors = authorsList();
+	let allCourses = GetterCoursesListFromRedux();
+	let allAuthors = GetterAuthorsListFromRdux();
 
 	useEffect(() => {
 		dispatch(compiledCoursesList());
@@ -52,14 +54,14 @@ function Cources(props) {
 	}, [search]);
 
 	useEffect(() => {
-		if (_allCourses != null) {
-			setPosts(_allCourses);
+		if (allCourses != null) {
+			setPosts(allCourses);
 		}
 	}); //so many UseEffects!!
 
 	useEffect(() => {
-		if (_allAuthors != null) {
-			setAuthorList(_allAuthors);
+		if (allAuthors != null) {
+			setAuthorList(allAuthors);
 		}
 	}, [isEdit]);
 

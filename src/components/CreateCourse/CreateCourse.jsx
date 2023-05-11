@@ -120,7 +120,6 @@ function CreateCource({
 											setAuthorList((elem) =>
 												elem.filter((elemB) => elemB != el)
 											);
-											console.log(authorList);
 										}}
 									/>
 								</div>

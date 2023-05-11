@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { URL } from '../const';
-import { useDispatch } from 'react-redux';
 
 const CreateUserMe = axios.create({
 	baseURL: URL,

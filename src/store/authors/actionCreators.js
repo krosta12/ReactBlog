@@ -6,7 +6,7 @@ const authorSlice = createSlice({
 	reducers: {
 		getAllAuthors: (state, action) => {
 			state.authorsInitialState = [...action.payload];
-			return state; //must rename reducers!
+			return state;
 		},
 		setAuthorsToList: (state, action) => {
 			state.authorsInitialState = [
@@ -15,14 +15,9 @@ const authorSlice = createSlice({
 			];
 			return state;
 		},
-		_name3: (state) => {
-			console.log(state);
-			console.log('NAME3');
-			return state;
-		},
 	},
 });
 
-export const { getAllAuthors, _name2, _name3 } = authorSlice.actions;
+export const { getAllAuthors, setAuthorsToList } = authorSlice.actions;
 
 export default authorSlice.reducer;

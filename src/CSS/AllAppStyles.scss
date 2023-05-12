@@ -9,6 +9,11 @@ body {
       input {
         font-size: 1.2vw;
         font-weight: 900;
+        background-color: #ffffff4c;
+      }
+
+      input::placeholder{
+        color: wheat;
       }
       
 label {
@@ -27,6 +32,10 @@ label {
   
   button {
     transition: ease-in all .2s;
+    background-color: #00000034;
+    color: rgb(255, 205, 112);
+    border: .1vw solid rgba(255, 255, 255, 0.733);
+    margin: 0 .3vw;
   }
   
   button:hover {
@@ -123,6 +132,8 @@ label {
 
             .Name {
                 margin-right: 1vw;
+                color: wheat;
+                font-weight: 600;
               }
           }
           
@@ -162,6 +173,7 @@ label {
 
                 .InfoInner {
                 font-size: 1.05vw;
+                font-weight: 600;
 
                 .authors {
                     overflow: hidden;

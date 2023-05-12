@@ -94,7 +94,7 @@ function CreateCource({
 							if (inputAuthorName.split('').length > 3) {
 								await post('authors/add/', {
 									id: generatedId,
-									name: inputAuthorName,
+									name: inputAuthorName, //must fix bug (1+1 = 11)
 								});
 								let w = await get('authors/all');
 								w = w.data.result;

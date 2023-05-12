@@ -3,6 +3,7 @@ import { get } from '../../API/apiWorker';
 import { getAllCourses } from '../courses/actionCreators';
 import store from '..';
 import { getAllAuthors } from '../authors/actionCreators';
+import { SaveUser } from '../user/actionCreators';
 
 async function getterCourses() {
 	return await get('/courses/all');
@@ -40,8 +41,13 @@ function replaceIds(allCourses, id, name) {
 export const authorsGetter = createAsyncThunk(
 	'authorReducerSlice/fetch',
 	async () => {
-		let i = await getterAuthors();
-		i = i.data.result;
-		store.dispatch(getAllAuthors(i));
+		let allAuthorsList = await getterAuthors();
+		allAuthorsList = allAuthorsList.data.result;
+		store.dispatch(getAllAuthors(allAuthorsList));
 	}
 );
+
+export const UserGetter = createAsyncThunk('userReducers/fetch', async () => {
+	let authors = await get('/users/me');
+	store.dispatch(SaveUser(authors.data.result));
+});

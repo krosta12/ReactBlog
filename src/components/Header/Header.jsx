@@ -8,12 +8,18 @@ import { get, _delete } from '../../API/apiWorker';
 import { Texts } from '../../const';
 
 import '../../CSS/AllAppStyles.css';
+import { useDispatch } from 'react-redux';
+import { deleteUser } from '../../store/user/actionCreators';
 
 function Header(props) {
+	const dispatch = useDispatch();
+
 	async function LogOutFunction() {
 		_delete('/logout', props.isLogin);
 		props.isLogin(false);
-		localStorage.removeItem('token');
+		localStorage.removeItem('token'); //first
+
+		dispatch(deleteUser()); //last
 	}
 
 	props.isLogin(localStorage.getItem('token'));

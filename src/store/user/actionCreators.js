@@ -1,19 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [];
-
 const userActionCreators = createSlice({
 	name: 'userReducers',
-	initialState: initialState,
+	initialState: {
+		isAuth: false,
+		name: '',
+		email: '',
+		token: '',
+	},
 	reducers: {
-		getAllCourses(state) {
+		SaveUser(state, action) {
+			state.isAuth = true;
+			state.name = action.payload.name;
+			state.email = action.payload.email;
+			state.token = localStorage.getItem('token');
 			return state;
-		}, //must rename
-		name_2(state) {
-			return state;
+		},
+		deleteUser(state) {
+			state.isAuth = false;
+			state.name = '';
+			state.email = '';
+			state.token = '';
+			return state; //must create UseSelector
 		},
 	},
 });
 
-export const { getAllCourses, name_2 } = userActionCreators.actions;
+export const { SaveUser, deleteUser } = userActionCreators.actions;
 export default userActionCreators.reducer;

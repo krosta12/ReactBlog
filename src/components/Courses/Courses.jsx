@@ -37,7 +37,7 @@ function Cources(props) {
 	useEffect(() => {
 		dispatch(compiledCoursesList());
 		dispatch(authorsGetter());
-	}, []); //warning! don't delete []!!
+	}); //warning! don't delete []!!
 
 	useEffect(() => {
 		search ? 0 : setSearchButton('');

@@ -29,7 +29,7 @@ function CourceCard(props) {
 	}
 
 	return (
-		<div div className='Card' id={props.id}>
+		<div div className='Card'>
 			<div className='Texts'>
 				<h2>{props.theme}</h2>
 				<p>{props.text}</p>
@@ -55,10 +55,9 @@ function CourceCard(props) {
 					<Button text='edit' />
 					<Button
 						text='delete'
+						id={props.id}
 						onClick={async (el) => {
-							await _delete(
-								`/courses/${el.target.parentNode.parentNode.parentNode.id}`
-							);
+							await _delete(`/courses/${el.target.id}`);
 
 							dispatch(compiledCoursesList());
 						}}

@@ -22,7 +22,7 @@ export async function createCourseFunction(
 		title.split('').length > 3 &&
 		description.split('').length > 3 &&
 		applAuthors.length > 0 &&
-		duration
+		duration > 0
 	) {
 		let newAuthorsList = [];
 
@@ -45,6 +45,6 @@ export async function createCourseFunction(
 		setApplAuthor([]);
 		setIsEdit(false);
 	} else {
-		alert(0);
+		alert('check all labels');
 	}
 }

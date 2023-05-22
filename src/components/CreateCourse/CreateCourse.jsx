@@ -3,7 +3,11 @@ import { v4 } from 'uuid';
 import Input from '../../common/Input/input';
 import Button from '../../common/Button/Button';
 
+import { useState } from 'react';
+
 import DateGenerator from '../../helpers/dateGenerator';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Texts } from '../../const';
 
@@ -12,23 +16,31 @@ import store from '../../store';
 import { setCreatedCource } from '../../store/courses/actionCreators';
 import { createCourseFunction } from '../../helpers/createCourseFunction';
 import { get } from '../../API/apiWorker';
+import { selectAllAuthorsList } from '../../store/selectors/selectors';
+import { setAuthorsToList } from '../../store/authors/actionCreators';
 
 function CreateCource({
 	title,
 	description,
 	duration,
-	applAuthors,
+	// applAuthors,
 	setDescription,
 	setTitle,
 	setDuration,
-	setApplAuthor,
-	setAuthorList,
+	// setApplAuthor,
+	// setAuthorList,
 	mockedAuthorsList,
 	inputAuthorName,
-	authorList,
+	// authorList,
 	setInputAuthorName,
 	setIsEdit,
 }) {
+	let dispatch = useDispatch();
+
+	const [authorList, setAuthorList] = useState(
+		useSelector(selectAllAuthorsList)
+	);
+	const [applAuthors, setApplAuthor] = useState([]);
 	return (
 		<div className='EditBody'>
 			<div className='EditInnerUp'>
@@ -89,16 +101,16 @@ function CreateCource({
 					<Button
 						text={Texts.createAuthor}
 						onClick={async () => {
-							//must create function
-							let generatedId = v4();
 							if (inputAuthorName.split('').length > 3) {
 								await post('authors/add/', {
-									id: generatedId,
-									name: inputAuthorName, //must fix bug (1+1 = 11)
+									name: inputAuthorName,
 								});
+
 								let w = await get('authors/all');
 								w = w.data.result;
-								setAuthorList((el) => w); //BIG BUG! if name of this variable != w, it's doesn't work
+								let lastElem = w[w.length - 1];
+								dispatch(setAuthorsToList(lastElem));
+								// setAuthorList((el) => [...el, lastElem]); //BIG BUG! if name of this variable != w, it's doesn't work
 							} else {
 								alert('Write correct name');
 							}
@@ -116,6 +128,7 @@ function CreateCource({
 									<Button
 										text={Texts.addAuthor}
 										onClick={() => {
+											console.log('APL');
 											setApplAuthor((elA) => [...elA, el]);
 											setAuthorList((elem) =>
 												elem.filter((elemB) => elemB != el)

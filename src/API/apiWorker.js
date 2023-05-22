@@ -33,6 +33,7 @@ export async function get(url) {
 	const el = await CreateUserMe.get(url);
 	return el;
 }
+
 export async function _delete(url) {
 	await CreateUserMe.delete(url);
 }

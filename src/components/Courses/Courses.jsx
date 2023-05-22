@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import SearchBar from './components/SearchBar/SearchBar';
 import CourceCard from './components/CourseCard/CourseCard';
@@ -23,6 +23,8 @@ import '../../CSS/AllAppStyles.css';
 import {
 	GetterAuthorsListFromRdux,
 	GetterCoursesListFromRedux,
+	selectAllAuthorsList,
+	selectCoursesList,
 } from '../../store/selectors/selectors';
 
 function Cources(props) {
@@ -34,36 +36,21 @@ function Cources(props) {
 	const [description, setDescription] = useState('');
 	const [duration, setDuration] = useState(0);
 
-	const [authorList, setAuthorList] = useState([]);
-	const [applAuthors, setApplAuthor] = useState([]);
-
 	const [searchButton, setSearchButton] = useState('');
 
 	const dispatch = useDispatch();
 
-	let allCourses = GetterCoursesListFromRedux();
-	let allAuthors = GetterAuthorsListFromRdux();
+	// let allCourses = GetterCoursesListFromRedux();
+	let allCourses = useSelector(selectCoursesList);
 
 	useEffect(() => {
 		dispatch(compiledCoursesList());
 		dispatch(authorsGetter());
-	}, [authorList]);
+	}, []);
 
 	useEffect(() => {
 		search ? 0 : setSearchButton('');
 	}, [search]);
-
-	useEffect(() => {
-		if (allCourses != null) {
-			setPosts(allCourses);
-		}
-	}); //so many UseEffects!!
-
-	useEffect(() => {
-		if (allAuthors != null) {
-			setAuthorList(allAuthors);
-		}
-	}, [isEdit]);
 
 	return !isEdit ? (
 		<div className='Pos'>
@@ -83,25 +70,28 @@ function Cources(props) {
 				</div>
 
 				<div>
-					{posts
-						.filter((el) => {
-							if (el.title.toLowerCase().includes(searchButton.toLowerCase())) {
-								return el;
-							}
-						})
-						.map((el) => (
-							<>
-								<CourceCard
-									id={el.id}
-									theme={el.title}
-									text={el.description}
-									creationDate={el.creationDate}
-									duration={PipeDuration(el)}
-									authors={el.authors}
-									setPost={props.setPost}
-								/>
-							</>
-						))}
+					{allCourses != null &&
+						allCourses
+							.filter((el) => {
+								if (
+									el.title.toLowerCase().includes(searchButton.toLowerCase())
+								) {
+									return el;
+								}
+							})
+							.map((el) => (
+								<>
+									<CourceCard
+										id={el.id}
+										theme={el.title}
+										text={el.description}
+										creationDate={el.creationDate}
+										duration={PipeDuration(el)}
+										authors={el.authors}
+										setPost={props.setPost}
+									/>
+								</>
+							))}
 				</div>
 			</div>
 		</div>
@@ -110,15 +100,15 @@ function Cources(props) {
 			title={title}
 			description={description}
 			duration={duration}
-			applAuthors={applAuthors}
+			// applAuthors={applAuthors}
 			setDescription={setDescription}
 			setTitle={setTitle}
 			setDuration={setDuration}
-			setApplAuthor={setApplAuthor}
-			setAuthorList={setAuthorList}
-			mockedAuthorsList={mockedAuthorsList}
+			// setApplAuthor={setApplAuthor}
+			// setAuthorList={setAuthorList}
+			// mockedAuthorsList={mockedAuthorsList}
 			inputAuthorName={inputAuthorName}
-			authorList={authorList}
+			// authorList={allAuthors}
 			setInputAuthorName={setInputAuthorName}
 			setIsEdit={setIsEdit}
 		/>

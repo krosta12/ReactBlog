@@ -1,19 +1,11 @@
-import { v4 } from 'uuid';
-
 import Input from '../../common/Input/input';
 import Button from '../../common/Button/Button';
 
 import { useState } from 'react';
 
-import DateGenerator from '../../helpers/dateGenerator';
-
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Texts } from '../../const';
-
 import { post } from '../../API/apiWorker';
-import store from '../../store';
-import { setCreatedCource } from '../../store/courses/actionCreators';
 import { createCourseFunction } from '../../helpers/createCourseFunction';
 import { get } from '../../API/apiWorker';
 import { selectAllAuthorsList } from '../../store/selectors/selectors';
@@ -23,19 +15,32 @@ function CreateCource({
 	title,
 	description,
 	duration,
-	// applAuthors,
 	setDescription,
 	setTitle,
 	setDuration,
-	// setApplAuthor,
-	// setAuthorList,
 	mockedAuthorsList,
 	inputAuthorName,
-	// authorList,
 	setInputAuthorName,
 	setIsEdit,
 }) {
 	let dispatch = useDispatch();
+
+	async function createAuthorFunction() {
+		if (inputAuthorName.split('').length > 3) {
+			await post('authors/add/', {
+				name: inputAuthorName,
+			});
+
+			let authors = await get('authors/all');
+			authors = authors.data.result;
+			let lastElem = authors[authors.length - 1];
+			dispatch(setAuthorsToList(lastElem));
+			setAuthorList((el) => [...el, lastElem]);
+			setInputAuthorName('');
+		} else {
+			alert('Write correct name');
+		}
+	}
 
 	const [authorList, setAuthorList] = useState(
 		useSelector(selectAllAuthorsList)
@@ -100,21 +105,7 @@ function CreateCource({
 					</div>
 					<Button
 						text={Texts.createAuthor}
-						onClick={async () => {
-							if (inputAuthorName.split('').length > 3) {
-								await post('authors/add/', {
-									name: inputAuthorName,
-								});
-
-								let w = await get('authors/all');
-								w = w.data.result;
-								let lastElem = w[w.length - 1];
-								dispatch(setAuthorsToList(lastElem));
-								// setAuthorList((el) => [...el, lastElem]); //BIG BUG! if name of this variable != w, it's doesn't work
-							} else {
-								alert('Write correct name');
-							}
-						}}
+						onClick={async () => createAuthorFunction()}
 					/>
 				</div>
 

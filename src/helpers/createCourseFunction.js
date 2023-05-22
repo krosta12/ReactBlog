@@ -1,7 +1,7 @@
 //must create function
 
 import DateGenerator from './dateGenerator';
-import { get, post } from '../API/apiWorker';
+import { post } from '../API/apiWorker';
 import store from '../store';
 import { setCreatedCource } from '../store/courses/actionCreators';
 
@@ -42,7 +42,6 @@ export async function createCourseFunction(
 		setTitle('');
 		setDescription('');
 		setDuration(0);
-		setAuthorList(mockedAuthorsList);
 		setApplAuthor([]);
 		setIsEdit(false);
 	} else {

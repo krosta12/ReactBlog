@@ -12,24 +12,16 @@ import Button from '../../common/Button/Button';
 
 import { Texts } from '../../const';
 
-import { mockedAuthorsList } from '../../const';
-
 import {
 	authorsGetter,
 	compiledCoursesList,
 } from '../../store/asyncAPI/ReduxAsyncRequests';
 
 import '../../CSS/AllAppStyles.css';
-import {
-	GetterAuthorsListFromRdux,
-	GetterCoursesListFromRedux,
-	selectAllAuthorsList,
-	selectCoursesList,
-} from '../../store/selectors/selectors';
+import { selectCoursesList } from '../../store/selectors/selectors';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
-	const [posts, setPosts] = useState([]);
 	const [isEdit, setIsEdit] = useState(false);
 	const [inputAuthorName, setInputAuthorName] = useState('');
 	const [title, setTitle] = useState('');
@@ -40,13 +32,12 @@ function Cources(props) {
 
 	const dispatch = useDispatch();
 
-	// let allCourses = GetterCoursesListFromRedux();
 	let allCourses = useSelector(selectCoursesList);
 
 	useEffect(() => {
 		dispatch(compiledCoursesList());
 		dispatch(authorsGetter());
-	}, []);
+	}, []); //warning! don't delete []!!
 
 	useEffect(() => {
 		search ? 0 : setSearchButton('');
@@ -100,15 +91,10 @@ function Cources(props) {
 			title={title}
 			description={description}
 			duration={duration}
-			// applAuthors={applAuthors}
 			setDescription={setDescription}
 			setTitle={setTitle}
 			setDuration={setDuration}
-			// setApplAuthor={setApplAuthor}
-			// setAuthorList={setAuthorList}
-			// mockedAuthorsList={mockedAuthorsList}
 			inputAuthorName={inputAuthorName}
-			// authorList={allAuthors}
 			setInputAuthorName={setInputAuthorName}
 			setIsEdit={setIsEdit}
 		/>

@@ -11,11 +11,16 @@ import '../../CSS/AllAppStyles.css';
 import { useDispatch } from 'react-redux';
 import { deleteUser } from '../../store/user/actionCreators';
 
+import {
+	deleteLogOutSecondLayer,
+	getUserMeSecondLayer,
+} from '../../API/secondLayer';
+
 function Header(props) {
 	const dispatch = useDispatch();
 
 	async function LogOutFunction() {
-		_delete('/logout', props.isLogin);
+		deleteLogOutSecondLayer(props.isLogin);
 		props.isLogin(false);
 		localStorage.removeItem('token'); //first
 
@@ -27,7 +32,7 @@ function Header(props) {
 	const [name, setName] = useState('');
 
 	if (props.token) {
-		get('/users/me').then((el) => {
+		getUserMeSecondLayer().then((el) => {
 			setName(el.data.result.name);
 		});
 	}

@@ -1,17 +1,18 @@
 import { useDispatch } from 'react-redux';
 import { get } from '../API/apiWorker';
+import { getAllAuthors } from '../API/secondLayer';
+import { postAuthorAddSecondLayer } from '../API/secondLayer';
+
 let dispatch = useDispatch();
 export const createAuthorFunction = async (inputAuthorName, post) => {
 	if (inputAuthorName.split('').length > 3) {
-		await post('authors/add/', {
-			name: inputAuthorName,
-		});
+		await postAuthorAddSecondLayer({ name: inputAuthorName });
 
-		let w = await get('authors/all');
-		w = w.data.result;
-		let lastElem = w[w.length - 1];
+		let authorList = await getAllAuthors();
+		authorList = authorList.data.result;
+		let lastElem = authorList[authorList.length - 1];
 		dispatch(setAuthorsToList(lastElem));
-		setAuthorList((el) => [...el, lastElem]); //BIG BUG! if name of this variable != w, it's doesn't work
+		setAuthorList((el) => [...el, lastElem]);
 	} else {
 		alert('Write correct name');
 	}

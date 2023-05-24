@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import { post } from '../../API/apiWorker';
 
+import { postLoginSecondLayer } from '../../API/secondLayer';
+
 import '../../CSS/AllAppStyles.css';
 
 export default function Login({ setJwtToken }) {
@@ -13,7 +15,7 @@ export default function Login({ setJwtToken }) {
 	const navigate = useNavigate();
 	async function validate() {
 		if (password && email) {
-			const el = await post('/login', {
+			const el = await postLoginSecondLayer({
 				email: email,
 				password: password,
 			});

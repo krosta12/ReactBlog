@@ -4,6 +4,7 @@ import DateGenerator from './dateGenerator';
 import { post } from '../API/apiWorker';
 import store from '../store';
 import { setCreatedCource } from '../store/courses/actionCreators';
+import { postCoursesAddSecondLayer } from '../API/secondLayer';
 
 export async function createCourseFunction(
 	title,
@@ -36,7 +37,7 @@ export async function createCourseFunction(
 			authors: newAuthorsList,
 		};
 
-		post('/courses/add', postToPublicate);
+		postCoursesAddSecondLayer(postToPublicate);
 
 		store.dispatch(setCreatedCource(postToPublicate));
 		setTitle('');

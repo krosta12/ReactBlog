@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { authorsGetter } from '../asyncAPI/ReduxAsyncRequests';
+
 const authorSlice = createSlice({
 	name: 'authorReducerSlice',
 	initialState: { authorsInitialState: null },
@@ -14,6 +16,14 @@ const authorSlice = createSlice({
 				action.payload,
 			];
 			return state;
+		},
+	},
+	extraReducers: {
+		[authorsGetter.fulfilled]: (state, action) => {
+			state.authorsInitialState = action.payload;
+		},
+		[authorsGetter.rejected]: (state, action) => {
+			//must catch errrosr
 		},
 	},
 });

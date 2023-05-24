@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { compiledCoursesList } from '../asyncAPI/ReduxAsyncRequests';
 
 const actionCreators = createSlice({
 	name: 'coursesSlice',
@@ -12,6 +13,13 @@ const actionCreators = createSlice({
 			state.initialList = [...state.initialList, action.payload];
 			return state;
 		},
+	},
+	extraReducers: {
+		// [compiledCoursesList.pending]: (state, action) => {},
+		// [compiledCoursesList.fulfilled]: (state, action) => {
+		// 	console.log(action.payload);
+		// },
+		// [compiledCoursesList.rejected]: (state, action) => {},  Cannot access 'compiledCoursesList' before initialization
 	},
 });
 

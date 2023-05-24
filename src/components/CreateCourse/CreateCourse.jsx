@@ -11,6 +11,9 @@ import { get } from '../../API/apiWorker';
 import { selectAllAuthorsList } from '../../store/selectors/selectors';
 import { setAuthorsToList } from '../../store/authors/actionCreators';
 
+import { getAllAuthorsSecondLayer } from '../../API/secondLayer';
+import { postAuthorAddSecondLayer } from '../../API/secondLayer';
+
 function CreateCource({
 	title,
 	description,
@@ -27,11 +30,9 @@ function CreateCource({
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
-			await post('authors/add/', {
-				name: inputAuthorName,
-			});
+			await postAuthorAddSecondLayer({ name: inputAuthorName });
 
-			let authors = await get('authors/all');
+			let authors = await getAllAuthorsSecondLayer();
 			authors = authors.data.result;
 			let lastElem = authors[authors.length - 1];
 			dispatch(setAuthorsToList(lastElem));
@@ -119,7 +120,6 @@ function CreateCource({
 									<Button
 										text={Texts.addAuthor}
 										onClick={() => {
-											console.log('APL');
 											setApplAuthor((elA) => [...elA, el]);
 											setAuthorList((elem) =>
 												elem.filter((elemB) => elemB != el)

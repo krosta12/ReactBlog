@@ -2,19 +2,20 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { get } from '../../API/apiWorker';
 import { getAllCourses } from '../courses/actionCreators';
 import store from '..';
-import { getAllAuthors } from '../authors/actionCreators';
+import { getAllAuthorsSecondLayer } from '../../API/secondLayer';
+import { getAllCoursesSecondLayer } from '../../API/secondLayer';
 import { SaveUser } from '../user/actionCreators';
 
 async function getterCourses() {
-	return await get('/courses/all');
+	return await getAllCoursesSecondLayer();
 }
 
 async function getterAuthors() {
-	return await get('/authors/all');
+	return await getAllAuthorsSecondLayer();
 }
 
 export const compiledCoursesList = createAsyncThunk(
-	'counterSlice/fetch',
+	'coursesSlice/fetch',
 	async () => {
 		let coursesList = await getterCourses();
 		let authorsList = await getterAuthors();
@@ -25,6 +26,7 @@ export const compiledCoursesList = createAsyncThunk(
 		allAuthors.map((el) => replaceIds(allCourses, el.id, el.name));
 
 		store.dispatch(getAllCourses(allCourses)); //without 'store' dosen't work
+		// return allCourses;  Cannot access 'compiledCoursesList' before initialization (in slice file)
 	}
 );
 
@@ -43,11 +45,11 @@ export const authorsGetter = createAsyncThunk(
 	async () => {
 		let allAuthorsList = await getterAuthors();
 		allAuthorsList = allAuthorsList.data.result;
-		store.dispatch(getAllAuthors(allAuthorsList));
+		return allAuthorsList;
 	}
 );
 
 export const UserGetter = createAsyncThunk('userReducers/fetch', async () => {
-	let authors = await get('/users/me');
+	let authors = await getUserMe();
 	store.dispatch(SaveUser(authors.data.result));
 });

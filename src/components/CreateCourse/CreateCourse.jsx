@@ -6,13 +6,13 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Texts } from '../../const';
 import { post } from '../../API/apiWorker';
-import { createCourseFunction } from '../../helpers/createCourseFunction';
+import { createCourse } from '../../helpers/createCourseFunction';
 import { get } from '../../API/apiWorker';
 import { selectAllAuthorsList } from '../../store/selectors/selectors';
 import { setAuthorsToList } from '../../store/authors/actionCreators';
 
-import { getAllAuthorsSecondLayer } from '../../API/secondLayer';
-import { postAuthorAddSecondLayer } from '../../API/secondLayer';
+import { protectedGetAllAuthors } from '../../API/secondLayer';
+import { protectedPostAuthorAdd } from '../../API/secondLayer';
 
 function CreateCource({
 	title,
@@ -30,9 +30,9 @@ function CreateCource({
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
-			await postAuthorAddSecondLayer({ name: inputAuthorName });
+			await protectedPostAuthorAdd({ name: inputAuthorName });
 
-			let authors = await getAllAuthorsSecondLayer();
+			let authors = await protectedGetAllAuthors();
 			authors = authors.data.result;
 			let lastElem = authors[authors.length - 1];
 			dispatch(setAuthorsToList(lastElem));
@@ -63,7 +63,7 @@ function CreateCource({
 					<Button
 						text={Texts.createCource}
 						onClick={() => {
-							createCourseFunction(
+							createCourse(
 								title,
 								description,
 								duration,

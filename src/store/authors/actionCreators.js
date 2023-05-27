@@ -20,10 +20,14 @@ const authorSlice = createSlice({
 	},
 	extraReducers: {
 		[authorsGetter.fulfilled]: (state, action) => {
-			state.authorsInitialState = action.payload;
+			try {
+				state.authorsInitialState = action.payload;
+			} catch (error) {
+				alert(`error - ${error.status}`);
+			}
 		},
-		[authorsGetter.rejected]: (state, action) => {
-			//must catch errrosr
+		[authorsGetter.rejected]: () => {
+			alert('eroro, try later');
 		},
 	},
 });

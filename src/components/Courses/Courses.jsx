@@ -17,7 +17,7 @@ import {
 	compiledCoursesList,
 } from '../../store/asyncAPI/ReduxAsyncRequests';
 
-import '../../CSS/AllAppStyles.css';
+import '../../CSS/styles.css';
 import { selectCoursesList } from '../../store/selectors/selectors';
 
 function Cources(props) {
@@ -61,14 +61,13 @@ function Cources(props) {
 				</div>
 
 				<div>
-					{allCourses != null &&
+					{allCourses?.length &&
 						allCourses
 							.filter((el) => {
-								if (
-									el.title.toLowerCase().includes(searchButton.toLowerCase())
-								) {
-									return el;
-								}
+								return (
+									el.title.toLowerCase().includes(searchButton.toLowerCase()) &&
+									el
+								);
 							})
 							.map((el) => (
 								<>

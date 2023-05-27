@@ -2,16 +2,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { get } from '../../API/apiWorker';
 import { getAllCourses } from '../courses/actionCreators';
 import store from '..';
-import { getAllAuthorsSecondLayer } from '../../API/secondLayer';
-import { getAllCoursesSecondLayer } from '../../API/secondLayer';
-import { SaveUser } from '../user/actionCreators';
+import { protectedGetAllAuthors } from '../../API/secondLayer';
+import { protectedGetAllCourses } from '../../API/secondLayer';
+import { saveUser } from '../user/actionCreators';
 
 async function getterCourses() {
-	return await getAllCoursesSecondLayer();
+	return await protectedGetAllCourses();
 }
 
 async function getterAuthors() {
-	return await getAllAuthorsSecondLayer();
+	return await protectedGetAllAuthors();
 }
 
 export const compiledCoursesList = createAsyncThunk(
@@ -51,5 +51,5 @@ export const authorsGetter = createAsyncThunk(
 
 export const UserGetter = createAsyncThunk('userReducers/fetch', async () => {
 	let authors = await getUserMe();
-	store.dispatch(SaveUser(authors.data.result));
+	store.dispatch(saveUser(authors.data.result));
 });

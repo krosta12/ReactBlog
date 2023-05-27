@@ -9,8 +9,8 @@ import { _delete } from '../../../../API/apiWorker';
 import { useDispatch } from 'react-redux';
 import { compiledCoursesList } from '../../../../store/asyncAPI/ReduxAsyncRequests';
 
-import '../../../../CSS/AllAppStyles.css';
-import { deleteSecondLayer } from '../../../../API/secondLayer';
+import '../../../../CSS/styles.css';
+import { protectedDelete } from '../../../../API/secondLayer';
 
 function CourceCard(props) {
 	const navigate = useNavigate();
@@ -58,7 +58,7 @@ function CourceCard(props) {
 						text='delete'
 						id={props.id}
 						onClick={async (el) => {
-							await deleteSecondLayer(el.target.id);
+							await protectedDelete(el.target.id);
 
 							dispatch(compiledCoursesList());
 						}}

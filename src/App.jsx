@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { SaveUser } from './store/user/actionCreators';
+import { saveUser } from './store/user/actionCreators';
 import { useDispatch } from 'react-redux';
 import { get } from './API/apiWorker';
 

@@ -7,20 +7,20 @@ import Button from '../../common/Button/Button';
 import { get, _delete } from '../../API/apiWorker';
 import { Texts } from '../../const';
 
-import '../../CSS/AllAppStyles.css';
+import '../../CSS/styles.css';
 import { useDispatch } from 'react-redux';
 import { deleteUser } from '../../store/user/actionCreators';
 
 import {
-	deleteLogOutSecondLayer,
-	getUserMeSecondLayer,
+	protectedDeleteLogOut,
+	protectedGetUserMe,
 } from '../../API/secondLayer';
 
 function Header(props) {
 	const dispatch = useDispatch();
 
 	async function LogOutFunction() {
-		deleteLogOutSecondLayer(props.isLogin);
+		protectedDeleteLogOut(props.isLogin);
 		props.isLogin(false);
 		localStorage.removeItem('token'); //first
 
@@ -32,7 +32,7 @@ function Header(props) {
 	const [name, setName] = useState('');
 
 	if (props.token) {
-		getUserMeSecondLayer().then((el) => {
+		protectedGetUserMe().then((el) => {
 			setName(el.data.result.name);
 		});
 	}

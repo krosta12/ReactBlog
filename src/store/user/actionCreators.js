@@ -9,7 +9,7 @@ const userActionCreators = createSlice({
 		token: '',
 	},
 	reducers: {
-		SaveUser(state, action) {
+		saveUser(state, action) {
 			state.isAuth = true;
 			state.name = action.payload.name;
 			state.email = action.payload.email;
@@ -26,5 +26,5 @@ const userActionCreators = createSlice({
 	},
 });
 
-export const { SaveUser, deleteUser } = userActionCreators.actions;
+export const { saveUser, deleteUser } = userActionCreators.actions;
 export default userActionCreators.reducer;

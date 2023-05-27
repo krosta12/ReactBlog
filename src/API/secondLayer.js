@@ -1,21 +1,23 @@
 import { get, post, _delete } from './apiWorker';
 
-export const getAllAuthorsSecondLayer = () => get('authors/all');
+export const protectedGetAllAuthors = () => get('authors/all');
 
-export const getUserMeSecondLayer = () => get('/users/me');
+export const protectedGetUserMe = () => get('/users/me');
 
-export const getAllCoursesSecondLayer = () => get('/courses/all');
+export const protectedGetAllCourses = () => get('/courses/all');
 
-export const postAuthorAddSecondLayer = (payload) =>
-	post('authors/add/', payload);
+export const protectedPostAuthorAdd = (inputDate) =>
+	post('authors/add/', inputDate);
 
-export const postLoginSecondLayer = (payload) => post('/login', payload);
+export const protectedPostLogin = (inputDate) => post('/login', inputDate);
 
-export const postCoursesAddSecondLayer = (payload) =>
-	post('/courses/add', payload);
+export const protectedPostCoursesAdd = (inputDate) =>
+	post('/courses/add', inputDate);
 
-export const postRegisterSecondLayer = (payload) => post('/register', payload);
+export const protectedPostRegister = (inputDate) =>
+	post('/register', inputDate);
 
-export const deleteSecondLayer = (payload) => _delete(`/courses/${payload}`);
+export const protectedDelete = (inputDate) => _delete(`/courses/${inputDate}`);
 
-export const deleteLogOutSecondLayer = (payload) => _delete('/logout', payload);
+export const protectedDeleteLogOut = (inputDate) =>
+	_delete('/logout', inputDate);

@@ -1,4 +1,3 @@
-
 body {
   color: wheat;
     button {
@@ -16,19 +15,15 @@ body {
         color: wheat;
       }
       
-label {
+  label {
     display: flex;
     flex-direction: column;
     font-size: 1vw;
     font-weight: 700;
-  }
-  
-  label:only-child {}
-  
+  }  
   label>input {
     width: 20vw;
   }
-  
   
   button {
     transition: ease-in all .2s;
@@ -72,7 +67,6 @@ label {
     padding: .3vw;
   }
 
-  
 .RegisterBox{
   width: 100%;
   height: 45vw;
@@ -80,6 +74,7 @@ label {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   p{
     font-weight: 800;
     background-color: #00000081;
@@ -119,25 +114,24 @@ label {
     background-size: 100%;
 
     .Header {
+      display: flex;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.555);
+      align-items: center;
+      color: white;
+
+      .InnerHeader {
+        margin: 2vw;
         display: flex;
-        justify-content: space-between;
-        background-color: rgba(0, 0, 0, 0.555);
-        align-items: center;
-        color: white;
+        font-size: 2vw;
 
-        .InnerHeader {
-            margin: 2vw;
-            display: flex;
-            font-size: 2vw;
-
-            .Name {
-                margin-right: 1vw;
-                color: wheat;
-                font-weight: 600;
-              }
+          .Name {
+            margin-right: 1vw;
+            color: wheat;
+            font-weight: 600;
           }
-          
-    }
+        }
+      }
     .Pos {
     display: flex;
     justify-content: center;
@@ -253,7 +247,8 @@ label {
                       div{
                         margin: .1vw 0;
                         display: flex;
-                        justify-content: space-between;}
+                        justify-content: space-between;
+                      }
                   }
               }
           }

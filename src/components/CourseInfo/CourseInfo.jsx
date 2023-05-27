@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 
-import '../../CSS/AllAppStyles.css';
+import '../../CSS/styles.css';
 
 import Button from '../../common/Button/Button';
 
 export default function CourseInfo(props) {
-	let navigate = useNavigate();
+	const navigate = useNavigate();
 	return (
 		<>
 			<div className='Card Main'>

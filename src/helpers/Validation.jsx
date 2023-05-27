@@ -1,8 +1,8 @@
-import { postRegisterSecondLayer } from "../API/secondLayer";
+import { protectedPostRegister } from "../API/secondLayer";
 
 export default async function Validate({ password, email, name }) {
 	if (password && email && name) {
-		(await postRegisterSecondLayer({
+		(await protectedPostRegister({
 			password: password,
 			email: email,
 			name: name,

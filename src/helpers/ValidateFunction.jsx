@@ -1,7 +1,7 @@
 import { post } from '../API/apiWorker';
 
 export default async function Validate({ password, email, name, navigate }) {
-	(await postRegisterSecondLayer({
+	(await protectedPostRegister({
 		password: password,
 		email: email,
 		name: name,

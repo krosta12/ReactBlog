@@ -1,22 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { get } from '../../API/apiWorker';
-import { getAllCourses } from '../courses/actionCreators';
-import store from '..';
-import { protectedGetAllAuthors } from '../../API/secondLayer';
-import { protectedGetAllCourses } from '../../API/secondLayer';
+import { getAllCourses, setCreatedCource } from '../courses/actionCreators';
+import { allAuthorsGetter, allCoursesGetter } from '../../API/secondLayer';
 import { saveUser } from '../user/actionCreators';
 
 async function getterCourses() {
-	return await protectedGetAllCourses();
+	return await allCoursesGetter();
 }
 
 async function getterAuthors() {
-	return await protectedGetAllAuthors();
+	return await allAuthorsGetter();
 }
 
 export const compiledCoursesList = createAsyncThunk(
 	'coursesSlice/fetch',
-	async () => {
+	async (_, { dispatch }) => {
 		let coursesList = await getterCourses();
 		let authorsList = await getterAuthors();
 
@@ -25,19 +22,22 @@ export const compiledCoursesList = createAsyncThunk(
 
 		allAuthors.map((el) => replaceIds(allCourses, el.id, el.name));
 
-		store.dispatch(getAllCourses(allCourses)); //without 'store' dosen't work
-		// return allCourses;  Cannot access 'compiledCoursesList' before initialization (in slice file)
+		dispatch(getAllCourses(allCourses));
 	}
 );
 
 function replaceIds(allCourses, id, name) {
-	allCourses.map((el, i) => {
-		el.authors.map((el, index) => {
-			if (el == id) {
-				allCourses[i].authors[index] = name;
-			} //try catch!!
+	try {
+		allCourses.map((el, i) => {
+			el.authors.map((el, index) => {
+				if (el == id) {
+					allCourses[i].authors[index] = name;
+				}
+			});
 		});
-	});
+	} catch (error) {
+		alert('fatal error');
+	}
 }
 
 export const authorsGetter = createAsyncThunk(
@@ -49,7 +49,17 @@ export const authorsGetter = createAsyncThunk(
 	}
 );
 
-export const UserGetter = createAsyncThunk('userReducers/fetch', async () => {
-	let authors = await getUserMe();
-	store.dispatch(saveUser(authors.data.result));
-});
+export const UserGetter = createAsyncThunk(
+	'userReducers/fetch',
+	async (_, { dispatch }) => {
+		let authors = await getUserMe();
+		dispatch(saveUser(authors.data.result));
+	}
+);
+
+export const coursePosting = createAsyncThunk(
+	'coursesSlice/fetch/addCourse',
+	async (course, { dispatch }) => {
+		dispatch(setCreatedCource(course));
+	}
+);

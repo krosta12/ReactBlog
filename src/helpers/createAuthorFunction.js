@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { get } from '../API/apiWorker';
 import { getAllAuthors } from '../API/secondLayer';
-import { protectedPostAuthorAdd } from '../API/secondLayer';
+import { authorAdd } from '../API/secondLayer';
 
 let dispatch = useDispatch();
 export const createAuthorFunction = async (inputAuthorName, post) => {
 	if (inputAuthorName.split('').length > 3) {
-		await protectedPostAuthorAdd({ name: inputAuthorName });
+		await authorAdd({ name: inputAuthorName });
 
 		let authorList = await getAllAuthors();
 		authorList = authorList.data.result;

@@ -12,15 +12,15 @@ import { useDispatch } from 'react-redux';
 import { deleteUser } from '../../store/user/actionCreators';
 
 import {
-	protectedDeleteLogOut,
-	protectedGetUserMe,
+	logOut,
+	userMeGetter,
 } from '../../API/secondLayer';
 
 function Header(props) {
 	const dispatch = useDispatch();
 
 	async function LogOutFunction() {
-		protectedDeleteLogOut(props.isLogin);
+		logOut(props.isLogin);
 		props.isLogin(false);
 		localStorage.removeItem('token'); //first
 
@@ -32,7 +32,7 @@ function Header(props) {
 	const [name, setName] = useState('');
 
 	if (props.token) {
-		protectedGetUserMe().then((el) => {
+		userMeGetter().then((el) => {
 			setName(el.data.result.name);
 		});
 	}

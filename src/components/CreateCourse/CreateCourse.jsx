@@ -11,8 +11,8 @@ import { get } from '../../API/apiWorker';
 import { selectAllAuthorsList } from '../../store/selectors/selectors';
 import { setAuthorsToList } from '../../store/authors/actionCreators';
 
-import { protectedGetAllAuthors } from '../../API/secondLayer';
-import { protectedPostAuthorAdd } from '../../API/secondLayer';
+import { allAuthorsGetter } from '../../API/secondLayer';
+import { authorAdd } from '../../API/secondLayer';
 
 function CreateCource({
 	title,
@@ -30,9 +30,9 @@ function CreateCource({
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
-			await protectedPostAuthorAdd({ name: inputAuthorName });
+			await authorAdd({ name: inputAuthorName });
 
-			let authors = await protectedGetAllAuthors();
+			let authors = await allAuthorsGetter();
 			authors = authors.data.result;
 			let lastElem = authors[authors.length - 1];
 			dispatch(setAuthorsToList(lastElem));

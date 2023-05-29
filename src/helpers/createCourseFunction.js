@@ -4,7 +4,8 @@ import DateGenerator from './dateGenerator';
 import { post } from '../API/apiWorker';
 import store from '../store';
 import { setCreatedCource } from '../store/courses/actionCreators';
-import { protectedPostCoursesAdd } from '../API/secondLayer';
+import { allAuthorsGetter, coursesAdd } from '../API/secondLayer';
+import { coursePosting } from '../store/asyncAPI/ReduxAsyncRequests';
 
 export async function createCourse(
 	title,
@@ -37,9 +38,21 @@ export async function createCourse(
 			authors: newAuthorsList,
 		};
 
-		protectedPostCoursesAdd(postToPublicate);
+		let allAuthors = await allAuthorsGetter();
+		allAuthors = allAuthors.data.result;
 
-		store.dispatch(setCreatedCource(postToPublicate));
+		coursesAdd(postToPublicate);
+
+		newAuthorsList.map((elA, id2) => {
+			allAuthors.map((el, id) => {
+				if (elA == el.id) {
+					newAuthorsList[id2] = allAuthors[id].name;
+				}
+			});
+		});
+
+		// store.dispatch(setCreatedCource(postToPublicate));
+		store.dispatch(coursePosting(postToPublicate));
 		setTitle('');
 		setDescription('');
 		setDuration(0);

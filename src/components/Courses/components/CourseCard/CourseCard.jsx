@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { compiledCoursesList } from '../../../../store/asyncAPI/ReduxAsyncRequests';
 
 import '../../../../CSS/styles.css';
-import { protectedDelete } from '../../../../API/secondLayer';
+import { deleteCourse } from '../../../../API/secondLayer';
 
 function CourceCard(props) {
 	const navigate = useNavigate();
@@ -58,7 +58,7 @@ function CourceCard(props) {
 						text='delete'
 						id={props.id}
 						onClick={async (el) => {
-							await protectedDelete(el.target.id);
+							await deleteCourse(el.target.id);
 
 							dispatch(compiledCoursesList());
 						}}

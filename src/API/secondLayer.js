@@ -1,23 +1,19 @@
 import { get, post, _delete } from './apiWorker';
 
-export const protectedGetAllAuthors = () => get('authors/all');
+export const allAuthorsGetter = () => get('authors/all');
 
-export const protectedGetUserMe = () => get('/users/me');
+export const userMeGetter = () => get('/users/me');
 
-export const protectedGetAllCourses = () => get('/courses/all');
+export const allCoursesGetter = () => get('/courses/all');
 
-export const protectedPostAuthorAdd = (inputDate) =>
-	post('authors/add/', inputDate);
+export const authorAdd = (inputDate) => post('authors/add/', inputDate);
 
-export const protectedPostLogin = (inputDate) => post('/login', inputDate);
+export const login = (inputDate) => post('/login', inputDate);
 
-export const protectedPostCoursesAdd = (inputDate) =>
-	post('/courses/add', inputDate);
+export const coursesAdd = (inputDate) => post('/courses/add', inputDate);
 
-export const protectedPostRegister = (inputDate) =>
-	post('/register', inputDate);
+export const registration = (inputDate) => post('/register', inputDate);
 
-export const protectedDelete = (inputDate) => _delete(`/courses/${inputDate}`);
+export const deleteCourse = (inputDate) => _delete(`/courses/${inputDate}`);
 
-export const protectedDeleteLogOut = (inputDate) =>
-	_delete('/logout', inputDate);
+export const logOut = (inputDate) => _delete('/logout', inputDate);

@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { saveUser } from './store/user/actionCreators';
 import { useDispatch } from 'react-redux';
-import { get } from './API/apiWorker';
 
 import Header from './components/Header/Header';
 import Cources from './components/Courses/Courses';

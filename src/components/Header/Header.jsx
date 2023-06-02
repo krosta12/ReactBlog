@@ -4,17 +4,14 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Logo from './components/Logo/Logo';
 
 import Button from '../../common/Button/Button';
-import { get, _delete } from '../../API/apiWorker';
+import { _delete } from '../../API/apiWorker';
 import { Texts } from '../../const';
 
 import '../../CSS/styles.css';
 import { useDispatch } from 'react-redux';
 import { deleteUser } from '../../store/user/actionCreators';
 
-import {
-	logOut,
-	userMeGetter,
-} from '../../API/secondLayer';
+import { logOut, userMeGetter } from '../../API/secondLayer';
 
 function Header(props) {
 	const dispatch = useDispatch();
@@ -22,9 +19,9 @@ function Header(props) {
 	async function LogOutFunction() {
 		logOut(props.isLogin);
 		props.isLogin(false);
-		localStorage.removeItem('token'); //first
+		localStorage.removeItem('token');
 
-		dispatch(deleteUser()); //last
+		dispatch(deleteUser());
 	}
 
 	props.isLogin(localStorage.getItem('token'));

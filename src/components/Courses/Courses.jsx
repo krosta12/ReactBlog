@@ -37,7 +37,7 @@ function Cources(props) {
 	useEffect(() => {
 		dispatch(compiledCoursesList());
 		dispatch(authorsGetter());
-	}, [dispatch]); //check network, i can't fix it UseEffect arguments don't work
+	}, [dispatch]);
 
 	useEffect(() => {
 		search ? 0 : setSearchButton('');

@@ -1,9 +1,5 @@
-//must create function
-
 import DateGenerator from './dateGenerator';
-import { post } from '../API/apiWorker';
 import store from '../store';
-import { setCreatedCource } from '../store/courses/actionCreators';
 import { allAuthorsGetter, coursesAdd } from '../API/secondLayer';
 import { coursePosting } from '../store/asyncAPI/ReduxAsyncRequests';
 
@@ -51,7 +47,6 @@ export async function createCourse(
 			});
 		});
 
-		// store.dispatch(setCreatedCource(postToPublicate));
 		store.dispatch(coursePosting(postToPublicate));
 		setTitle('');
 		setDescription('');

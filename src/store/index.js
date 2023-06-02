@@ -4,14 +4,14 @@ import coursesReducer from './courses/actionCreators';
 
 import { configureStore } from '@reduxjs/toolkit';
 
-let RootReducer = {
+const RootReducer = {
 	userReducer,
 	coursesReducer,
 	authorReducers,
 };
 
 let store = configureStore({
-	reducer: RootReducer, //must learn
+	reducer: RootReducer,
 });
 
 export default store;

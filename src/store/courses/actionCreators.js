@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { compiledCoursesList } from '../asyncAPI/ReduxAsyncRequests';
 
 const actionCreators = createSlice({
 	name: 'coursesSlice',

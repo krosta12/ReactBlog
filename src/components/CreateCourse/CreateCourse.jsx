@@ -26,7 +26,7 @@ function CreateCource({
 	setInputAuthorName,
 	setIsEdit,
 }) {
-	let dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
@@ -34,7 +34,7 @@ function CreateCource({
 
 			let authors = await allAuthorsGetter();
 			authors = authors.data.result;
-			let lastElem = authors[authors.length - 1];
+			const lastElem = authors[authors.length - 1];
 			dispatch(setAuthorsToList(lastElem));
 			setAuthorList((el) => [...el, lastElem]);
 			setInputAuthorName('');

@@ -21,7 +21,7 @@ const userActionCreators = createSlice({
 			state.name = '';
 			state.email = '';
 			state.token = '';
-			return state; //must create UseSelector
+			return state;
 		},
 	},
 });

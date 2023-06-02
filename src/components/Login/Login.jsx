@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '../../common/Button/Button';
-import { post } from '../../API/apiWorker';
 
 import { login } from '../../API/secondLayer';
 

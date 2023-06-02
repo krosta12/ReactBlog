@@ -1,11 +1,11 @@
-import { post } from '../API/apiWorker';
+import { registration } from '../API/secondLayer';
 
 export default async function Validate({ password, email, name, navigate }) {
-	(await registration({
+	const response = await registration({
 		password: password,
 		email: email,
 		name: name,
-	}))
-		? navigate('/login')
-		: alert('err');
+	});
+
+	response ? navigate('/login') : alert('err');
 }

@@ -12,7 +12,7 @@ CreateUserMe.interceptors.request.use(
 
 		if (token) {
 			config.headers.Authorization = token;
-		} //if userRole = 'user' - you can't delete courses, but if userRole = 'admin' - all work
+		}
 		return config;
 	},
 	(error) => {

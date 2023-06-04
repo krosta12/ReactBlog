@@ -14,7 +14,10 @@ import { setAuthorsToList } from '../../store/authors/actionCreators';
 import { allAuthorsGetter } from '../../API/secondLayer';
 import { authorAdd } from '../../API/secondLayer';
 
-import { coursePosting } from '../../store/asyncAPI/ReduxAsyncRequests';
+import {
+	compiledCoursesList,
+	coursePosting,
+} from '../../store/asyncAPI/ReduxAsyncRequests';
 
 function CreateCource({
 	title,

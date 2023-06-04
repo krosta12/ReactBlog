@@ -17,7 +17,12 @@ function CourceCard(props) {
 	const dispatch = useDispatch();
 
 	async function deletePost(el) {
-		await deleteCourse(el.target.id); //error 404
+		try {
+			await deleteCourse(el.target.id);
+		} catch (error) {
+			alert(`you can't delete this cource now`);
+		}
+
 		dispatch(compiledCoursesList());
 	}
 

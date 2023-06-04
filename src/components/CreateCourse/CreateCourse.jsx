@@ -14,6 +14,8 @@ import { setAuthorsToList } from '../../store/authors/actionCreators';
 import { allAuthorsGetter } from '../../API/secondLayer';
 import { authorAdd } from '../../API/secondLayer';
 
+import { coursePosting } from '../../store/asyncAPI/ReduxAsyncRequests';
+
 function CreateCource({
 	title,
 	description,
@@ -62,19 +64,23 @@ function CreateCource({
 				<div>
 					<Button
 						text={Texts.createCource}
-						onClick={() => {
-							createCourse(
-								title,
-								description,
-								duration,
-								applAuthors,
-								setDescription,
-								setTitle,
-								setDuration,
-								setApplAuthor,
-								setAuthorList,
-								mockedAuthorsList,
-								setIsEdit
+						onClick={async () => {
+							dispatch(
+								coursePosting(
+									await createCourse(
+										title,
+										description,
+										duration,
+										applAuthors,
+										setDescription,
+										setTitle,
+										setDuration,
+										setApplAuthor,
+										setAuthorList,
+										mockedAuthorsList,
+										setIsEdit
+									)
+								)
 							);
 						}}
 					/>

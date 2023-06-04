@@ -45,6 +45,7 @@ export const authorsGetter = createAsyncThunk(
 	async () => {
 		let allAuthorsList = await getterAuthors();
 		allAuthorsList = allAuthorsList.data.result;
+		console.log(allAuthorsList);
 		return allAuthorsList;
 	}
 );

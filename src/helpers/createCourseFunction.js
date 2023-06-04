@@ -47,12 +47,12 @@ export async function createCourse(
 			});
 		});
 
-		store.dispatch(coursePosting(postToPublicate));
 		setTitle('');
 		setDescription('');
 		setDuration(0);
 		setApplAuthor([]);
 		setIsEdit(false);
+		return postToPublicate;
 	} else {
 		alert('check all labels');
 	}

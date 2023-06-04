@@ -16,6 +16,11 @@ function CourceCard(props) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
+	async function deletePost(el) {
+		await deleteCourse(el.target.id); //error 404
+		dispatch(compiledCoursesList());
+	}
+
 	function StartShowPost(props) {
 		props.setPost({
 			id: props.id,
@@ -58,9 +63,7 @@ function CourceCard(props) {
 						text='delete'
 						id={props.id}
 						onClick={async (el) => {
-							await deleteCourse(el.target.id);
-
-							dispatch(compiledCoursesList());
+							deletePost(el);
 						}}
 					/>
 				</div>

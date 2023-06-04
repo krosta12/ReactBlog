@@ -27,7 +27,7 @@ const authorSlice = createSlice({
 			}
 		},
 		[authorsGetter.rejected]: () => {
-			alert('eroro, try later');
+			alert('error, try later');
 		},
 	},
 });

@@ -1,7 +1,6 @@
 import DateGenerator from './dateGenerator';
-import store from '../store';
 import { allAuthorsGetter, coursesAdd } from '../API/secondLayer';
-import { coursePosting } from '../store/asyncAPI/ReduxAsyncRequests';
+import { allCoursesGetter } from '../API/secondLayer';
 
 export async function createCourse(
 	title,
@@ -12,8 +11,6 @@ export async function createCourse(
 	setTitle,
 	setDuration,
 	setApplAuthor,
-	setAuthorList,
-	mockedAuthorsList,
 	setIsEdit
 ) {
 	if (
@@ -37,22 +34,31 @@ export async function createCourse(
 		let allAuthors = await allAuthorsGetter();
 		allAuthors = allAuthors.data.result;
 
-		coursesAdd(postToPublicate);
+		await coursesAdd(postToPublicate);
+		const allCourses = await allCoursesGetter();
+		const lastCourse =
+			allCourses.data.result[allCourses.data.result.length - 1];
 
-		newAuthorsList.map((elA, id2) => {
-			allAuthors.map((el, id) => {
-				if (elA == el.id) {
-					newAuthorsList[id2] = allAuthors[id].name;
-				}
+		replacer(newAuthorsList, allAuthors);
+		replacer(lastCourse.authors, allAuthors);
+
+		function replacer(itereribleList, comparativeList) {
+			itereribleList.map((elA, id2) => {
+				comparativeList.map((el, id) => {
+					if (elA == el.id) {
+						itereribleList[id2] = comparativeList[id].name;
+					}
+				});
 			});
-		});
+			// return newAuthorsList;
+		}
 
 		setTitle('');
 		setDescription('');
 		setDuration(0);
 		setApplAuthor([]);
 		setIsEdit(false);
-		return postToPublicate;
+		return lastCourse;
 	} else {
 		alert('check all labels');
 	}

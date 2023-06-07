@@ -26,7 +26,7 @@ export const compiledCoursesList = createAsyncThunk(
 	}
 );
 
-function replaceIds(allCourses, id, name) {
+export function replaceIds(allCourses, id, name) {
 	try {
 		allCourses.map((el, i) => {
 			el.authors.map((el, index) => {

@@ -20,7 +20,7 @@ function CourceCard(props) {
 		try {
 			await deleteCourse(el.target.id);
 		} catch (error) {
-			alert(`you can't delete this cource now`);
+			alert(`you can't delete this cource`);
 		}
 
 		dispatch(compiledCoursesList());

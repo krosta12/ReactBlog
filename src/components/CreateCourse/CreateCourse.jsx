@@ -5,19 +5,14 @@ import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Texts } from '../../const';
-import { post } from '../../API/apiWorker';
 import { createCourse } from '../../helpers/createCourseFunction';
-import { get } from '../../API/apiWorker';
 import { selectAllAuthorsList } from '../../store/selectors/selectors';
 import { setAuthorsToList } from '../../store/authors/actionCreators';
 
 import { allAuthorsGetter } from '../../API/secondLayer';
 import { authorAdd } from '../../API/secondLayer';
 
-import {
-	compiledCoursesList,
-	coursePosting,
-} from '../../store/asyncAPI/ReduxAsyncRequests';
+import { coursePosting } from '../../store/asyncAPI/ReduxAsyncRequests';
 
 function CreateCource({
 	title,
@@ -26,7 +21,6 @@ function CreateCource({
 	setDescription,
 	setTitle,
 	setDuration,
-	mockedAuthorsList,
 	inputAuthorName,
 	setInputAuthorName,
 	setIsEdit,
@@ -79,8 +73,6 @@ function CreateCource({
 										setTitle,
 										setDuration,
 										setApplAuthor,
-										setAuthorList,
-										mockedAuthorsList,
 										setIsEdit
 									)
 								)

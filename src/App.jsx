@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { BrowserRouter, redirect, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
 
 import Header from './components/Header/Header';
 import Cources from './components/Courses/Courses';
@@ -8,27 +10,31 @@ import Login from './components/Login/Login';
 import CourseInfo from './components/CourseInfo/CourseInfo';
 
 import ProtectedRoute from './helpers/ProtectedRoute';
+import { UserGetter } from './store/asyncAPI/ReduxAsyncRequests';
 
 function App() {
+	const dispatch = useDispatch();
+
 	const [jwtToken, setJwtToken] = useState(localStorage.getItem('token'));
+
+	dispatch(UserGetter());
 
 	const [post, setPost] = useState({});
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route
-					path='/'
-					element={<ProtectedRoute jwtToken={false} redirectPath='/courses' />}
-				/>
-				<Route
-					path='/courses'
-					element={
-						<ProtectedRoute jwtToken={jwtToken} redirectPath={'/login'} />
-					}
-				>
+				<Route element={<Header isLogin={setJwtToken} token={jwtToken} />}>
 					<Route
-						path='*'
-						element={<Header isLogin={setJwtToken} token={jwtToken} />}
+						path='/'
+						element={
+							<ProtectedRoute jwtToken={false} redirectPath='/courses' />
+						}
+					/>
+					<Route
+						path='/courses'
+						element={
+							<ProtectedRoute jwtToken={jwtToken} redirectPath={'/login'} />
+						}
 					>
 						<Route
 							index
@@ -39,22 +45,21 @@ function App() {
 							}
 						/>
 					</Route>
-				</Route>
-				<Route
-					path={`/courses/:id=${post.id}`}
-					element={<CourseInfo post={post} />}
-				/>
-				<Route
-					path='/'
-					element={<Header isLogin={setJwtToken} token={jwtToken} />}
-				>
+					<Route
+						path={`/courses/:id=${post.id}`}
+						element={<CourseInfo post={post} />}
+					/>
+					{/* fix protected Rote! */}
 					<Route path='/registration' element={<Regitration />} />
 					<Route path='/login' element={<Login setJwtToken={setJwtToken} />} />
+
+					<Route
+						path='*'
+						element={
+							<ProtectedRoute jwtToken={false} redirectPath='/courses' />
+						}
+					/>
 				</Route>
-				<Route
-					path='*'
-					element={<ProtectedRoute jwtToken={false} redirectPath='/courses' />}
-				/>
 			</Routes>
 		</BrowserRouter>
 	);

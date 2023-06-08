@@ -1,0 +1,276 @@
+body{
+	color: wheat;
+	button{
+		font-size: 1.2vw;
+		border-radius: .5vw;
+		font-weight: 900;
+	}
+	input{
+		font-size: 1.2vw;
+		font-weight: 900;
+		background-color: #ffffff4c;
+	}
+
+	input::placeholder{
+		color: wheat;
+	}
+
+	label{
+		display: flex;
+		flex-direction: column;
+		font-size: 1vw;
+		font-weight: 700;
+	}
+	label>input{
+		width: 20vw;
+	}
+
+	button{
+		transition: ease-in all .2s;
+		background-color: #00000034;
+		color: rgb(255,205,112);
+		border: .1vw solid rgba(255,255,255,0.733);
+		margin: 0.3vw;
+	}
+
+	button:hover{
+		cursor: pointer;
+		transform: scale(1.1);
+	}
+
+	input{
+		cursor: text
+	}
+
+	form{
+		background-color: #00000076;
+		padding: 5vw 5vw;
+		border-radius: 2vw;
+	}
+
+	.Main{
+		display: flex;
+		align-items: center;
+		margin: 10vw;
+		position: relative;
+		justify-content: space-between;
+
+		background-color: #0000005c;
+		padding: 1.5vw;
+		border-radius: 1vw;
+	}
+
+	.Main>button{
+		position: absolute;
+		left: -5vw;
+		top: -8vw;
+		padding: .3vw;
+	}
+
+	.RegisterBox{
+		width: 100%;
+		height: 45vw;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+
+		p{
+			font-weight: 800;
+			background-color: #00000081;
+			padding: 1vw;
+			border-radius: 2vw;
+
+			a{
+				color: aqua;
+			}
+		}
+	}
+
+	.RegisterBox>form{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.RegisterBox>form>button{
+		margin-top: 3vw;
+	}
+
+	.inputToRegister>label{
+		margin-top: 2vw;
+	}
+
+
+	margin: 0;
+	font-family: -apple-system,BlinkMacSystemFont,'SegoeUI','Roboto','Oxygen',
+	'Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue',
+	sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #000;
+	background-image: url('../assets/images/backgroundImage.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+
+	.Header{
+		display: flex;
+		justify-content: space-between;
+		background-color: rgba(0,0,0,0.555);
+		align-items: center;
+		color: white;
+
+		.InnerHeader{
+			margin: 2vw;
+			display: flex;
+			font-size: 2vw;
+
+			.Name{
+				margin-right: 1vw;
+				color: wheat;
+				font-weight: 600;
+			}
+		}
+	}
+	
+	.Pos{
+		display: flex;
+		justify-content: center;
+
+		.CourcesBody{
+			margin-top: 3vw;
+			width: 80%;
+
+			.InnerUppCourcesBody{
+				display: flex;
+				justify-content: space-between;
+				.SearchBox>div{
+					display: flex;
+				}
+			}
+
+			.Card{
+				display: flex;
+				justify-content: space-between;
+				margin-top: 5vw;
+
+				background-color: #0000005c;
+				padding: 1.5vw;
+				border-radius: 1vw;
+
+				.Texts{
+					font-size: 1vw;
+					font-weight: 600;
+					width: 60%;
+				}
+				.Info{
+					width: 30%;
+
+					.InfoInner{
+						font-size: 1.05vw;
+						font-weight: 600;
+
+						.authors{
+							overflow: hidden;
+							height: 1.4vw;
+							width: 20vw;
+							text-overflow: ellipsis;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.EditBody{
+		width: 80%;
+		margin: 0 auto;
+			.EditInnerUp{
+				margin: 2vw 4vw;
+				display: flex;
+				justify-content: space-between;
+			}
+			.MainTextBox{
+				margin: 2vw 4vw;
+
+				.description{
+					width: 100%;
+					height: 20vw;
+				}
+				.description::placeholder{
+					position: absolute;
+					font-size: 1vw;
+					font-weight: 900;
+				}
+			}
+			.BigInfoContainer{
+				display: flex;
+				justify-content: space-between;
+				margin: 2vw 4vw;
+
+				.CreateAuthorBox{
+					display: flex;
+					flex-direction: column;
+				}
+				.CreateAuthorBox>p{
+					margin: 0 auto;
+				}
+				.isApllyedAuthorBox{
+					display: flex;
+					flex-direction: column;
+
+					.ApllyedAuthors{
+						display: flex;
+						flex-direction: column;
+
+						.ApllyedBox{
+							display: flex;
+							flex-direction: column;
+							margin: 4vw 0;
+						}
+						.ApllyedBox>div{
+							margin: .2vw 0;
+							display: flex;
+							justify-content: space-between;
+						}
+					}
+					.notAppled{
+						display: flex;
+						flex-direction: column;
+						align-items: flex-end;
+
+						.AuthorsTitle{
+							margin-left: 5vw;
+							font-weight: 600;
+							font-size: 1.2vw;
+						}
+
+						div{
+							margin: .1vw 0;
+							display: flex;
+							justify-content: space-between;
+						}
+					}
+				}
+			}
+			.DurationBox{
+				.Duration{
+					font-size: 2vw;
+					margin-left: 5vw;
+					font-weight: 600;
+				}
+				.DurationPEl{
+					font-size: 1.2vw;
+					font-weight: 600;
+				}
+			}
+		}
+	}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+	}
+
+.SearchBox>div{
+	display: flex;
+}

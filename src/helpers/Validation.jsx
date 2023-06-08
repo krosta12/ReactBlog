@@ -1,11 +1,11 @@
-export default async function Validate({ password, email, name }) {
-	if (password && email && name) {
-		(await post('/register', {
-			password: password,
-			email: email,
-			name: name,
-		}))
-			? alert(`navigate('/login')`)
-			: alert('err');
-	}
+import { registration } from '../API/secondLayer';
+
+export default async function Validate({ password, email, name, navigate }) {
+	const response = await registration({
+		password: password,
+		email: email,
+		name: name,
+	});
+
+	response ? navigate('/login') : alert('err');
 }

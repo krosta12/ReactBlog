@@ -1,29 +1,51 @@
-import { v4 } from 'uuid';
-
 import Input from '../../common/Input/input';
 import Button from '../../common/Button/Button';
 
-import DateGenerator from '../../helpers/dateGenerator';
+import { useState } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { Texts } from '../../const';
+import { createCourse } from '../../helpers/createCourseFunction';
+import { selectAllAuthorsList } from '../../store/selectors/selectors';
+import { setAuthorsToList } from '../../store/authors/actionCreators';
+
+import { allAuthorsGetter } from '../../API/secondLayer';
+import { authorAdd } from '../../API/secondLayer';
+
+import { coursePosting } from '../../store/asyncAPI/ReduxAsyncRequests';
 
 function CreateCource({
 	title,
 	description,
 	duration,
-	applAuthors,
 	setDescription,
 	setTitle,
 	setDuration,
-	setApplAuthor,
-	setAuthorList,
-	mockedAuthorsList,
 	inputAuthorName,
-	authorList,
 	setInputAuthorName,
-	setPosts,
 	setIsEdit,
 }) {
+	const dispatch = useDispatch();
+
+	async function createAuthorFunction() {
+		if (inputAuthorName.split('').length > 3) {
+			await authorAdd({ name: inputAuthorName });
+
+			let authors = await allAuthorsGetter();
+			authors = authors.data.result;
+			const lastElem = authors[authors.length - 1];
+			dispatch(setAuthorsToList(lastElem));
+			setAuthorList((el) => [...el, lastElem]);
+			setInputAuthorName('');
+		} else {
+			alert('Write correct name');
+		}
+	}
+
+	const [authorList, setAuthorList] = useState(
+		useSelector(selectAllAuthorsList)
+	);
+	const [applAuthors, setApplAuthor] = useState([]);
 	return (
 		<div className='EditBody'>
 			<div className='EditInnerUp'>
@@ -39,35 +61,22 @@ function CreateCource({
 				<div>
 					<Button
 						text={Texts.createCource}
-						onClick={() => {
-							if (
-								title.split('').length > 3 &&
-								description.split('').length > 3 &&
-								applAuthors.length > 0 &&
-								duration
-							) {
-								let newAuthorsList = [];
-
-								applAuthors.map((el) => newAuthorsList.push(el.name));
-								setPosts((el) => [
-									...el,
-									{
-										title: title,
-										description: description,
-										creationDate: DateGenerator(),
-										duration: duration,
-										authors: newAuthorsList,
-									},
-								]);
-								setTitle('');
-								setDescription('');
-								setDuration(0);
-								setAuthorList(mockedAuthorsList);
-								setApplAuthor([]);
-								setIsEdit(false);
-							} else {
-								alert(0);
-							}
+						onClick={async () => {
+							dispatch(
+								coursePosting(
+									await createCourse(
+										title,
+										description,
+										duration,
+										applAuthors,
+										setDescription,
+										setTitle,
+										setDuration,
+										setApplAuthor,
+										setIsEdit
+									)
+								)
+							);
 						}}
 					/>
 				</div>
@@ -98,20 +107,7 @@ function CreateCource({
 					</div>
 					<Button
 						text={Texts.createAuthor}
-						onClick={() => {
-							let generatedId = v4();
-							if (inputAuthorName.split('').length > 3) {
-								setAuthorList((el) => [
-									...el,
-									{
-										id: generatedId,
-										name: inputAuthorName,
-									},
-								]);
-							} else {
-								alert('Write correct name');
-							}
-						}}
+						onClick={async () => createAuthorFunction()}
 					/>
 				</div>
 

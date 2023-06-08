@@ -30,9 +30,10 @@ export async function post(url, object) {
 }
 
 export async function get(url) {
-	const el = CreateUserMe.get(url);
+	const el = await CreateUserMe.get(url);
 	return el;
 }
+
 export async function _delete(url) {
-	CreateUserMe.delete(url);
+	await CreateUserMe.delete(url);
 }

@@ -4,10 +4,27 @@ import Button from '../../../../common/Button/Button';
 
 import { Texts } from '../../../../const';
 
-import '../../../../App.css';
+import { _delete } from '../../../../API/apiWorker';
+
+import { useDispatch } from 'react-redux';
+import { compiledCoursesList } from '../../../../store/asyncAPI/ReduxAsyncRequests';
+
+import '../../../../CSS/styles.css';
+import { deleteCourse } from '../../../../API/secondLayer';
 
 function CourceCard(props) {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	async function deletePost(el) {
+		try {
+			await deleteCourse(el.target.id);
+		} catch (error) {
+			alert(`you can't delete this cource`);
+		}
+
+		dispatch(compiledCoursesList());
+	}
 
 	function StartShowPost(props) {
 		props.setPost({
@@ -44,6 +61,14 @@ function CourceCard(props) {
 						text={Texts.showCource}
 						onClick={(el) => {
 							StartShowPost(props);
+						}}
+					/>
+					<Button text='edit' />
+					<Button
+						text='delete'
+						id={props.id}
+						onClick={async (el) => {
+							deletePost(el);
 						}}
 					/>
 				</div>

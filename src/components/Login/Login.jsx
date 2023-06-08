@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '../../common/Button/Button';
-import { post } from '../../API/apiWorker';
 
-import '../../App.css';
+import { login } from '../../API/secondLayer';
+
+import '../../CSS/styles.css';
 
 export default function Login({ setJwtToken }) {
 	const [password, setPassword] = useState('');
@@ -13,7 +14,7 @@ export default function Login({ setJwtToken }) {
 	const navigate = useNavigate();
 	async function validate() {
 		if (password && email) {
-			const el = await post('/login', {
+			const el = await login({
 				email: email,
 				password: password,
 			});

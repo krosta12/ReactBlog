@@ -274,3 +274,27 @@ code {
 .SearchBox>div{
 	display: flex;
 }
+.ErrorBar{
+	display: flex;
+	width: 100%;
+	height: 5vw;
+	background-color: #fc53536d;
+}
+
+.ErrorCard{
+	display: flex;
+	width: 80vw;
+	justify-content: space-around;
+	height: 9.45vw;
+	align-items: center;
+	background-color: #ffffff83;
+	border-radius: 1vw;
+	font-weight: 900;
+	color: #343434;
+	font-size: 2vw;
+	button{
+		font-size: 2vw;
+		padding: .8vw;
+		color: #000;
+	}
+}

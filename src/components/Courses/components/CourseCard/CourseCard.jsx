@@ -10,6 +10,7 @@ function CourceCard(props) {
 	const navigate = useNavigate();
 
 	function StartShowPost(props) {
+		// compiledCoursesList
 		props.setPost({
 			id: props.id,
 			title: props.theme,

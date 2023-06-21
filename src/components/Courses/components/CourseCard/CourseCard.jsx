@@ -30,6 +30,7 @@ function CourceCard(props) {
 	}
 
 	function StartShowPost(props) {
+		// compiledCoursesList
 		props.setPost({
 			id: props.id,
 			title: props.theme,

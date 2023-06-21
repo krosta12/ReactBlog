@@ -1,6 +1,7 @@
 import DateGenerator from './dateGenerator';
 import { allAuthorsGetter, coursesAdd } from '../API/secondLayer';
 import { allCoursesGetter } from '../API/secondLayer';
+import { useState } from 'react';
 
 export async function createCourse(
 	title,
@@ -11,7 +12,8 @@ export async function createCourse(
 	setTitle,
 	setDuration,
 	setApplAuthor,
-	setIsEdit
+	setIsEdit,
+	setErrorBar
 ) {
 	if (
 		title.split('').length > 3 &&
@@ -60,6 +62,6 @@ export async function createCourse(
 		setIsEdit(false);
 		return lastCourse;
 	} else {
-		alert('check all labels');
+		setErrorBar(true);
 	}
 }

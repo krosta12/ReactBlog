@@ -27,6 +27,7 @@ function CreateCource({
 }) {
 	const dispatch = useDispatch();
 	const [isError, setIsError] = useState(false);
+	const [errorBar, setErrorBar] = useState(false);
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
@@ -49,6 +50,12 @@ function CreateCource({
 	const [applAuthors, setApplAuthor] = useState([]);
 	return (
 		<div className='EditBody'>
+			{errorBar && (
+				<div className='ErrorBar CreateError'>
+					<p>Write all labels</p>
+					<Button text='OK' onClick={() => setErrorBar(false)} />
+				</div>
+			)}
 			<div className='EditInnerUp'>
 				<div>
 					<Input
@@ -74,7 +81,8 @@ function CreateCource({
 										setTitle,
 										setDuration,
 										setApplAuthor,
-										setIsEdit
+										setIsEdit,
+										setErrorBar
 									)
 								)
 							);

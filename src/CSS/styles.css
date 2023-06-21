@@ -247,11 +247,11 @@ code {
 .ErrorBar {
   display: flex;
   width: 100%;
-  height: 2vw;
   border-radius: 0.5vw;
   justify-content: center;
   align-items: center;
   background-color: rgba(252, 83, 83, 0.4274509804);
+  flex-direction: column;
 }
 
 .ErrorCard {
@@ -270,4 +270,11 @@ code {
   font-size: 2vw;
   padding: 0.8vw;
   color: #000;
+}
+
+.CreateError {
+  font-size: 2vw;
+  position: sticky;
+  top: 1vw;
+  font-weight: 600;
 }/*# sourceMappingURL=styles.css.map */

@@ -26,6 +26,7 @@ function CreateCource({
 	setIsEdit,
 }) {
 	const dispatch = useDispatch();
+	const [isError, setIsError] = useState(false);
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
@@ -38,7 +39,7 @@ function CreateCource({
 			setAuthorList((el) => [...el, lastElem]);
 			setInputAuthorName('');
 		} else {
-			alert('Write correct name');
+			setIsError(true);
 		}
 	}
 
@@ -103,12 +104,14 @@ function CreateCource({
 							setState={setInputAuthorName}
 							event='authorName'
 							placeholder='Enter author name...'
+							onClick={() => setIsError(false)}
 						/>
 					</div>
 					<Button
 						text={Texts.createAuthor}
 						onClick={async () => createAuthorFunction()}
 					/>
+					{isError && <div className='ErrorBar'> Write corrent name</div>}
 				</div>
 
 				<div className='isApllyedAuthorBox'>

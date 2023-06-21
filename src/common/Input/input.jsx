@@ -10,6 +10,7 @@ function Input(props) {
 				}}
 				placeholder={props.placeholder}
 				className={props.className}
+				onClick={props.onClick}
 			></input>
 		</label>
 	);

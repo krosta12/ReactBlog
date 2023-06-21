@@ -26,7 +26,7 @@ export default function Login({ setJwtToken }) {
 
 				navigate('/courses');
 			} else {
-				alert('invalid data');
+				setIsError(true);
 			}
 		}
 	}
@@ -40,25 +40,33 @@ export default function Login({ setJwtToken }) {
 					validate();
 				}}
 			>
-				<h1>Login</h1>
+				{isError ? (
+					<div>
+						<h3>error, try later</h3>
+					</div>
+				) : (
+					<>
+						<h1>Login</h1>
 
-				<div className='inputToRegister'>
-					<label>Gmail</label>
-					<input
-						type='email'
-						value={email}
-						onChange={(el) => setEmail(el.target.value)}
-					/>
-				</div>
-				<div className='inputToRegister'>
-					<label>password</label>
-					<input
-						type='password'
-						value={password}
-						onChange={(el) => setPassword(el.target.value)}
-					/>
-				</div>
-				<Button text='Enter' type='submit' />
+						<div className='inputToRegister'>
+							<label>Gmail</label>
+							<input
+								type='email'
+								value={email}
+								onChange={(el) => setEmail(el.target.value)}
+							/>
+						</div>
+						<div className='inputToRegister'>
+							<label>password</label>
+							<input
+								type='password'
+								value={password}
+								onChange={(el) => setPassword(el.target.value)}
+							/>
+						</div>
+						<Button text='Enter' type='submit' />
+					</>
+				)}
 			</form>
 
 			<p>

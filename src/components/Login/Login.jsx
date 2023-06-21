@@ -11,6 +11,7 @@ export default function Login({ setJwtToken }) {
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
 	const [isError, setIsError] = useState(false);
+	// <SPECIAL></SPECIAL>
 
 	const navigate = useNavigate();
 	async function validate() {

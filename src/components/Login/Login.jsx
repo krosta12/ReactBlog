@@ -10,6 +10,7 @@ import '../../CSS/styles.css';
 export default function Login({ setJwtToken }) {
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
+	const [isError, setIsError] = useState(false);
 
 	const navigate = useNavigate();
 	async function validate() {

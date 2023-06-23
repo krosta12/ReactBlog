@@ -6,15 +6,16 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Texts } from '../../const';
 import { createCourse } from '../../helpers/createCourseFunction';
-import { selectAllAuthorsList } from '../../store/selectors/selectors';
+import { selectAllAuthorsList, user } from '../../store/selectors/selectors';
 import { setAuthorsToList } from '../../store/authors/actionCreators';
 
-import { allAuthorsGetter } from '../../API/secondLayer';
+import { allAuthorsGetter, getCourseById } from '../../API/secondLayer';
 import { authorAdd } from '../../API/secondLayer';
 
 import { coursePosting } from '../../store/asyncAPI/ReduxAsyncRequests';
 
 function CreateCource({
+	id,
 	title,
 	description,
 	duration,
@@ -28,6 +29,13 @@ function CreateCource({
 	const dispatch = useDispatch();
 	const [isError, setIsError] = useState(false);
 	const [errorBar, setErrorBar] = useState(false);
+
+	id
+		? async () => {
+				const post = await getCourseById(id);
+				console.log(post);
+		  }
+		: console.log('d');
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {

@@ -18,7 +18,7 @@ import {
 } from '../../store/asyncAPI/ReduxAsyncRequests';
 
 import '../../CSS/styles.css';
-import { selectCoursesList } from '../../store/selectors/selectors';
+import { selectCoursesList, user } from '../../store/selectors/selectors';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
@@ -33,6 +33,8 @@ function Cources(props) {
 	const dispatch = useDispatch();
 
 	let allCourses = useSelector(selectCoursesList);
+
+	let role = useSelector(user).role;
 
 	useEffect(() => {
 		dispatch(compiledCoursesList());
@@ -55,9 +57,14 @@ function Cources(props) {
 							setState={setSearch}
 						/>
 					</div>
-					<div>
-						<Button text={Texts.addNewCource} onClick={() => setIsEdit(true)} />
-					</div>
+					{role === 'admin' && (
+						<div>
+							<Button
+								text={Texts.addNewCource}
+								onClick={() => setIsEdit(true)}
+							/>
+						</div>
+					)}
 				</div>
 
 				<div>
@@ -79,6 +86,7 @@ function Cources(props) {
 										duration={PipeDuration(el)}
 										authors={el.authors}
 										setPost={props.setPost}
+										role={role}
 									/>
 								</>
 							))}
@@ -87,6 +95,7 @@ function Cources(props) {
 		</div>
 	) : (
 		<CreateCource
+			id={false}
 			title={title}
 			description={description}
 			duration={duration}

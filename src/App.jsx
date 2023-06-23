@@ -11,6 +11,7 @@ import CourseInfo from './components/CourseInfo/CourseInfo';
 
 import ProtectedRoute from './helpers/ProtectedRoute';
 import { UserGetter } from './store/asyncAPI/ReduxAsyncRequests';
+import CreateCource from './components/CreateCourse/CreateCourse';
 
 function App() {
 	const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
 	dispatch(UserGetter());
 
 	const [post, setPost] = useState({});
+
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -52,6 +54,11 @@ function App() {
 					{/* fix protected Rote! */}
 					<Route path='/registration' element={<Regitration />} />
 					<Route path='/login' element={<Login setJwtToken={setJwtToken} />} />
+
+					{/* <Route
+						path={`/courses/update/:${post.id}`}
+						element={<CreateCource id={post.id} />}
+					/> */}
 
 					<Route
 						path='*'

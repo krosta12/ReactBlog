@@ -73,14 +73,23 @@ function CourceCard(props) {
 									StartShowPost(props);
 								}}
 							/>
-							<Button text='edit' />
-							<Button
-								text='delete'
-								id={props.id}
-								onClick={async (el) => {
-									deletePost(el);
-								}}
-							/>
+							{props.role === 'admin' && (
+								<>
+									<Button
+										text='edit'
+										onClick={(el) => {
+											navigate(`/courses/update/:${props.id}`);
+										}}
+									/>
+									<Button
+										text='delete'
+										id={props.id}
+										onClick={async (el) => {
+											deletePost(el);
+										}}
+									/>
+								</>
+							)}
 						</div>
 					</div>
 				</>

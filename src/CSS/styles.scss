@@ -146,6 +146,7 @@ body{
 				justify-content: space-between;
 				.SearchBox>div{
 					display: flex;
+					align-items: center;
 				}
 			}
 
@@ -271,9 +272,6 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 	}
 
-.SearchBox>div{
-	display: flex;
-}
 .ErrorBar{
 	display: flex;
 	width: 100%;

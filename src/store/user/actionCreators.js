@@ -1,26 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const userActionCreators = createSlice({
-	name: 'userReducers',
+	name: 'userReducer',
 	initialState: {
-		isAuth: false,
-		name: '',
-		email: '',
-		token: '',
+		user: { isAuth: false, name: '', email: '', token: '', role: '' },
 	},
 	reducers: {
 		saveUser(state, action) {
-			state.isAuth = true;
-			state.name = action.payload.name;
-			state.email = action.payload.email;
-			state.token = localStorage.getItem('token');
+			state.user.isAuth = true;
+			state.user.name = action.payload.name;
+			state.user.email = action.payload.email;
+			state.user.token = localStorage.getItem('token');
+			state.user.role = action.payload.role;
 			return state;
 		},
 		deleteUser(state) {
-			state.isAuth = false;
-			state.name = '';
-			state.email = '';
-			state.token = '';
+			state.user.token = '';
+			state.user.role = '';
 			return state;
 		},
 	},

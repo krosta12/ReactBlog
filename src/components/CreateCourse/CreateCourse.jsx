@@ -12,30 +12,33 @@ import { setAuthorsToList } from '../../store/authors/actionCreators';
 import { allAuthorsGetter, getCourseById } from '../../API/secondLayer';
 import { authorAdd } from '../../API/secondLayer';
 
-import { coursePosting } from '../../store/asyncAPI/ReduxAsyncRequests';
+import {
+	coursePosting,
+	updateCourse,
+} from '../../store/asyncAPI/ReduxAsyncRequests';
+import { useNavigate } from 'react-router-dom';
 
 function CreateCource({
-	id,
-	title,
-	description,
-	duration,
-	setDescription,
-	setTitle,
-	setDuration,
-	inputAuthorName,
-	setInputAuthorName,
+	// title,
+	// description,
+	// duration,
+	// setDescription,
+	// setTitle,
+	// setDuration,
+	// inputAuthorName,
+	// setInputAuthorName,
+	type,
 	setIsEdit,
 }) {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [isError, setIsError] = useState(false);
 	const [errorBar, setErrorBar] = useState(false);
 
-	id
-		? async () => {
-				const post = await getCourseById(id);
-				console.log(post);
-		  }
-		: console.log('d');
+	const [inputAuthorName, setInputAuthorName] = useState('');
+	const [title, setTitle] = useState('');
+	const [description, setDescription] = useState('');
+	const [duration, setDuration] = useState(0);
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
@@ -75,27 +78,55 @@ function CreateCource({
 					/>
 				</div>
 				<div>
-					<Button
-						text={Texts.createCource}
-						onClick={async () => {
-							dispatch(
-								coursePosting(
-									await createCourse(
-										title,
-										description,
-										duration,
-										applAuthors,
-										setDescription,
-										setTitle,
-										setDuration,
-										setApplAuthor,
-										setIsEdit,
-										setErrorBar
+					{type === 'create' && (
+						<Button
+							text={Texts.createCource}
+							onClick={async () => {
+								dispatch(
+									coursePosting(
+										await createCourse(
+											title,
+											description,
+											duration,
+											applAuthors,
+											setDescription,
+											setTitle,
+											setDuration,
+											setApplAuthor,
+											setIsEdit,
+											setErrorBar,
+											type
+										)
 									)
-								)
-							);
-						}}
-					/>
+								);
+							}}
+						/>
+					)}
+					{type === 'update' && (
+						<Button
+							text='Update Couse'
+							onClick={async () => {
+								dispatch(
+									updateCourse(
+										await createCourse(
+											title,
+											description,
+											duration,
+											applAuthors,
+											setDescription,
+											setTitle,
+											setDuration,
+											setApplAuthor,
+											setIsEdit,
+											setErrorBar,
+											type
+										)
+									)
+								);
+								navigate('/courses');
+							}}
+						/>
+					)}
 				</div>
 			</div>
 

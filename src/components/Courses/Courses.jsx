@@ -22,7 +22,6 @@ import { selectCoursesList, user } from '../../store/selectors/selectors';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
-	const [isEdit, setIsEdit] = useState(false);
 	const [inputAuthorName, setInputAuthorName] = useState('');
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
@@ -45,7 +44,7 @@ function Cources(props) {
 		search ? 0 : setSearchButton('');
 	}, [search]);
 
-	return !isEdit ? (
+	return !props.isEdit ? (
 		<div className='Pos'>
 			<div className='CourcesBody'>
 				<div className='InnerUppCourcesBody'>
@@ -61,7 +60,7 @@ function Cources(props) {
 						<div>
 							<Button
 								text={Texts.addNewCource}
-								onClick={() => setIsEdit(true)}
+								onClick={() => props.setIsEdit(true)}
 							/>
 						</div>
 					)}
@@ -104,7 +103,8 @@ function Cources(props) {
 			setDuration={setDuration}
 			inputAuthorName={inputAuthorName}
 			setInputAuthorName={setInputAuthorName}
-			setIsEdit={setIsEdit}
+			setIsEdit={props.setIsEdit}
+			type={'create'}
 		/>
 	);
 }

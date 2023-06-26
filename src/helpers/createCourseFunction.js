@@ -1,7 +1,8 @@
 import DateGenerator from './dateGenerator';
-import { allAuthorsGetter, coursesAdd } from '../API/secondLayer';
+import { allAuthorsGetter, coursesAdd, updateCouse } from '../API/secondLayer';
 import { allCoursesGetter } from '../API/secondLayer';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export async function createCourse(
 	title,
@@ -13,7 +14,8 @@ export async function createCourse(
 	setDuration,
 	setApplAuthor,
 	setIsEdit,
-	setErrorBar
+	setErrorBar,
+	type
 ) {
 	if (
 		title.split('').length > 3 &&
@@ -36,7 +38,9 @@ export async function createCourse(
 		let allAuthors = await allAuthorsGetter();
 		allAuthors = allAuthors.data.result;
 
-		await coursesAdd(postToPublicate);
+		type === 'create' && (await coursesAdd(postToPublicate));
+		type === 'update' &&
+			(await updateCouse(postToPublicate, window.location.href.split('/:')[1]));
 		const allCourses = await allCoursesGetter();
 		const lastCourse =
 			allCourses.data.result[allCourses.data.result.length - 1];

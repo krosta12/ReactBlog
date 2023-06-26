@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
@@ -15,9 +15,8 @@ import CreateCource from './components/CreateCourse/CreateCourse';
 
 function App() {
 	const dispatch = useDispatch();
-
 	const [jwtToken, setJwtToken] = useState(localStorage.getItem('token'));
-
+	const [isEdit, setIsEdit] = useState(false);
 	dispatch(UserGetter());
 
 	const [post, setPost] = useState({});
@@ -42,7 +41,11 @@ function App() {
 							index
 							element={
 								<div className='App'>
-									<Cources setPost={setPost} />
+									<Cources
+										setPost={setPost}
+										isEdit={isEdit}
+										setIsEdit={setIsEdit}
+									/>
 								</div>
 							}
 						/>
@@ -55,10 +58,16 @@ function App() {
 					<Route path='/registration' element={<Regitration />} />
 					<Route path='/login' element={<Login setJwtToken={setJwtToken} />} />
 
-					{/* <Route
+					<Route
 						path={`/courses/update/:${post.id}`}
-						element={<CreateCource id={post.id} />}
-					/> */}
+						element={
+							<CreateCource
+								type={'update'}
+								isEdit={isEdit}
+								setIsEdit={setIsEdit}
+							/>
+						}
+					/>
 
 					<Route
 						path='*'

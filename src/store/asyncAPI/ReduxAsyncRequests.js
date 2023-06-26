@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllCourses, setCreatedCource } from '../courses/actionCreators';
+import {
+	getAllCourses,
+	replaceCourse,
+	setCreatedCource,
+} from '../courses/actionCreators';
 import {
 	userMeGetter,
 	allAuthorsGetter,
@@ -65,5 +69,12 @@ export const coursePosting = createAsyncThunk(
 	'coursesSlice/fetch/addCourse',
 	async (course, { dispatch }) => {
 		dispatch(setCreatedCource(course));
+	}
+);
+
+export const updateCourse = createAsyncThunk(
+	'coursesSlice/fetch/updateCourse',
+	async (course, id, { dispatch }) => {
+		dispatch(replaceCourse(course, id));
 	}
 );

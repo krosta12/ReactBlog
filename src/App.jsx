@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import {
+	BrowserRouter,
+	Route,
+	Routes,
+	useNavigate,
+	useParams,
+} from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
@@ -20,6 +26,8 @@ function App() {
 	dispatch(UserGetter());
 
 	const [post, setPost] = useState({});
+
+	const { params } = useParams();
 
 	return (
 		<BrowserRouter>
@@ -59,7 +67,7 @@ function App() {
 					<Route path='/login' element={<Login setJwtToken={setJwtToken} />} />
 
 					<Route
-						path={`/courses/update/:${post.id}`}
+						path={`/courses/update/:id`}
 						element={
 							<CreateCource
 								type={'update'}

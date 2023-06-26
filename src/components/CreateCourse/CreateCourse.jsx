@@ -16,7 +16,7 @@ import {
 	coursePosting,
 	updateCourse,
 } from '../../store/asyncAPI/ReduxAsyncRequests';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function CreateCource({
 	// title,
@@ -39,6 +39,8 @@ function CreateCource({
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [duration, setDuration] = useState(0);
+
+	const { id } = useParams();
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
@@ -119,7 +121,8 @@ function CreateCource({
 											setApplAuthor,
 											setIsEdit,
 											setErrorBar,
-											type
+											type,
+											id
 										)
 									)
 								);

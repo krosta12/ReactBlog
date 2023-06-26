@@ -15,8 +15,10 @@ export async function createCourse(
 	setApplAuthor,
 	setIsEdit,
 	setErrorBar,
-	type
+	type,
+	id
 ) {
+	id = id.split(':')[1];
 	if (
 		title.split('').length > 3 &&
 		description.split('').length > 3 &&
@@ -39,8 +41,7 @@ export async function createCourse(
 		allAuthors = allAuthors.data.result;
 
 		type === 'create' && (await coursesAdd(postToPublicate));
-		type === 'update' &&
-			(await updateCouse(postToPublicate, window.location.href.split('/:')[1]));
+		type === 'update' && (await updateCouse(postToPublicate, id));
 		const allCourses = await allCoursesGetter();
 		const lastCourse =
 			allCourses.data.result[allCourses.data.result.length - 1];

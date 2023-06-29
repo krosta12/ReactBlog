@@ -1,7 +1,7 @@
 import Input from '../../common/Input/input';
 import Button from '../../common/Button/Button';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Texts } from '../../const';
@@ -41,6 +41,8 @@ function CreateCource({
 	const [duration, setDuration] = useState(0);
 
 	const { id } = useParams();
+	let courseId = null;
+	id ? (courseId = id.split(':')[1]) : courseId;
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
@@ -61,6 +63,32 @@ function CreateCource({
 		useSelector(selectAllAuthorsList)
 	);
 	const [applAuthors, setApplAuthor] = useState([]);
+	useEffect(() => {
+		getCourseById(courseId)
+			.then((el) => el.data.result)
+			.then((el) => {
+				setTitle(el.title);
+				setDescription(el.description);
+				setDuration(el.duration);
+				setApplAuthor(el.authors);
+
+				let list = authorList;
+				let applList = el.authors;
+				let lastList = [];
+				list.map((listEl) => {
+					applList.map((nameEl) => {
+						if (listEl.id == nameEl) {
+							lastList.push(listEl);
+							setAuthorList((el) =>
+								el.filter((element) => element.id != nameEl)
+							);
+						}
+					});
+					setApplAuthor(lastList);
+				});
+			});
+	}, []);
+
 	return (
 		<div className='EditBody'>
 			{errorBar && (
@@ -103,7 +131,7 @@ function CreateCource({
 								);
 							}}
 						/>
-					)}
+					)}{' '}
 					{type === 'update' && (
 						<Button
 							text='Update Couse'
@@ -122,7 +150,7 @@ function CreateCource({
 											setIsEdit,
 											setErrorBar,
 											type,
-											id
+											courseId
 										)
 									)
 								);
@@ -189,6 +217,7 @@ function CreateCource({
 							<p className='AuthorsTitle'>Applied authors</p>
 							{applAuthors.map((el) => (
 								<div>
+									{console.log(el)}
 									<span>{el.name}</span>
 									<Button
 										text={Texts.deleteAuthor}

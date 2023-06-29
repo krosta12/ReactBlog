@@ -18,6 +18,6 @@ export const deleteCourse = (inputDate) => _delete(`/courses/${inputDate}`);
 
 export const logOut = (inputDate) => _delete('/logout', inputDate);
 
-export const getCourseById = (id) => get(`/courses​/${id}`);
+export const getCourseById = (id) => get(`/courses/${id}`);
 
 export const updateCouse = (post, id) => put('/courses', post, id);

@@ -94,7 +94,6 @@ function Cources(props) {
 		</div>
 	) : (
 		<CreateCource
-			id={false}
 			title={title}
 			description={description}
 			duration={duration}

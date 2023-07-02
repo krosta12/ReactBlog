@@ -18,18 +18,7 @@ import {
 } from '../../store/asyncAPI/ReduxAsyncRequests';
 import { useNavigate, useParams } from 'react-router-dom';
 
-function CreateCource({
-	// title,
-	// description,
-	// duration,
-	// setDescription,
-	// setTitle,
-	// setDuration,
-	// inputAuthorName,
-	// setInputAuthorName,
-	type,
-	setIsEdit,
-}) {
+function CreateCource({ type, setIsEdit }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [isError, setIsError] = useState(false);
@@ -41,8 +30,6 @@ function CreateCource({
 	const [duration, setDuration] = useState(0);
 
 	const { id } = useParams();
-	let courseId = null;
-	id ? (courseId = id.split(':')[1]) : courseId;
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
@@ -59,12 +46,34 @@ function CreateCource({
 		}
 	}
 
+	async function CourseUpdater() {
+		dispatch(
+			updateCourse(
+				await createCourse(
+					title,
+					description,
+					duration,
+					applAuthors,
+					setDescription,
+					setTitle,
+					setDuration,
+					setApplAuthor,
+					setIsEdit,
+					setErrorBar,
+					type,
+					id
+				)
+			)
+		);
+		navigate('/courses');
+	}
+
 	const [authorList, setAuthorList] = useState(
 		useSelector(selectAllAuthorsList)
 	);
 	const [applAuthors, setApplAuthor] = useState([]);
 	useEffect(() => {
-		getCourseById(courseId)
+		getCourseById(id)
 			.then((el) => el.data.result)
 			.then((el) => {
 				setTitle(el.title);
@@ -72,9 +81,10 @@ function CreateCource({
 				setDuration(el.duration);
 				setApplAuthor(el.authors);
 
-				let list = authorList;
-				let applList = el.authors;
-				let lastList = [];
+				const list = authorList;
+				const applList = el.authors;
+				const lastList = [];
+
 				list.map((listEl) => {
 					applList.map((nameEl) => {
 						if (listEl.id == nameEl) {
@@ -94,23 +104,22 @@ function CreateCource({
 			{errorBar && (
 				<div className='ErrorBar CreateError'>
 					<p>Write all labels</p>
-					<Button text='OK' onClick={() => setErrorBar(false)} />
+					<Button text={Texts.ok} onClick={() => setErrorBar(false)} />
 				</div>
 			)}
 			<div className='EditInnerUp'>
 				<div>
 					<Input
 						labelText={Texts.title}
-						event='title'
-						placeholder='Write Title'
+						placeholder={`${Texts.write} ${Texts.title}`}
 						state={title}
 						setState={setTitle}
 					/>
 				</div>
 				<div>
-					{type === 'create' && (
+					{type === Texts.create && (
 						<Button
-							text={Texts.createCource}
+							text={`${Texts.create} ${Texts.course}`}
 							onClick={async () => {
 								dispatch(
 									coursePosting(
@@ -132,29 +141,11 @@ function CreateCource({
 							}}
 						/>
 					)}{' '}
-					{type === 'update' && (
+					{type === Texts.update && (
 						<Button
-							text='Update Couse'
+							text={`${Texts.update} ${Texts.course}`}
 							onClick={async () => {
-								dispatch(
-									updateCourse(
-										await createCourse(
-											title,
-											description,
-											duration,
-											applAuthors,
-											setDescription,
-											setTitle,
-											setDuration,
-											setApplAuthor,
-											setIsEdit,
-											setErrorBar,
-											type,
-											courseId
-										)
-									)
-								);
-								navigate('/courses');
+								await CourseUpdater();
 							}}
 						/>
 					)}
@@ -166,9 +157,9 @@ function CreateCource({
 					labelText={Texts.description}
 					state={description}
 					setState={setDescription}
-					event='description'
-					className='description'
-					placeholder='Enter description...'
+					event={Texts.description}
+					className={Texts.description.toLocaleLowerCase()}
+					placeholder={`${Texts.enter} ${Texts.description}...`}
 				/>
 			</div>
 
@@ -177,16 +168,16 @@ function CreateCource({
 					<p>Authors</p>
 					<div>
 						<Input
-							labelText={Texts.authorName}
+							labelText={`${Texts.author} ${Texts.name}`}
 							state={inputAuthorName}
 							setState={setInputAuthorName}
 							event='authorName'
-							placeholder='Enter author name...'
-							onClick={() => setIsError(false)}
+							placeholder={`${Texts.enter} ${Texts.author} ${Texts.name}...`}
+							onFocus={() => setIsError(false)}
 						/>
 					</div>
 					<Button
-						text={Texts.createAuthor}
+						text={`${Texts.create} ${Texts.author}`}
 						onClick={async () => createAuthorFunction()}
 					/>
 					{isError && <div className='ErrorBar'> Write corrent name</div>}
@@ -200,7 +191,7 @@ function CreateCource({
 								<div className='Name'>
 									<span>{el.name}</span>
 									<Button
-										text={Texts.addAuthor}
+										text={`${Texts.add} ${Texts.author}`}
 										onClick={() => {
 											setApplAuthor((elA) => [...elA, el]);
 											setAuthorList((elem) =>
@@ -217,10 +208,9 @@ function CreateCource({
 							<p className='AuthorsTitle'>Applied authors</p>
 							{applAuthors.map((el) => (
 								<div>
-									{console.log(el)}
 									<span>{el.name}</span>
 									<Button
-										text={Texts.deleteAuthor}
+										text={`${Texts.delete} ${Texts.author}`}
 										onClick={() => {
 											setAuthorList((elA) => [...elA, el]);
 											setApplAuthor((elem) =>
@@ -241,14 +231,14 @@ function CreateCource({
 					<Input
 						extraItem={true}
 						labelText={Texts.duration}
-						placeholder='Duration...'
+						placeholder={`${Texts.duration}`}
 						state={duration}
 						setState={setDuration}
 					/>
 					<p className='DurationPEl'>
 						{duration > 0 && duration
 							? (duration / 60).toFixed(2)
-							: 'write correct duration'}{' '}
+							: `${Texts.write} ${Texts.correct} ${Texts.duration}`}{' '}
 						: Hours
 					</p>
 				</div>

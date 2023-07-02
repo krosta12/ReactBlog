@@ -22,11 +22,11 @@ async function getterAuthors() {
 export const compiledCoursesList = createAsyncThunk(
 	'coursesSlice/fetch',
 	async (_, { dispatch }) => {
-		let coursesList = await getterCourses();
-		let authorsList = await getterAuthors();
+		const coursesList = await getterCourses();
+		const authorsList = await getterAuthors();
 
-		let allAuthors = authorsList.data.result;
-		let allCourses = coursesList.data.result;
+		const allAuthors = authorsList.data.result;
+		const allCourses = coursesList.data.result;
 
 		allAuthors.map((el) => replaceIds(allCourses, el.id, el.name));
 

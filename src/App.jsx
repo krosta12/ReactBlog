@@ -1,11 +1,5 @@
 import { useState } from 'react';
-import {
-	BrowserRouter,
-	Route,
-	Routes,
-	useNavigate,
-	useParams,
-} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
@@ -18,6 +12,7 @@ import CourseInfo from './components/CourseInfo/CourseInfo';
 import ProtectedRoute from './helpers/ProtectedRoute';
 import { UserGetter } from './store/asyncAPI/ReduxAsyncRequests';
 import CreateCource from './components/CreateCourse/CreateCourse';
+import { Texts } from './const';
 
 function App() {
 	const dispatch = useDispatch();
@@ -26,9 +21,6 @@ function App() {
 	dispatch(UserGetter());
 
 	const [post, setPost] = useState({});
-
-	const { params } = useParams();
-
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -58,10 +50,7 @@ function App() {
 							}
 						/>
 					</Route>
-					<Route
-						path={`/courses/:id=${post.id}`}
-						element={<CourseInfo post={post} />}
-					/>
+					<Route path={`/courses/:id`} element={<CourseInfo post={post} />} />
 					{/* fix protected Rote! */}
 					<Route path='/registration' element={<Regitration />} />
 					<Route path='/login' element={<Login setJwtToken={setJwtToken} />} />
@@ -70,7 +59,7 @@ function App() {
 						path={`/courses/update/:id`}
 						element={
 							<CreateCource
-								type={'update'}
+								type={Texts.update}
 								isEdit={isEdit}
 								setIsEdit={setIsEdit}
 							/>

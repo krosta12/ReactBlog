@@ -10,7 +10,7 @@ import CreateCource from '../CreateCourse/CreateCourse';
 
 import Button from '../../common/Button/Button';
 
-import { Texts } from '../../const';
+import { Roles, Texts } from '../../const';
 
 import {
 	authorsGetter,
@@ -56,10 +56,10 @@ function Cources(props) {
 							setState={setSearch}
 						/>
 					</div>
-					{role === 'admin' && (
+					{role === Roles.admin && (
 						<div>
 							<Button
-								text={Texts.addNewCource}
+								text={`${Texts.add} ${Texts.new} ${Texts.course}`}
 								onClick={() => props.setIsEdit(true)}
 							/>
 						</div>
@@ -103,7 +103,7 @@ function Cources(props) {
 			inputAuthorName={inputAuthorName}
 			setInputAuthorName={setInputAuthorName}
 			setIsEdit={props.setIsEdit}
-			type={'create'}
+			type={Texts.create}
 		/>
 	);
 }

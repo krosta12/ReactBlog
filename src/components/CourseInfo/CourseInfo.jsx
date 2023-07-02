@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 
 import '../../CSS/styles.css';
 
+import { Texts } from '../../const';
+
 import Button from '../../common/Button/Button';
 
 export default function CourseInfo(props) {
@@ -10,7 +12,7 @@ export default function CourseInfo(props) {
 		<>
 			<div className='Card Main'>
 				<Button
-					text='back'
+					text={Texts.back}
 					onClick={() => {
 						navigate('/');
 					}}

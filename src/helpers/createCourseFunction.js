@@ -6,8 +6,7 @@ import {
 	updateCouse,
 } from '../API/secondLayer';
 import { allCoursesGetter } from '../API/secondLayer';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Texts } from '../const';
 
 export async function createCourse(
 	title,
@@ -26,7 +25,6 @@ export async function createCourse(
 	courseId
 		? async () => {
 				const course = await getCourseById();
-				// console.log(course);
 		  }
 		: null;
 	if (
@@ -50,8 +48,8 @@ export async function createCourse(
 		let allAuthors = await allAuthorsGetter();
 		allAuthors = allAuthors.data.result;
 
-		type === 'create' && (await coursesAdd(postToPublicate));
-		type === 'update' && (await updateCouse(postToPublicate, courseId));
+		type === Texts.create && (await coursesAdd(postToPublicate));
+		type === Texts.update && (await updateCouse(postToPublicate, courseId));
 		const allCourses = await allCoursesGetter();
 		const lastCourse =
 			allCourses.data.result[allCourses.data.result.length - 1];

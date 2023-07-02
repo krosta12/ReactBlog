@@ -1,8 +1,8 @@
-import { UNSAFE_useScrollRestoration, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../../common/Button/Button';
 
-import { Texts } from '../../../../const';
+import { Roles, Texts } from '../../../../const';
 
 import { _delete } from '../../../../API/apiWorker';
 
@@ -47,7 +47,7 @@ function CourceCard(props) {
 			{isError ? (
 				<div className='ErrorCard'>
 					<div>Sorry, you can't delete this course</div>
-					<Button text='OK' onClick={() => setIsError(false)} />
+					<Button text={Texts.ok} onClick={() => setIsError(false)} />
 				</div>
 			) : (
 				<>
@@ -68,25 +68,23 @@ function CourceCard(props) {
 						</div>
 						<div className='ShowButton'>
 							<Button
-								text={Texts.showCource}
+								text={`${Texts.show} ${Texts.course}`}
 								onClick={(el) => {
 									StartShowPost(props);
 								}}
 							/>
-							{props.role === 'admin' && (
+							{props.role === Roles.admin && (
 								<>
 									<Button
-										text='edit'
+										text={Texts.edit}
 										onClick={(el) => {
-											navigate(`/courses/update/:${props.id}`);
+											navigate(`/courses/update/${props.id}`);
 										}}
 									/>
 									<Button
-										text='delete'
+										text={Texts.delete}
 										id={props.id}
-										onClick={async (el) => {
-											deletePost(el);
-										}}
+										onClick={(el) => deletePost(el)}
 									/>
 								</>
 							)}

@@ -1,10 +1,5 @@
 import DateGenerator from './dateGenerator';
-import {
-	allAuthorsGetter,
-	coursesAdd,
-	getCourseById,
-	updateCouse,
-} from '../API/secondLayer';
+import { allAuthorsGetter, coursesAdd, updateCouse } from '../API/secondLayer';
 import { allCoursesGetter } from '../API/secondLayer';
 import { Texts } from '../const';
 
@@ -22,11 +17,6 @@ export async function createCourse(
 	type,
 	courseId
 ) {
-	courseId
-		? async () => {
-				const course = await getCourseById();
-		  }
-		: null;
 	if (
 		title.split('').length > 3 &&
 		description.split('').length > 3 &&

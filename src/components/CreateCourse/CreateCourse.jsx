@@ -1,7 +1,7 @@
 import Input from '../../common/Input/input';
 import Button from '../../common/Button/Button';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Texts } from '../../const';
@@ -29,7 +29,29 @@ function CreateCource({ type, setIsEdit }) {
 	const [description, setDescription] = useState('');
 	const [duration, setDuration] = useState(0);
 
+	const [authorList, setAuthorList] = useState(
+		useSelector(selectAllAuthorsList)
+	);
+	const [applAuthors, setApplAuthor] = useState([]);
+
 	const { id } = useParams();
+
+	function createCourseBackup(title, description, duration) {
+		return {
+			title: useRef(title).current,
+			description: useRef(description).current,
+			duration: useRef(duration).current,
+			authors: useRef(applAuthors).current,
+		};
+	}
+
+	let oldCourseVersionPrepare = createCourseBackup(
+		title,
+		description,
+		duration
+	);
+
+	const [oldCourseVersion, setOldCourseversion] = useState({});
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
@@ -45,7 +67,6 @@ function CreateCource({ type, setIsEdit }) {
 			setIsError(true);
 		}
 	}
-
 	async function CourseUpdater() {
 		dispatch(
 			updateCourse(
@@ -68,35 +89,35 @@ function CreateCource({ type, setIsEdit }) {
 		navigate('/courses');
 	}
 
-	const [authorList, setAuthorList] = useState(
-		useSelector(selectAllAuthorsList)
-	);
-	const [applAuthors, setApplAuthor] = useState([]);
 	useEffect(() => {
-		getCourseById(id)
-			.then((el) => el.data.result)
-			.then((el) => {
-				setTitle(el.title);
-				setDescription(el.description);
-				setDuration(el.duration);
-				setApplAuthor(el.authors);
-
-				const list = authorList;
-				const applList = el.authors;
-				const lastList = [];
-
-				list.map((listEl) => {
-					applList.map((nameEl) => {
-						if (listEl.id == nameEl) {
-							lastList.push(listEl);
-							setAuthorList((el) =>
-								el.filter((element) => element.id != nameEl)
-							);
-						}
+		id &&
+			getCourseById(id)
+				.then((el) => el.data.result)
+				.then((el) => {
+					setTitle(el.title);
+					setDescription(el.description);
+					setDuration(el.duration);
+					setApplAuthor(el.authors);
+					oldCourseVersionPrepare.title = el.title;
+					oldCourseVersionPrepare.description = el.description;
+					oldCourseVersionPrepare.duration = el.duration;
+					oldCourseVersionPrepare.authors = el.authors;
+					setOldCourseversion(oldCourseVersionPrepare);
+					const list = authorList;
+					const applList = el.authors;
+					const lastList = [];
+					list.map((listEl) => {
+						applList.map((nameEl) => {
+							if (listEl.id == nameEl) {
+								lastList.push(listEl);
+								setAuthorList((el) =>
+									el.filter((element) => element.id != nameEl)
+								);
+							}
+						});
+						setApplAuthor(lastList);
 					});
-					setApplAuthor(lastList);
 				});
-			});
 	}, []);
 
 	return (
@@ -145,7 +166,17 @@ function CreateCource({ type, setIsEdit }) {
 						<Button
 							text={`${Texts.update} ${Texts.course}`}
 							onClick={async () => {
-								await CourseUpdater();
+								console.log(oldCourseVersion);
+								if (
+									oldCourseVersion.title != title ||
+									oldCourseVersion.description != description ||
+									oldCourseVersion.duration != duration ||
+									oldCourseVersion.authors.length != applAuthors.length
+								) {
+									await CourseUpdater();
+								} else {
+									navigate('/');
+								}
 							}}
 						/>
 					)}
@@ -181,6 +212,25 @@ function CreateCource({ type, setIsEdit }) {
 						onClick={async () => createAuthorFunction()}
 					/>
 					{isError && <div className='ErrorBar'> Write corrent name</div>}
+
+					<div className='DurationBox'>
+						<p className='Duration'>Duration</p>
+						<div>
+							<Input
+								extraItem={true}
+								labelText={Texts.duration}
+								placeholder={`${Texts.duration}`}
+								state={duration}
+								setState={setDuration}
+							/>
+							<p className='DurationPEl'>
+								{duration > 0 && duration
+									? (duration / 60).toFixed(2)
+									: `${Texts.write} ${Texts.correct} ${Texts.duration}`}{' '}
+								: Hours
+							</p>
+						</div>
+					</div>
 				</div>
 
 				<div className='isApllyedAuthorBox'>
@@ -203,6 +253,7 @@ function CreateCource({ type, setIsEdit }) {
 							</div>
 						))}
 					</div>
+
 					<div className='ApllyedAuthors'>
 						<div className='ApllyedBox'>
 							<p className='AuthorsTitle'>Applied authors</p>
@@ -222,25 +273,6 @@ function CreateCource({ type, setIsEdit }) {
 							))}
 						</div>
 					</div>
-				</div>
-			</div>
-
-			<div className='DurationBox'>
-				<p className='Duration'>Duration</p>
-				<div>
-					<Input
-						extraItem={true}
-						labelText={Texts.duration}
-						placeholder={`${Texts.duration}`}
-						state={duration}
-						setState={setDuration}
-					/>
-					<p className='DurationPEl'>
-						{duration > 0 && duration
-							? (duration / 60).toFixed(2)
-							: `${Texts.write} ${Texts.correct} ${Texts.duration}`}{' '}
-						: Hours
-					</p>
 				</div>
 			</div>
 		</div>

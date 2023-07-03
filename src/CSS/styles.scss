@@ -216,6 +216,19 @@ body{
 				.CreateAuthorBox>p{
 					margin: 0 auto;
 				}
+
+				.DurationBox{
+					.Duration{
+						font-size: 2vw;
+						margin-left: 5vw;
+						font-weight: 600;
+					}
+					.DurationPEl{
+						font-size: 1.2vw;
+						font-weight: 600;
+					}
+				}
+
 				.isApllyedAuthorBox{
 					display: flex;
 					flex-direction: column;
@@ -252,17 +265,6 @@ body{
 							justify-content: space-between;
 						}
 					}
-				}
-			}
-			.DurationBox{
-				.Duration{
-					font-size: 2vw;
-					margin-left: 5vw;
-					font-weight: 600;
-				}
-				.DurationPEl{
-					font-size: 1.2vw;
-					font-weight: 600;
 				}
 			}
 		}

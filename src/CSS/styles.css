@@ -194,6 +194,15 @@ body .EditBody .BigInfoContainer .CreateAuthorBox {
 body .EditBody .BigInfoContainer .CreateAuthorBox > p {
   margin: 0 auto;
 }
+body .EditBody .BigInfoContainer .DurationBox .Duration {
+  font-size: 2vw;
+  margin-left: 5vw;
+  font-weight: 600;
+}
+body .EditBody .BigInfoContainer .DurationBox .DurationPEl {
+  font-size: 1.2vw;
+  font-weight: 600;
+}
 body .EditBody .BigInfoContainer .isApllyedAuthorBox {
   display: flex;
   flex-direction: column;
@@ -226,15 +235,6 @@ body .EditBody .BigInfoContainer .isApllyedAuthorBox .notAppled div {
   margin: 0.1vw 0;
   display: flex;
   justify-content: space-between;
-}
-body .EditBody .DurationBox .Duration {
-  font-size: 2vw;
-  margin-left: 5vw;
-  font-weight: 600;
-}
-body .EditBody .DurationBox .DurationPEl {
-  font-size: 1.2vw;
-  font-weight: 600;
 }
 
 code {

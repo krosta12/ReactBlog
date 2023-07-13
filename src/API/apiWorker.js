@@ -37,3 +37,7 @@ export async function get(url) {
 export async function _delete(url) {
 	await CreateUserMe.delete(url);
 }
+
+export async function put(url, post, id) {
+	await CreateUserMe.put(`${url}/${id}`, post);
+}

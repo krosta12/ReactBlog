@@ -1,6 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllCourses, setCreatedCource } from '../courses/actionCreators';
-import { allAuthorsGetter, allCoursesGetter } from '../../API/secondLayer';
+import {
+	getAllCourses,
+	replaceCourse,
+	setCreatedCource,
+} from '../courses/actionCreators';
+import {
+	userMeGetter,
+	allAuthorsGetter,
+	allCoursesGetter,
+} from '../../API/secondLayer';
 import { saveUser } from '../user/actionCreators';
 
 async function getterCourses() {
@@ -14,11 +22,11 @@ async function getterAuthors() {
 export const compiledCoursesList = createAsyncThunk(
 	'coursesSlice/fetch',
 	async (_, { dispatch }) => {
-		let coursesList = await getterCourses();
-		let authorsList = await getterAuthors();
+		const coursesList = await getterCourses();
+		const authorsList = await getterAuthors();
 
-		let allAuthors = authorsList.data.result;
-		let allCourses = coursesList.data.result;
+		const allAuthors = authorsList.data.result;
+		const allCourses = coursesList.data.result;
 
 		allAuthors.map((el) => replaceIds(allCourses, el.id, el.name));
 
@@ -45,7 +53,6 @@ export const authorsGetter = createAsyncThunk(
 	async () => {
 		let allAuthorsList = await getterAuthors();
 		allAuthorsList = allAuthorsList.data.result;
-		console.log(allAuthorsList);
 		return allAuthorsList;
 	}
 );
@@ -53,7 +60,7 @@ export const authorsGetter = createAsyncThunk(
 export const UserGetter = createAsyncThunk(
 	'userReducers/fetch',
 	async (_, { dispatch }) => {
-		let authors = await getUserMe();
+		let authors = await userMeGetter();
 		dispatch(saveUser(authors.data.result));
 	}
 );

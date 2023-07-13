@@ -128,6 +128,7 @@ body .Pos .CourcesBody .InnerUppCourcesBody {
 }
 body .Pos .CourcesBody .InnerUppCourcesBody .SearchBox > div {
   display: flex;
+  align-items: center;
 }
 body .Pos .CourcesBody .Card {
   display: flex;
@@ -154,6 +155,9 @@ body .Pos .CourcesBody .Card .Info .InfoInner .authors {
   height: 1.4vw;
   width: 20vw;
   text-overflow: ellipsis;
+}
+body .Pos .CourcesBody .Card .Info .InfoInner .authors::after {
+  content: "...";
 }
 body .EditBody {
   width: 80%;
@@ -193,6 +197,15 @@ body .EditBody .BigInfoContainer .CreateAuthorBox {
 body .EditBody .BigInfoContainer .CreateAuthorBox > p {
   margin: 0 auto;
 }
+body .EditBody .BigInfoContainer .DurationBox .Duration {
+  font-size: 2vw;
+  margin-left: 5vw;
+  font-weight: 600;
+}
+body .EditBody .BigInfoContainer .DurationBox .DurationPEl {
+  font-size: 1.2vw;
+  font-weight: 600;
+}
 body .EditBody .BigInfoContainer .isApllyedAuthorBox {
   display: flex;
   flex-direction: column;
@@ -207,6 +220,7 @@ body .EditBody .BigInfoContainer .isApllyedAuthorBox .ApllyedAuthors .ApllyedBox
   margin: 4vw 0;
 }
 body .EditBody .BigInfoContainer .isApllyedAuthorBox .ApllyedAuthors .ApllyedBox > div {
+  align-items: center;
   margin: 0.2vw 0;
   display: flex;
   justify-content: space-between;
@@ -226,20 +240,46 @@ body .EditBody .BigInfoContainer .isApllyedAuthorBox .notAppled div {
   display: flex;
   justify-content: space-between;
 }
-body .EditBody .DurationBox .Duration {
-  font-size: 2vw;
-  margin-left: 5vw;
-  font-weight: 600;
-}
-body .EditBody .DurationBox .DurationPEl {
-  font-size: 1.2vw;
-  font-weight: 600;
-}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-.SearchBox > div {
+.ErrorBar {
   display: flex;
+  width: 100%;
+  border-radius: 0.5vw;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(252, 83, 83, 0.4274509804);
+  flex-direction: column;
+}
+
+.ErrorCard {
+  display: flex;
+  width: 80vw;
+  justify-content: space-around;
+  height: 9.45vw;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5137254902);
+  border-radius: 1vw;
+  font-weight: 900;
+  color: #343434;
+  font-size: 2vw;
+}
+.ErrorCard button {
+  font-size: 2vw;
+  padding: 0.8vw;
+  color: #000;
+}
+
+.CreateError {
+  font-size: 2vw;
+  position: sticky;
+  top: 1vw;
+  font-weight: 600;
+}
+
+.Name {
+  align-items: center;
 }/*# sourceMappingURL=styles.css.map */

@@ -11,12 +11,13 @@ import CourseInfo from './components/CourseInfo/CourseInfo';
 
 import ProtectedRoute from './helpers/ProtectedRoute';
 import { UserGetter } from './store/asyncAPI/ReduxAsyncRequests';
+import CreateCource from './components/CreateCourse/CreateCourse';
+import { Texts } from './const';
 
 function App() {
 	const dispatch = useDispatch();
-
 	const [jwtToken, setJwtToken] = useState(localStorage.getItem('token'));
-
+	const [isEdit, setIsEdit] = useState(false);
 	dispatch(UserGetter());
 
 	const [post, setPost] = useState({});
@@ -40,18 +41,30 @@ function App() {
 							index
 							element={
 								<div className='App'>
-									<Cources setPost={setPost} />
+									<Cources
+										setPost={setPost}
+										isEdit={isEdit}
+										setIsEdit={setIsEdit}
+									/>
 								</div>
 							}
 						/>
 					</Route>
-					<Route
-						path={`/courses/:id=${post.id}`}
-						element={<CourseInfo post={post} />}
-					/>
+					<Route path={`/courses/:id`} element={<CourseInfo post={post} />} />
 					{/* fix protected Rote! */}
 					<Route path='/registration' element={<Regitration />} />
 					<Route path='/login' element={<Login setJwtToken={setJwtToken} />} />
+
+					<Route
+						path={`/courses/update/:id`}
+						element={
+							<CreateCource
+								type={Texts.update}
+								isEdit={isEdit}
+								setIsEdit={setIsEdit}
+							/>
+						}
+					/>
 
 					<Route
 						path='*'

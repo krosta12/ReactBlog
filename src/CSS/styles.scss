@@ -146,6 +146,7 @@ body{
 				justify-content: space-between;
 				.SearchBox>div{
 					display: flex;
+					align-items: center;
 				}
 			}
 
@@ -175,6 +176,9 @@ body{
 							height: 1.4vw;
 							width: 20vw;
 							text-overflow: ellipsis;
+						}
+						.authors::after{
+							content: '...';
 						}
 					}
 				}
@@ -215,6 +219,19 @@ body{
 				.CreateAuthorBox>p{
 					margin: 0 auto;
 				}
+
+				.DurationBox{
+					.Duration{
+						font-size: 2vw;
+						margin-left: 5vw;
+						font-weight: 600;
+					}
+					.DurationPEl{
+						font-size: 1.2vw;
+						font-weight: 600;
+					}
+				}
+
 				.isApllyedAuthorBox{
 					display: flex;
 					flex-direction: column;
@@ -229,6 +246,7 @@ body{
 							margin: 4vw 0;
 						}
 						.ApllyedBox>div{
+							align-items: center;
 							margin: .2vw 0;
 							display: flex;
 							justify-content: space-between;
@@ -253,17 +271,6 @@ body{
 					}
 				}
 			}
-			.DurationBox{
-				.Duration{
-					font-size: 2vw;
-					margin-left: 5vw;
-					font-weight: 600;
-				}
-				.DurationPEl{
-					font-size: 1.2vw;
-					font-weight: 600;
-				}
-			}
 		}
 	}
 
@@ -271,6 +278,40 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 	}
 
-.SearchBox>div{
+.ErrorBar{
 	display: flex;
+	width: 100%;
+	border-radius: .5vw;
+	justify-content: center;
+	align-items: center;
+	background-color: #fc53536d;
+	flex-direction: column;
+}
+
+.ErrorCard{
+	display: flex;
+	width: 80vw;
+	justify-content: space-around;
+	height: 9.45vw;
+	align-items: center;
+	background-color: #ffffff83;
+	border-radius: 1vw;
+	font-weight: 900;
+	color: #343434;
+	font-size: 2vw;
+	button{
+		font-size: 2vw;
+		padding: .8vw;
+		color: #000;
+	}
+}
+.CreateError{
+	font-size: 2vw;
+	position: sticky;
+	top:1vw;
+	font-weight: 600;
+}
+
+.Name{
+	align-items: center;
 }

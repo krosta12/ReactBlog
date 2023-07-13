@@ -10,6 +10,7 @@ function Input(props) {
 				}}
 				placeholder={props.placeholder}
 				className={props.className}
+				onFocus={props.onFocus}
 			></input>
 		</label>
 	);

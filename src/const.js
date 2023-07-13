@@ -1,16 +1,29 @@
 export const Texts = {
-	addNewCource: 'Add new Cource',
-	showCource: 'Show Cource',
 	search: 'Search',
 	title: 'Title',
-	createCource: 'Create Cource',
 	description: 'Description',
-	authorName: 'Author name',
-	createAuthor: 'Create author',
-	addAuthor: 'Add author',
-	deleteAuthor: 'Delete author',
 	duration: 'Duration',
 	logOut: 'Log out',
+	create: 'create',
+	update: 'update',
+	back: 'back',
+	admin: 'admin',
+	ok: 'ok',
+	edit: 'edit',
+	delete: 'delete',
+	write: 'Write',
+	course: 'Course',
+	enter: 'Enter',
+	author: 'author',
+	name: 'name',
+	correct: 'correct',
+	add: 'add',
+	new: 'new',
+	show: 'show',
 };
 
+export const Roles = {
+	admin: 'admin',
+	user: 'user',
+};
 export const URL = 'http://localhost:4000';

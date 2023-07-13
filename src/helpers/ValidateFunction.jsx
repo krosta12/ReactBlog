@@ -7,5 +7,5 @@ export default async function Validate({ password, email, name, navigate }) {
 		name: name,
 	});
 
-	response ? navigate('/login') : alert('err');
+	response ? navigate('/login') : navigate('/error');
 }

@@ -10,7 +10,7 @@ import CreateCource from '../CreateCourse/CreateCourse';
 
 import Button from '../../common/Button/Button';
 
-import { Texts } from '../../const';
+import { Roles, Texts } from '../../const';
 
 import {
 	authorsGetter,
@@ -18,11 +18,10 @@ import {
 } from '../../store/asyncAPI/ReduxAsyncRequests';
 
 import '../../CSS/styles.css';
-import { selectCoursesList } from '../../store/selectors/selectors';
+import { selectCoursesList, user } from '../../store/selectors/selectors';
 
 function Cources(props) {
 	const [search, setSearch] = useState('');
-	const [isEdit, setIsEdit] = useState(false);
 	const [inputAuthorName, setInputAuthorName] = useState('');
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
@@ -34,6 +33,8 @@ function Cources(props) {
 
 	let allCourses = useSelector(selectCoursesList);
 
+	const role = useSelector(user).role;
+
 	useEffect(() => {
 		dispatch(compiledCoursesList());
 		dispatch(authorsGetter());
@@ -43,7 +44,7 @@ function Cources(props) {
 		search ? 0 : setSearchButton('');
 	}, [search]);
 
-	return !isEdit ? (
+	return !props.isEdit ? (
 		<div className='Pos'>
 			<div className='CourcesBody'>
 				<div className='InnerUppCourcesBody'>
@@ -55,9 +56,14 @@ function Cources(props) {
 							setState={setSearch}
 						/>
 					</div>
-					<div>
-						<Button text={Texts.addNewCource} onClick={() => setIsEdit(true)} />
-					</div>
+					{role === Roles.admin && (
+						<div>
+							<Button
+								text={`${Texts.add} ${Texts.new} ${Texts.course}`}
+								onClick={() => props.setIsEdit(true)}
+							/>
+						</div>
+					)}
 				</div>
 
 				<div>
@@ -79,6 +85,7 @@ function Cources(props) {
 										duration={PipeDuration(el)}
 										authors={el.authors}
 										setPost={props.setPost}
+										role={role}
 									/>
 								</>
 							))}
@@ -95,7 +102,8 @@ function Cources(props) {
 			setDuration={setDuration}
 			inputAuthorName={inputAuthorName}
 			setInputAuthorName={setInputAuthorName}
-			setIsEdit={setIsEdit}
+			setIsEdit={props.setIsEdit}
+			type={Texts.create}
 		/>
 	);
 }

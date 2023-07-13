@@ -1,6 +1,7 @@
 import DateGenerator from './dateGenerator';
-import { allAuthorsGetter, coursesAdd } from '../API/secondLayer';
+import { allAuthorsGetter, coursesAdd, updateCouse } from '../API/secondLayer';
 import { allCoursesGetter } from '../API/secondLayer';
+import { Texts } from '../const';
 
 export async function createCourse(
 	title,
@@ -11,7 +12,10 @@ export async function createCourse(
 	setTitle,
 	setDuration,
 	setApplAuthor,
-	setIsEdit
+	setIsEdit,
+	setErrorBar,
+	type,
+	courseId
 ) {
 	if (
 		title.split('').length > 3 &&
@@ -34,7 +38,8 @@ export async function createCourse(
 		let allAuthors = await allAuthorsGetter();
 		allAuthors = allAuthors.data.result;
 
-		await coursesAdd(postToPublicate);
+		type === Texts.create && (await coursesAdd(postToPublicate));
+		type === Texts.update && (await updateCouse(postToPublicate, courseId));
 		const allCourses = await allCoursesGetter();
 		const lastCourse =
 			allCourses.data.result[allCourses.data.result.length - 1];
@@ -50,7 +55,6 @@ export async function createCourse(
 					}
 				});
 			});
-			// return newAuthorsList;
 		}
 
 		setTitle('');
@@ -60,6 +64,6 @@ export async function createCourse(
 		setIsEdit(false);
 		return lastCourse;
 	} else {
-		alert('check all labels');
+		setErrorBar(true);
 	}
 }

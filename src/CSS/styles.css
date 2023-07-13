@@ -156,6 +156,9 @@ body .Pos .CourcesBody .Card .Info .InfoInner .authors {
   width: 20vw;
   text-overflow: ellipsis;
 }
+body .Pos .CourcesBody .Card .Info .InfoInner .authors::after {
+  content: "...";
+}
 body .EditBody {
   width: 80%;
   margin: 0 auto;
@@ -217,6 +220,7 @@ body .EditBody .BigInfoContainer .isApllyedAuthorBox .ApllyedAuthors .ApllyedBox
   margin: 4vw 0;
 }
 body .EditBody .BigInfoContainer .isApllyedAuthorBox .ApllyedAuthors .ApllyedBox > div {
+  align-items: center;
   margin: 0.2vw 0;
   display: flex;
   justify-content: space-between;
@@ -274,4 +278,8 @@ code {
   position: sticky;
   top: 1vw;
   font-weight: 600;
+}
+
+.Name {
+  align-items: center;
 }/*# sourceMappingURL=styles.css.map */

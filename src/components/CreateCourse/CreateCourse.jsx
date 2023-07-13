@@ -1,12 +1,12 @@
 import Input from '../../common/Input/input';
 import Button from '../../common/Button/Button';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Texts } from '../../const';
 import { createCourse } from '../../helpers/createCourseFunction';
-import { selectAllAuthorsList, user } from '../../store/selectors/selectors';
+import { selectAllAuthorsList } from '../../store/selectors/selectors';
 import { setAuthorsToList } from '../../store/authors/actionCreators';
 
 import { allAuthorsGetter, getCourseById } from '../../API/secondLayer';
@@ -33,24 +33,7 @@ function CreateCource({ type, setIsEdit }) {
 		useSelector(selectAllAuthorsList)
 	);
 	const [applAuthors, setApplAuthor] = useState([]);
-
 	const { id } = useParams();
-
-	function createCourseBackup(title, description, duration) {
-		return {
-			title: useRef(title).current,
-			description: useRef(description).current,
-			duration: useRef(duration).current,
-			authors: useRef(applAuthors).current,
-		};
-	}
-
-	let oldCourseVersionPrepare = createCourseBackup(
-		title,
-		description,
-		duration
-	);
-
 	const [oldCourseVersion, setOldCourseversion] = useState({});
 
 	async function createAuthorFunction() {
@@ -97,12 +80,6 @@ function CreateCource({ type, setIsEdit }) {
 					setTitle(el.title);
 					setDescription(el.description);
 					setDuration(el.duration);
-					setApplAuthor(el.authors);
-					oldCourseVersionPrepare.title = el.title;
-					oldCourseVersionPrepare.description = el.description;
-					oldCourseVersionPrepare.duration = el.duration;
-					oldCourseVersionPrepare.authors = el.authors;
-					setOldCourseversion(oldCourseVersionPrepare);
 					const list = authorList;
 					const applList = el.authors;
 					const lastList = [];
@@ -116,6 +93,12 @@ function CreateCource({ type, setIsEdit }) {
 							}
 						});
 						setApplAuthor(lastList);
+						setOldCourseversion({
+							title: el.title,
+							description: el.description,
+							duration: el.duration,
+							authors: lastList,
+						});
 					});
 				});
 	}, []);

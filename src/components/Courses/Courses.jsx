@@ -33,7 +33,7 @@ function Cources(props) {
 
 	let allCourses = useSelector(selectCoursesList);
 
-	let role = useSelector(user).role;
+	const role = useSelector(user).role;
 
 	useEffect(() => {
 		dispatch(compiledCoursesList());

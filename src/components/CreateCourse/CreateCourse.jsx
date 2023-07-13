@@ -51,24 +51,21 @@ function CreateCource({ type, setIsEdit }) {
 		}
 	}
 	async function CourseUpdater() {
-		dispatch(
-			updateCourse(
-				await createCourse(
-					title,
-					description,
-					duration,
-					applAuthors,
-					setDescription,
-					setTitle,
-					setDuration,
-					setApplAuthor,
-					setIsEdit,
-					setErrorBar,
-					type,
-					id
-				)
-			)
+		await createCourse(
+			title,
+			description,
+			duration,
+			applAuthors,
+			setDescription,
+			setTitle,
+			setDuration,
+			setApplAuthor,
+			setIsEdit,
+			setErrorBar,
+			type,
+			id
 		);
+
 		navigate('/courses');
 	}
 

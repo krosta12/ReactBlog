@@ -55,7 +55,6 @@ export async function createCourse(
 					}
 				});
 			});
-			// return newAuthorsList;
 		}
 
 		setTitle('');

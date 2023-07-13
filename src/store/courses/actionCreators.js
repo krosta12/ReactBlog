@@ -12,14 +12,9 @@ const actionCreators = createSlice({
 			state.initialList = [...state.initialList, action.payload];
 			return state;
 		},
-		replaceCourse(state, action) {
-			// state.initialList = [...state.initialList, action.payload];
-			return state;
-		},
 	},
 });
 
-export const { getAllCourses, setCreatedCource, replaceCourse } =
-	actionCreators.actions;
+export const { getAllCourses, setCreatedCource } = actionCreators.actions;
 
 export default actionCreators.reducer;

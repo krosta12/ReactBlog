@@ -71,10 +71,3 @@ export const coursePosting = createAsyncThunk(
 		dispatch(setCreatedCource(course));
 	}
 );
-
-export const updateCourse = createAsyncThunk(
-	'coursesSlice/fetch/updateCourse',
-	async (course, id, { dispatch }) => {
-		dispatch(replaceCourse(course, id));
-	}
-);

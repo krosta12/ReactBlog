@@ -1,117 +1,45 @@
 import { render, screen } from '@testing-library/react';
 import CourseInfo from '../CourseInfo';
 import { BrowserRouter } from 'react-router-dom';
-import { v4 } from 'uuid';
-import { title } from 'process';
 import '@testing-library/jest-dom/extend-expect'; //stack-overflow expect(...).toBeInTheDocument is not a function
 
 describe('test case', () => {
-	let post = {};
-	beforeEach(() => {
-		post.title = Math.random().toString();
-		post.creationDate = `${Math.random()}/${Math.random()}/${Math.random()}`;
-		post.description = Math.random().toString();
-		post.duration = Math.random().toFixed(2);
-		post.id = v4();
-		post.authors = [
-			Math.random().toFixed(3).toString(),
-			Math.random().toFixed(3).toString(),
-		];
-	});
+	let post = {
+		title: 'How to save...',
+		creationDate: '24/06/2023',
+		description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ma`,
+		duration: '106.06',
+		id: 'cc0c5455-2836-40bd-932c-e7d9e06de0b6',
+		authors: ['AuthorNameNum1', 'AuthorNameNum2'],
+	};
 
-	test('Title Test', () => {
+	const renderBlock = () =>
 		render(
 			<BrowserRouter>
-				<CourseInfo
-					post={{
-						authors: post.authors,
-						creationDate: post.creationDate,
-						description: post.description,
-						duration: post.duration,
-						id: post.id,
-						title: post.title,
-					}}
-				/>
+				<CourseInfo post={post} />
 			</BrowserRouter>
 		);
+
+	test('Title Test', () => {
+		renderBlock();
 		const linkElement = screen.getByText(post.title);
-		expect(linkElement).toBeInTheDocument;
+		expect(linkElement).toMatchSnapshot();
 	});
 
 	test('Description Test', () => {
-		render(
-			<BrowserRouter>
-				<CourseInfo
-					post={{
-						authors: post.authors,
-						creationDate: post.creationDate,
-						description: post.description,
-						duration: post.duration,
-						id: post.id,
-						title: post.title,
-					}}
-				/>
-			</BrowserRouter>
-		);
+		renderBlock();
 		const linkElement = screen.getByText(post.description);
-		expect(linkElement).toBeInTheDocument;
-	});
-
-	test('Title Test', () => {
-		render(
-			<BrowserRouter>
-				<CourseInfo
-					post={{
-						authors: post.authors,
-						creationDate: post.creationDate,
-						description: post.description,
-						duration: post.duration,
-						id: post.id,
-						title: post.title,
-					}}
-				/>
-			</BrowserRouter>
-		);
-		const linkElement = screen.getByText(post.title);
-		expect(linkElement).toBeInTheDocument;
+		expect(linkElement).toMatchSnapshot();
 	});
 
 	test('Duration Test', () => {
-		render(
-			<BrowserRouter>
-				<CourseInfo
-					post={{
-						authors: post.authors,
-						creationDate: post.creationDate,
-						description: post.description,
-						duration: post.duration,
-						id: post.id,
-						title: post.title,
-					}}
-				/>
-			</BrowserRouter>
-		);
+		renderBlock();
 		const durationElement = screen.getByText(/Duration: \d+\.\d+ Hours/);
-		expect(durationElement.textContent).toEqual(
-			`Duration: ${post.duration} Hours`
-		);
+		expect(durationElement.textContent).toMatchSnapshot();
 	});
 	test('Authors List Test', () => {
-		render(
-			<BrowserRouter>
-				<CourseInfo
-					post={{
-						authors: post.authors,
-						creationDate: post.creationDate,
-						description: post.description,
-						duration: post.duration,
-						id: post.id,
-						title: post.title,
-					}}
-				/>
-			</BrowserRouter>
-		);
-		const author = screen.getByText(post.authors[0]);
-		expect(author).toBeInTheDocument();
+		const author = renderBlock();
+		expect(author).toMatchSnapshot();
 	});
+	test('Course Card Created Date Test', () => {});
 });

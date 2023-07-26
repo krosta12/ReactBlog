@@ -23,8 +23,8 @@ export default function CourseInfo(props) {
 					<div className='InfoInner infoInnerCard'>
 						<div className='authors'>
 							Authors:{' '}
-							{props.post.authors.map((el) => {
-								return <span>{el} </span>;
+							{props.post.authors.map((el, id) => {
+								return <span key={id}>{el} </span>;
 							})}
 						</div>
 						<p>Duration: {props.post.duration} Hours</p>

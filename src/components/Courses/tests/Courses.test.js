@@ -1,9 +1,7 @@
-import { render } from '@testing-library/react';
-// import axios from 'axios';
-
+import { act, render } from '@testing-library/react';
 import Cources from '../Courses';
-
-// jest.mock('axios');
+import React, { useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('da', () => {
 	const coursesBD = [
@@ -32,8 +30,7 @@ describe('da', () => {
 	];
 
 	test('test', () => {
-		axios.get.MockReturnValue();
-		// render(<Cources setPost={null} />);
+		render(<Courses />);
 		expect();
 	});
 });

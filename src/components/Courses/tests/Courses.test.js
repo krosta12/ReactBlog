@@ -1,7 +1,8 @@
-import { act, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Cources from '../Courses';
-import React, { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React from 'react';
+import { Provider, useDispatch } from 'react-redux';
+import store from '../../../store/index';
 
 describe('da', () => {
 	const coursesBD = [
@@ -30,7 +31,12 @@ describe('da', () => {
 	];
 
 	test('test', () => {
-		render(<Courses />);
+		render(
+			<Provider store={store}>
+				<Cources setPost={jest.fn()} />
+			</Provider>
+		);
+		screen.debug();
 		expect();
 	});
 });

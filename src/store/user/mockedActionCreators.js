@@ -4,10 +4,10 @@ const userActionCreators = createSlice({
 	name: 'userReducers',
 	initialState: {
 		user: {
-			isAuth: false,
-			name: '',
-			email: '',
-			token: '',
+			isAuth: true,
+			name: 'admin',
+			email: 'admin@email.com',
+			token: 'token',
 		},
 	},
 	reducers: {

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`nameOfTest 1`] = `
+<span
+  class="Name"
+  data-testid="nameTest"
+>
+  admin
+</span>
+`;

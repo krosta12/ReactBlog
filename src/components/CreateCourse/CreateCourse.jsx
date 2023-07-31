@@ -47,7 +47,7 @@ function CreateCource({
 	);
 	const [applAuthors, setApplAuthor] = useState([]);
 	return (
-		<div className='EditBody'>
+		<div className='EditBody' data-testid='EditTest'>
 			<div className='EditInnerUp'>
 				<div>
 					<Input

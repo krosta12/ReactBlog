@@ -55,7 +55,7 @@ function Cources(props) {
 							setState={setSearch}
 						/>
 					</div>
-					<div>
+					<div data-testid='CreateCourceButton'>
 						<Button text={Texts.addNewCource} onClick={() => setIsEdit(true)} />
 					</div>
 				</div>
@@ -70,7 +70,7 @@ function Cources(props) {
 								);
 							})
 							.map((el) => (
-								<>
+								<div key={el.id} data-testid='courceCard'>
 									<CourceCard
 										id={el.id}
 										theme={el.title}
@@ -80,7 +80,7 @@ function Cources(props) {
 										authors={el.authors}
 										setPost={props.setPost}
 									/>
-								</>
+								</div>
 							))}
 				</div>
 			</div>

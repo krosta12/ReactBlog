@@ -1,6 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getAllCourses, setCreatedCource } from '../courses/actionCreators';
-import { allAuthorsGetter, allCoursesGetter } from '../../API/secondLayer';
+import {
+	allAuthorsGetter,
+	allCoursesGetter,
+	userMeGetter,
+} from '../../API/secondLayer';
 import { saveUser } from '../user/actionCreators';
 
 async function getterCourses() {
@@ -45,7 +49,6 @@ export const authorsGetter = createAsyncThunk(
 	async () => {
 		let allAuthorsList = await getterAuthors();
 		allAuthorsList = allAuthorsList.data.result;
-		console.log(allAuthorsList);
 		return allAuthorsList;
 	}
 );
@@ -53,7 +56,7 @@ export const authorsGetter = createAsyncThunk(
 export const UserGetter = createAsyncThunk(
 	'userReducers/fetch',
 	async (_, { dispatch }) => {
-		let authors = await getUserMe();
+		let authors = await userMeGetter();
 		dispatch(saveUser(authors.data.result));
 	}
 );

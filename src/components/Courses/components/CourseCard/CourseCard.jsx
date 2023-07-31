@@ -50,7 +50,7 @@ function CourceCard(props) {
 					<div className='authors'>
 						Authors:{' '}
 						{props.authors.map((el) => {
-							return <span>{el} </span>;
+							return <span key={el}>{el} </span>;
 						})}
 					</div>
 					<p>Duration: {props.duration} Hours</p>

@@ -1,42 +1,51 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Cources from '../Courses';
 import React from 'react';
 import { Provider, useDispatch } from 'react-redux';
-import store from '../../../store/index';
+import store from '../../../store/mockedIndex';
+import { BrowserRouter } from 'react-router-dom';
+import { click } from '@testing-library/user-event/dist/click';
+import CreateCource from '../../CreateCourse/CreateCourse';
+import userEvent from '@testing-library/user-event';
 
-describe('da', () => {
-	const coursesBD = [
-		{
-			title: 'NEW2322',
-			description: '21132dssd2',
-			duration: 213,
-			authors: [
-				'b82afc53-804d-407c-8656-b3cdfeb986f1',
-				'715de352-9124-448c-9a15-4285c1390999',
-			],
-			creationDate: '29/06/2023',
-			id: '12d98fbc-5789-4811-8732-64857f221155',
-		},
-		{
-			title: 'SEc112',
-			description: '1edfsgfs',
-			duration: 31124,
-			authors: [
-				'715de352-9124-448c-9a15-4285c1390999',
-				'b82afc53-804d-407c-8656-b3cdfeb986f1',
-			],
-			creationDate: '13/07/2023',
-			id: 'cc7c5455-2836-40bd-932c-e7d9e06de0b6',
-		},
-	];
-
-	test('test', () => {
+describe('Cources Tests', () => {
+	test('Courses should display amount of CourseCard equal length of courses array', async () => {
 		render(
-			<Provider store={store}>
-				<Cources setPost={jest.fn()} />
-			</Provider>
+			<BrowserRouter>
+				<Provider store={store}>
+					<Cources setPost={jest.fn()} /> {/*replace jest.fn()*/}
+				</Provider>
+			</BrowserRouter>
 		);
-		screen.debug();
-		expect();
+		const listOfCources = await screen.findAllByTestId('courceCard');
+		expect(listOfCources.length).toEqual(2);
+	});
+	// test('Courses should display Empty container if courses array length is 0', async () => {
+	// 	let isFilled;
+	// 	render(
+	// 		<BrowserRouter>
+	// 			<Provider store={store}>
+	// 				<Cources setPost={jest.fn()} /> {/*replace jest.fn()*/}
+	// 			</Provider>
+	// 		</BrowserRouter>
+	// 	);
+
+	// 	if (await screen.queryByTestId('courceCard')) {
+	// 		isFilled = true;
+	// 	}
+	// 	expect(isFilled === false);
+	// });
+	test('s', async () => {
+		render(
+			<BrowserRouter>
+				<Provider store={store}>
+					<Cources setPost={jest.fn()} /> {/*replace jest.fn()*/}
+				</Provider>
+			</BrowserRouter>
+		);
+		const listOfCources = await screen.findAllByTestId('CreateCourceButton');
+		userEvent.click(listOfCources[0].firstChild);
+		const EditComponent = await screen.findByTestId('EditTest');
+		expect(EditComponent);
 	});
 });

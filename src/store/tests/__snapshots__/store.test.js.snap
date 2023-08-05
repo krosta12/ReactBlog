@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reducers tests reducer should handle GET_COURSES and returns new state 1`] = `
+Object {
+  "mockedAuthorReducers": Object {
+    "authorsInitialState": Array [
+      Object {
+        "id": "715de352-9124-448c-9a15-4285c1390999",
+        "name": "111111",
+      },
+      Object {
+        "id": "b82afc53-804d-407c-8656-b3cdfeb986f1",
+        "name": "SECOND",
+      },
+    ],
+  },
+  "mockedCourcesReducer": Object {
+    "initialList": Array [
+      Object {
+        "authors": Array [
+          "b82afc53-804d-407c-8656-b3cdfeb986f1",
+        ],
+        "creationDate": "00/00/0000",
+        "description": "NewDescriptionForTest",
+        "duration": 123,
+        "id": "12d98fbc-5789-4811-8732-64857f221155",
+        "title": "NewTitleForTest",
+      },
+    ],
+  },
+  "mokedUserReducer": Object {
+    "user": Object {
+      "email": "admin@email.com",
+      "isAuth": true,
+      "name": "admin",
+      "token": "token",
+    },
+  },
+}
+`;
+
+exports[`Reducers tests reducer should handle SAVE_COURSE and returns new state 1`] = `
+Object {
+  "mockedAuthorReducers": Object {
+    "authorsInitialState": Array [
+      Object {
+        "id": "715de352-9124-448c-9a15-4285c1390999",
+        "name": "111111",
+      },
+      Object {
+        "id": "b82afc53-804d-407c-8656-b3cdfeb986f1",
+        "name": "SECOND",
+      },
+    ],
+  },
+  "mockedCourcesReducer": Object {
+    "initialList": Array [
+      Object {
+        "authors": Array [
+          "b82afc53-804d-407c-8656-b3cdfeb986f1",
+          "715de352-9124-448c-9a15-4285c1390999",
+        ],
+        "creationDate": "29/06/2023",
+        "description": "21132dssd2",
+        "duration": 213,
+        "id": "12d98fbc-5789-4811-8732-64857f221155",
+        "title": "NEW2322",
+      },
+      Object {
+        "authors": Array [
+          "715de352-9124-448c-9a15-4285c1390999",
+          "b82afc53-804d-407c-8656-b3cdfeb986f1",
+        ],
+        "creationDate": "13/07/2023",
+        "description": "1edfsgfs",
+        "duration": 31124,
+        "id": "cc7c5455-2836-40bd-932c-e7d9e06de0b6",
+        "title": "SEc112",
+      },
+      Object {
+        "authors": Array [
+          "b82afc53-804d-407c-8656-b3cdfeb986f1",
+        ],
+        "creationDate": "00/00/0000",
+        "description": "NewDescriptionForTest",
+        "duration": 123,
+        "id": "12d98fbc-5789-4811-8732-64857f221155",
+        "title": "NewTitleForTest",
+      },
+    ],
+  },
+  "mokedUserReducer": Object {
+    "user": Object {
+      "email": "admin@email.com",
+      "isAuth": true,
+      "name": "admin",
+      "token": "token",
+    },
+  },
+}
+`;
+
+exports[`Reducers tests reducer should return the initial state 1`] = `
+Object {
+  "mockedAuthorReducers": Object {
+    "authorsInitialState": Array [
+      Object {
+        "id": "715de352-9124-448c-9a15-4285c1390999",
+        "name": "111111",
+      },
+      Object {
+        "id": "b82afc53-804d-407c-8656-b3cdfeb986f1",
+        "name": "SECOND",
+      },
+    ],
+  },
+  "mockedCourcesReducer": Object {
+    "initialList": Array [
+      Object {
+        "authors": Array [
+          "b82afc53-804d-407c-8656-b3cdfeb986f1",
+          "715de352-9124-448c-9a15-4285c1390999",
+        ],
+        "creationDate": "29/06/2023",
+        "description": "21132dssd2",
+        "duration": 213,
+        "id": "12d98fbc-5789-4811-8732-64857f221155",
+        "title": "NEW2322",
+      },
+      Object {
+        "authors": Array [
+          "715de352-9124-448c-9a15-4285c1390999",
+          "b82afc53-804d-407c-8656-b3cdfeb986f1",
+        ],
+        "creationDate": "13/07/2023",
+        "description": "1edfsgfs",
+        "duration": 31124,
+        "id": "cc7c5455-2836-40bd-932c-e7d9e06de0b6",
+        "title": "SEc112",
+      },
+    ],
+  },
+  "mokedUserReducer": Object {
+    "user": Object {
+      "email": "admin@email.com",
+      "isAuth": true,
+      "name": "admin",
+      "token": "token",
+    },
+  },
+}
+`;

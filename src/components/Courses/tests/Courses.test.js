@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { click } from '@testing-library/user-event/dist/click';
 import CreateCource from '../../CreateCourse/CreateCourse';
 import userEvent from '@testing-library/user-event';
+import { clearAllCources } from '../../../store/courses/mockedActionCreators';
 
 describe('Cources Tests', () => {
 	test('Courses should display amount of CourseCard equal length of courses array', async () => {
@@ -20,22 +21,24 @@ describe('Cources Tests', () => {
 		const listOfCources = await screen.findAllByTestId('courceCard');
 		expect(listOfCources.length).toEqual(2);
 	});
-	// test('Courses should display Empty container if courses array length is 0', async () => {
-	// 	let isFilled;
-	// 	render(
-	// 		<BrowserRouter>
-	// 			<Provider store={store}>
-	// 				<Cources setPost={jest.fn()} /> {/*replace jest.fn()*/}
-	// 			</Provider>
-	// 		</BrowserRouter>
-	// 	);
+	test('Courses should display Empty container if courses array length is 0', async () => {
+		let isFilled;
+		store.dispatch(clearAllCources());
+		render(
+			<BrowserRouter>
+				<Provider store={store}>
+					<Cources setPost={jest.fn()} /> {/*replace jest.fn()*/}
+				</Provider>
+			</BrowserRouter>
+		);
 
-	// 	if (await screen.queryByTestId('courceCard')) {
-	// 		isFilled = true;
-	// 	}
-	// 	expect(isFilled === false);
-	// });
-	test('s', async () => {
+		if (await screen.queryByTestId('courceCard')) {
+			isFilled = true;
+		}
+		expect(isFilled === false);
+	});
+
+	test('Courses should display Empty container if courses array length more then 0', async () => {
 		render(
 			<BrowserRouter>
 				<Provider store={store}>

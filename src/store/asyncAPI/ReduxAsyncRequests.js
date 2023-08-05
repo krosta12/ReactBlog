@@ -1,11 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllCourses, setCreatedCource } from '../courses/actionCreators';
+import {
+	getAllCourses,
+	setCreatedCource,
+} from '../courses/mockedActionCreators';
 import {
 	allAuthorsGetter,
 	allCoursesGetter,
 	userMeGetter,
 } from '../../API/secondLayer';
-import { saveUser } from '../user/actionCreators';
+import { saveUser } from '../user/mockedActionCreators';
 
 async function getterCourses() {
 	return await allCoursesGetter();

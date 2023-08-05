@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Texts } from '../../const';
 import { createCourse } from '../../helpers/createCourseFunction';
 import { selectAllAuthorsList } from '../../store/selectors/selectors';
-import { setAuthorsToList } from '../../store/authors/actionCreators';
+import { setAuthorsToList } from '../../store/authors/mockedActionCreators';
 
 import { allAuthorsGetter } from '../../API/secondLayer';
 import { authorAdd } from '../../API/secondLayer';
@@ -96,7 +96,7 @@ function CreateCource({
 			<div className='BigInfoContainer'>
 				<div className='CreateAuthorBox'>
 					<p>Authors</p>
-					<div>
+					<div data-testid='authorsDispatchTest'>
 						<Input
 							labelText={Texts.authorName}
 							state={inputAuthorName}
@@ -105,17 +105,19 @@ function CreateCource({
 							placeholder='Enter author name...'
 						/>
 					</div>
-					<Button
-						text={Texts.createAuthor}
-						onClick={async () => createAuthorFunction()}
-					/>
+					<p>
+						<Button
+							text={Texts.createAuthor}
+							onClick={async () => createAuthorFunction()}
+						/>
+					</p>
 				</div>
 
 				<div className='isApllyedAuthorBox'>
 					<div className='notAppled'>
 						<p className='AuthorsTitle'>Authors</p>
 						{authorList.map((el) => (
-							<div>
+							<div data-testid='AddAuthorTest'>
 								<div className='Name'>
 									<span>{el.name}</span>
 									<Button
@@ -135,7 +137,7 @@ function CreateCource({
 						<div className='ApllyedBox'>
 							<p className='AuthorsTitle'>Applied authors</p>
 							{applAuthors.map((el) => (
-								<div>
+								<div data-testid='DeleteAuthorTest'>
 									<span>{el.name}</span>
 									<Button
 										text={Texts.deleteAuthor}

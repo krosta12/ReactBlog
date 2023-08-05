@@ -38,9 +38,21 @@ const actionCreators = createSlice({
 			state.initialList = [...state.initialList, action.payload];
 			return state;
 		},
+		clearAllCources(state) {
+			state.initialList = [];
+			return state;
+		},
+		returnInitialStateTest(state) {
+			return state;
+		},
 	},
 });
 
-export const { getAllCourses, setCreatedCource } = actionCreators.actions;
+export const {
+	getAllCourses,
+	setCreatedCource,
+	clearAllCources,
+	returnInitialStateTest,
+} = actionCreators.actions;
 
 export default actionCreators.reducer;

@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Reducers tests CourseForm 'Create author' click button should call dispatch 1`] = `
+<button>
+  Create author
+</button>
+`;
+
 exports[`Reducers tests reducer should handle GET_COURSES and returns new state 1`] = `
 Object {
   "mockedAuthorReducers": Object {

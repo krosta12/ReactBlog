@@ -16,6 +16,7 @@ const authorSlice = createSlice({
 			return state;
 		},
 		setAuthorsToList: (state, action) => {
+			console.log('d');
 			state.authorsInitialState = [
 				...state.authorsInitialState,
 				action.payload,

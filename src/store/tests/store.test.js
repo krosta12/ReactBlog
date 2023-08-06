@@ -4,13 +4,13 @@ import CreateCource from '../../components/CreateCourse/CreateCourse';
 import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 import Input from '../../common/Input/input';
-import * as Redux from 'react-redux';
 import mockedActionCreators, {
 	getAllCourses,
 	setCreatedCource,
 } from '../courses/mockedActionCreators';
 import { post } from '../../API/apiWorker';
 import { setAuthorsToList } from '../authors/mockedActionCreators';
+import { allAuthorsGetter } from '../../API/secondLayer';
 
 const mockedCources = {
 	title: 'NewTitleForTest',
@@ -26,23 +26,6 @@ describe('Reducers tests', () => {
 		const initialState = store.getState();
 		expect(initialState).toMatchSnapshot();
 	});
-	// test(`CourseForm 'Create author' click button should call dispatch`, async () => {
-	// 	dispatch = jest.fn();
-
-	// 	jest.mock('../../API/apiWorker', () => {
-	// 		post: jest.fn();
-	// 		get: jest.fn();
-	// 	});
-	// 	render(
-	// 		<Provider store={store}>
-	// 			<CreateCource inputAuthorName={'name'} setInputAuthorName={jest.fn()} />
-	// 		</Provider>
-	// 	);
-	// 	const container = screen.getByText('Create author');
-	// 	expect(container).toMatchSnapshot();
-	// 	userEvent.dblClick(container);
-	// 	expect(setAuthorsToList).toHaveBeenCalled();
-	// });
 	test('reducer should handle SAVE_COURSE and returns new state', async () => {
 		store.dispatch(setCreatedCource(mockedCources));
 		mockedActionCreators({ initialList: [] }, setCreatedCource(mockedCources));
@@ -84,5 +67,17 @@ describe('Reducers tests', () => {
 		fireEvent.click(deleteContainer[0]);
 		const newAplAuthorList = screen.findAllByText('Delete author');
 		expect(newAplAuthorList.length).toEqual(undefined);
+	});
+	test(`CourseForm 'Create author' click button should call dispatch`, async () => {
+		store.dispatch = jest.fn();
+		render(
+			<Provider store={store}>
+				<CreateCource inputAuthorName={'name'} setInputAuthorName={jest.fn()} />
+			</Provider>
+		);
+		const container = screen.getByText('Create author');
+		expect(container).toMatchSnapshot();
+		fireEvent.click(container);
+		await expect(store.dispatch).toHaveBeenCalled();
 	});
 });

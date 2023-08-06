@@ -117,7 +117,7 @@ function CreateCource({
 					<div className='notAppled'>
 						<p className='AuthorsTitle'>Authors</p>
 						{authorList.map((el) => (
-							<div data-testid='AddAuthorTest'>
+							<div key={el.name} data-testid='AddAuthorTest'>
 								<div className='Name'>
 									<span>{el.name}</span>
 									<Button

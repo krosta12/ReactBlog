@@ -55,34 +55,34 @@ describe('Reducers tests', () => {
 		expect(saveUserHandller).toMatchSnapshot();
 	});
 
-	// test(`CourseForm 'Add author' button click should add an author to course authors list`, async () => {
-	// 	render(
-	// 		<Provider store={store}>
-	// 			<CreateCource inputAuthorName={'name'} setInputAuthorName={jest.fn()} />
-	// 		</Provider>
-	// 	);
-	// 	const oldAuthorsList = screen.findAllByTestId('AddAuthorTest');
-	// 	expect(oldAuthorsList.length).toEqual(undefined);
-	// 	const container = screen.getByText('Add author');
-	// 	fireEvent.click(container);
-	// 	const newAuthorList = screen.getAllByTestId('AddAuthorTest');
-	// 	expect(newAuthorList.length).toEqual(1);
-	// });
+	test(`CourseForm 'Add author' button click should add an author to course authors list`, async () => {
+		render(
+			<Provider store={store}>
+				<CreateCource inputAuthorName={'name'} setInputAuthorName={jest.fn()} />
+			</Provider>
+		);
+		const oldAuthorsList = screen.findAllByTestId('AddAuthorTest');
+		expect(oldAuthorsList.length).toEqual(undefined);
+		const container = screen.getAllByText('Add author');
+		fireEvent.click(container[0]);
+		const newAuthorList = screen.getAllByTestId('AddAuthorTest');
+		expect(newAuthorList.length).toEqual(1);
+	});
 
-	// test(`CourseForm 'Delete author' button click should delete an author from the course list`, () => {
-	// 	render(
-	// 		<Provider store={store}>
-	// 			<CreateCource inputAuthorName={'name'} setInputAuthorName={jest.fn()} />
-	// 		</Provider>
-	// 	);
+	test(`CourseForm 'Delete author' button click should delete an author from the course list`, () => {
+		render(
+			<Provider store={store}>
+				<CreateCource inputAuthorName={'name'} setInputAuthorName={jest.fn()} />
+			</Provider>
+		);
 
-	// 	const addContainer = screen.getByText('Add author');
-	// 	fireEvent.click(addContainer);
-	// 	const oldAuthorsList = screen.findAllByTestId('AddAuthorTest');
-	// 	expect(oldAuthorsList.length).toEqual(undefined);
-	// 	const deleteContainer = screen.getByText('Delete author');
-	// 	fireEvent.click(deleteContainer);
-	// 	const newAuthorList = screen.getAllByTestId('AddAuthorTest');
-	// 	expect(newAuthorList.length).toEqual(1);
-	// });
+		const addContainer = screen.getAllByText('Add author');
+		fireEvent.click(addContainer[0]);
+		const oldAuthorsList = screen.findAllByTestId('AddAuthorTest');
+		expect(oldAuthorsList.length).toEqual(undefined);
+		const deleteContainer = screen.getAllByText('Delete author');
+		fireEvent.click(deleteContainer[0]);
+		const newAplAuthorList = screen.findAllByText('Delete author');
+		expect(newAplAuthorList.length).toEqual(undefined);
+	});
 });

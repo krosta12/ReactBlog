@@ -9,11 +9,7 @@ import { createCourse } from '../../helpers/createCourseFunction';
 import { selectAllAuthorsList } from '../../store/selectors/selectors';
 import { setAuthorsToList } from '../../store/authors/mockedActionCreators';
 
-import { allAuthorsGetter } from '../../API/secondLayer';
-import { authorAdd } from '../../API/secondLayer';
-
 import { coursePosting } from '../../store/asyncAPI/ReduxAsyncRequests';
-import { mockAllAuthorsGetter } from '../Header/tests/mockedHelper';
 
 function CreateCource({
 	title,
@@ -30,10 +26,6 @@ function CreateCource({
 
 	async function createAuthorFunction() {
 		if (inputAuthorName.split('').length > 3) {
-			// await authorAdd({ name: inputAuthorName }); not needed for tests
-			// let authors = await mockAllAuthorsGetter();
-			// authors = authors.data.result;
-			// const lastElem = authors[authors.length - 1];
 			const lastElem = {
 				name: 'NEWTESTPERSON',
 				id: 'b82afc53-804d-407c-8656-b3cdfeb982f1',

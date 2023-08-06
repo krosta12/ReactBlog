@@ -1,11 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Cources from '../Courses';
 import React from 'react';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 import store from '../../../store/mockedIndex';
 import { BrowserRouter } from 'react-router-dom';
-import { click } from '@testing-library/user-event/dist/click';
-import CreateCource from '../../CreateCourse/CreateCourse';
 import userEvent from '@testing-library/user-event';
 import { clearAllCources } from '../../../store/courses/mockedActionCreators';
 

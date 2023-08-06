@@ -2,15 +2,10 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import store from '../mockedIndex';
 import CreateCource from '../../components/CreateCourse/CreateCourse';
 import { Provider } from 'react-redux';
-import userEvent from '@testing-library/user-event';
-import Input from '../../common/Input/input';
 import mockedActionCreators, {
 	getAllCourses,
 	setCreatedCource,
 } from '../courses/mockedActionCreators';
-import { post } from '../../API/apiWorker';
-import { setAuthorsToList } from '../authors/mockedActionCreators';
-import { allAuthorsGetter } from '../../API/secondLayer';
 
 const mockedCources = {
 	title: 'NewTitleForTest',

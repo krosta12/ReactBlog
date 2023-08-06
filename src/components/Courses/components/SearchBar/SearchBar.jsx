@@ -1,13 +1,9 @@
 import Input from '../../../../common/Input/input';
 import Button from '../../../../common/Button/Button';
 
-import { useDispatch } from 'react-redux';
-
 import { Texts } from '../../../../const';
 
 function SearchBar(props) {
-	const dispatch = useDispatch();
-
 	return (
 		<div>
 			<Input

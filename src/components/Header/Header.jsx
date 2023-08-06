@@ -11,7 +11,7 @@ import '../../CSS/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser } from '../../store/user/actionCreators';
 
-import { logOut, userMeGetter } from '../../API/secondLayer';
+import { logOut } from '../../API/secondLayer';
 import { selectLocalUser } from '../../store/selectors/selectors';
 
 function Header(props) {

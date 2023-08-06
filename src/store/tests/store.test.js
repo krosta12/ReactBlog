@@ -77,7 +77,7 @@ describe('Reducers tests', () => {
 		);
 		const container = screen.getByText('Create author');
 		expect(container).toMatchSnapshot();
-		fireEvent.click(containera);
+		fireEvent.click(container);
 		await expect(store.dispatch).toHaveBeenCalled();
 	});
 });
